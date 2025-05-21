@@ -1,0 +1,16 @@
+# Frontend build tools
+.DS_Store
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# PHP
+vendor/
+composer.lock
+
+# Misc
+*.tmp
+*.lock
+*.log
+*.bak
