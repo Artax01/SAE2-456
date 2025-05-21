@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 
+        S'il vous plaît ne supprimez pas ces balises script:
+        elles servent à utliser TailwindCSS ainsi que Preline, 
+        deux frameworks complémentaire.
+    -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/preline@latest/dist/preline.js"></script>
+</head>
+<body>
+    <main class="flex flex-col justify-center items-center h-screen w-screen">
+        <button data-hs-collapse="#my-content" class="hs-collapse-toggle bg-blue-600 text-white px-4 py-2 rounded-xl">
+            Voir le contenu
+        </button>
+
+        <div id="my-content" class="hs-collapse hidden mt-2 bg-gray-100 p-4 rounded-xl">
+            <a class="text-blue-600 underline" href="https://preline.co/examples.html" target="_blank">
+                Allez checkez ce qu'on peut faire avec TailwindCSS et Preline.
+            </a>
+        </div>
+    </main>
+
+    <!-- On initialise Preline après le chargement de la page -->
+    <script>
+        window.addEventListener('load', () => {
+            window.HSStaticMethods.autoInit();
+        });
+    </script>
+</body>
+</html>
