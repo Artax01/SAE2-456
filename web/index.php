@@ -1,11 +1,14 @@
-<!DOCTYPE html>
+<?php
+    $titre = "RAPIDC3";
+?>
 
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>RAPIDC3</title>
+    <title><?php echo $titre; ?></title>
 
     <!-- SEO (référencement) -->
     <meta name="robots" content="index, follow">
@@ -24,16 +27,32 @@
     <meta property="og:title" content="RapidC3 - Plats à emporter et programme fidélité" inertia="og:title">
     <meta property="og:description" content="Découvrez RapidC3 : restaurants à emporter avec commandes en ligne, points de fidélité et promotions personnalisées." inertia="og:description">
 
+    <!-- style commun de l'application -->
+    <link rel="stylesheet" href="./assets/css/root.css">
+
     <!-- S'il vous plaît ne supprimez pas cette balise script: elle sert à utliser TailWindCSS.-->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body>
 
 
-    <?php
-        echo "<h2>Bienvenue sur l'application web de la SAE2-456 pour le client RAPIDC3.</h2>"."</br>";
-    ?>
+
+<div class="navbar">
+    <button id="btn-accueil" onclick="loadPage('accueil.php', this)">Accueil</button>
+    <button id="btn-commander" onclick="loadPage('commander.php', this)">Commander</button>
+    <button id="btn-compte" onclick="loadPage('compte.php', this)">Compte</button>
+</div>
+
+<?php 
+    require_once './component/navbar.php';
+?>
+
+<div id="content">
+    <!-- Le contenu se charge ici -->
+</div>
 
 
+
+<script src="./assets/js/nav.js"></script>
 </body>
 </html>

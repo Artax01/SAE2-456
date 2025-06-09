@@ -1,0 +1,19 @@
+:root {
+
+    /* ajouter les styles commun ici */
+    --primary-text-color: rgba(0, 0, 0, 1);
+    
+    /* style glassmorphique */
+    --glasmorphism-bg: rgba(0, 0, 0, 0.05);
+    --glasmorphism-border-color: rgba(0, 0, 0, 0.2);
+    --glasmorphism-backdrop-filter: blur(6px);
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+button {
+    cursor: pointer;
+}
