@@ -1,6 +1,26 @@
-<link rel="stylesheet" href="./assets/css/nav.css">
+<link rel="stylesheet" href="./assets/css/navbar.css">
 
-<!-- ========== NAVBAR ========== -->
+<!-- ========== NAVBAR MOBILE ========== -->
+<div class="navbar">
+  <button id="btn-accueil" onclick="loadPage('accueil.php', this)">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" fill="gray"><path d="M3 9.75L12 3l9 6.75v10.5A1.75 1.75 0 0 1 19.25 22h-3.5A1.75 1.75 0 0 1 14 20.25V15a1 1 0 0 0-2 0v5.25A1.75 1.75 0 0 1 10.25 22h-3.5A1.75 1.75 0 0 1 5 20.25V9.75z"/></svg>
+    <small>Accueil</small>
+  </button>
+  <button id="btn-commander" onclick="loadPage('commander.php', this)">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" fill="gray"><path d="M5.25 3A2.25 2.25 0 0 0 3 5.25v13.5c0 .621.504 1.125 1.125 1.125.248 0 .49-.082.683-.232L6 18.25l1.192 1.393c.193.15.435.232.683.232.248 0 .49-.082.683-.232L10 18.25l1.192 1.393c.193.15.435.232.683.232s.49-.082.683-.232L14 18.25l1.192 1.393a1.125 1.125 0 0 0 1.683 0L18 18.25l1.192 1.393c.193.15.435.232.683.232.621 0 1.125-.504 1.125-1.125V5.25A2.25 2.25 0 0 0 18.75 3H5.25z"/></svg>
+    <small>Commander</small>
+  </button>
+  <!-- <button id="btn-commander" onclick="showMenu('commander.php')">Commander</button> -->
+  <button id="btn-compte" onclick="loadPage('compte.php', this)">
+    <svg fill="gray" viewBox="0 0 24 24"><path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"/></svg>
+    <small>Compte</small>
+  </button>
+</div>
+<!-- ========== END NAVBAR MOBILE ========== -->
+
+
+
+<!-- ========== NAVBAR DESKTOP ========== -->
 <header id="top-navbar" class="sticky top-0 inset-x-0 bg-white border-b border-gray-200 dark:bg-neutral-800 dark:border-neutral-700 flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full">
   <nav class="relative max-w-[85rem] w-full mx-auto md:flex md:items-center md:justify-between md:gap-3 px-4 sm:px-6 lg:px-8 py-2">
     
@@ -22,6 +42,7 @@
           <button id="btn-commander" onclick="loadPage('commander.php', this)" class="p-2 flex items-center text-gray-800 hover:bg-gray-100 rounded-lg focus:outline-hidden focus:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 hs-scrollspy-active:bg-gray-100">
             Commander
           </button>
+          <button id="btn-fidelite">Fidélité</button>
           <button id="btn-compte" onclick="loadPage('compte.php', this)" class="p-2 flex items-center text-gray-800 hover:bg-gray-100 rounded-lg focus:outline-hidden focus:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 hs-scrollspy-active:bg-gray-100">
             Compte
           </button>
@@ -32,4 +53,6 @@
     
   </nav>
 </header>
-<!-- ========== END NAVBAR ========== -->
+<!-- ========== END NAVBAR DESKTOP ========== -->
+
+<script src="./assets/js/navbar.js"></script>

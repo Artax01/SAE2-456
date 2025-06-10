@@ -20,6 +20,7 @@ function loadPage(page, button = null, updateURL = true) {
             content.style.opacity = 0;
             setTimeout(() => {
                 content.innerHTML = html;
+                window.scrollTo({ top: 0, behavior: 'smooth' });
                 content.style.opacity = 1;
             }, 100);
         })

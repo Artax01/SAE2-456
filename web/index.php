@@ -36,13 +36,6 @@
 <body>
 
 
-
-<div class="navbar">
-    <button id="btn-accueil" onclick="loadPage('accueil.php', this)">Accueil</button>
-    <button id="btn-commander" onclick="loadPage('commander.php', this)">Commander</button>
-    <button id="btn-compte" onclick="loadPage('compte.php', this)">Compte</button>
-</div>
-
 <?php 
     require_once './component/navbar.php';
 ?>
@@ -51,8 +44,10 @@
     <!-- Le contenu se charge ici -->
 </div>
 
+<?php 
+    require_once './component/dialog.php';
+?>
 
 
-<script src="./assets/js/nav.js"></script>
 </body>
 </html>
