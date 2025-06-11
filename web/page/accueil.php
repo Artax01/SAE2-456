@@ -82,8 +82,10 @@
                 <span class="text-white drop-shadow-[0_4px_4px_rgba(0,0,0,1)]">RAPID</span>
                 <span class="text-orange-400 drop-shadow-[0_4px_4px_rgba(0,0,0,1)]">C3</span>
             </h1>
+            <p class="text-3xl font-semibold text-white text-center max-w-2xl drop-shadow-lg">
+                IUT DE CAEN CAMPUS 3<br> </p>
             <p class="text-2xl font-semibold text-white text-center max-w-2xl drop-shadow-lg">
-                Commandez en ligne rapidement et simplement
+                <br><i>" Commandez en ligne rapidement et simplement " </i></p>
             </p>
         </div>
     </div>
