@@ -1,4 +1,12 @@
 function loadPage(page, button = null, updateURL = true) {
+    const fullRedirectPages = ['signin.php', 'signup.php'];
+    const serverProtectedPages = ['compte.php'];
+
+    if (fullRedirectPages.includes(page)) {
+        window.location.href = './page/' + page;
+        return;
+    }
+
     const content = document.getElementById('content');
 
     document.querySelectorAll('.navbar button').forEach(btn => btn.classList.remove('active'));
@@ -15,7 +23,14 @@ function loadPage(page, button = null, updateURL = true) {
     }
 
     fetch('./page/' + page)
-        .then(res => res.text())
+        .then(res => {
+            if (!res.ok) throw new Error('Erreur lors du chargement');
+            if (res.redirected) {
+                window.location.href = res.url;
+                return;
+            }
+            return res.text()
+        })
         .then(html => {
             content.style.opacity = 0;
             setTimeout(() => {
