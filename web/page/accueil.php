@@ -1,5 +1,5 @@
 <div class="fixed inset-0 w-full h-full bg-[url('img/rapidc3.png')] bg-cover bg-center bg-no-repeat z-0 ">
-      <!-- Flèche menu latéral -->
+    <!-- Flèche menu latéral -->
     <button class="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white bg-opacity-80 rounded-full shadow p-2 hover:bg-orange-100 transition">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7" />
@@ -30,9 +30,12 @@
             </a>
         </div>
     </div>
-    <div class="absolute inset-0 bg-white opacity-60"></div>
+    <div class="absolute inset-0 bg-white opacity-70"></div>
     <div class="absolute inset-0 flex flex-col items-center justify-center z-10">
-        <h1 class="text-7xl font-extrabold tracking-tight mb-4 text-black drop-shadow-lg">RAPID C3</h1>
+        <h1 class="text-9xl font-extrabold tracking-tight mb-4 drop-shadow-lg">
+            <span class="text-white drop-shadow-[0_4px_4px_rgba(0,0,0,1)]">RAPID</span>
+            <span class="text-orange-400 drop-shadow-[0_4px_4px_rgba(0,0,0,1)]">C3</span>
+        </h1>
         <p class="text-2xl font-semibold text-black text-center max-w-2xl drop-shadow-lg">
             Commandez en ligne rapidement et simplement
         </p>
