@@ -1,87 +1,74 @@
 <!-- Menu "Nos Menus" avec effets Tailwind CSS, image de fond et animation navbar -->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="relative min-h-screen w-full">
   <!-- Image de fond + filtre opaque -->
- <div class="fixed inset-0 w-full h-full bg-[url('img/fast-food.jpeg')] bg-cover bg-center bg-no-repeat z-0 ">
-    <div class="absolute inset-0 bg-black opacity-55"></div>
+  <div class="absolute inset-0 z-0">
+    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80" alt="Restaurant" class="w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-white/60"></div> <!-- Opacité légère, ajuste /60 pour plus/moins opaque -->
   </div>
   <!-- Contenu principal en relatif -->
   <div class="relative z-10 flex h-screen">
     <!-- Sidebar Navigation -->
-<aside class="flex flex-col items-center py-4 px-2 backdrop-blur border-b border-gray-200 dark:bg-neutral-800 dark:border-neutral-700 h-full transition-all duration-300 group w-20 hover:w-56 z-20 relative">
-  <!-- Flèche ouverture -->
-  <div class="absolute top-1/2 right-[-12px] transform -translate-y-1/2 flex items-center justify-center w-6 h-6 bg-[#E7E4E0] rounded-full shadow border border-orange-300 z-30 pointer-events-none">
-    <svg class="w-4 h-4 text-orange-400 group-hover:scale-x-[-1] transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
-      <path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </div>
-  <!-- Liens de navigation avec icônes -->
-  <div class="flex items-center mb-8 w-full justify-center group-hover:justify-start">
-    <a href="?page=accueil.php" class="material-icons text-orange-400 text-5xl transition-all duration-300 mx-auto group-hover:mr-2 group-hover:mx-0 flex items-center justify-center">home</a>
-    <a href="?page=accueil.php"
-      class="ml-0 w-full text-left text-lg font-semibold text-white
-        transition-all duration-300 whitespace-nowrap
-        focus:outline-none
-        hover:bg-orange-100 hover:text-orange-500
-        active:scale-95
-        transition-transform
-        rounded-md py-1 px-2
-        opacity-0 group-hover:opacity-100
-        hidden group-hover:inline
-      ">
-      Accueil
-    </a>
-  </div>
-  <div class="flex items-center mb-8 w-full justify-center group-hover:justify-start">
-    <a href="?page=menu.php" class="material-icons text-orange-400 text-5xl transition-all duration-300 mx-auto group-hover:mr-2 group-hover:mx-0 flex items-center justify-center">restaurant_menu</a>
-    <a href="?page=menu.php"
-      class="ml-0 w-full text-left text-lg font-semibold text-white
-        transition-all duration-300 whitespace-nowrap
-        focus:outline-none
-        hover:bg-orange-100 hover:text-orange-500
-        active:scale-95
-        transition-transform
-        rounded-md py-1 px-2
-        opacity-0 group-hover:opacity-100
-        hidden group-hover:inline
-      ">
-      Nos Menus
-    </a>
-  </div>
-  <div class="flex items-center mb-8 w-full justify-center group-hover:justify-start">
-    <a href="?page=plat.php" class="material-icons text-orange-400 text-5xl transition-all duration-300 mx-auto group-hover:mr-2 group-hover:mx-0 flex items-center justify-center">restaurant</a>
-    <a href="?page=plat.php"
-      class="ml-0 w-full text-left text-lg font-semibold text-white
-        transition-all duration-300 whitespace-nowrap
-        focus:outline-none
-        hover:bg-orange-100 hover:text-orange-500
-        active:scale-95
-        transition-transform
-        rounded-md py-1 px-2
-        opacity-0 group-hover:opacity-100
-        hidden group-hover:inline
-      ">
-      Nos Plats
-    </a>
-  </div>
-  <div class="flex items-center mb-8 w-full justify-center group-hover:justify-start">
-    <a href="?page=panier.php" class="material-icons text-orange-400 text-5xl transition-all duration-300 mx-auto group-hover:mr-2 group-hover:mx-0 flex items-center justify-center">shopping_cart</a>
-    <a href="?page=panier.php"
-      class="ml-0 w-full text-left text-lg font-semibold text-white
-        transition-all duration-300 whitespace-nowrap
-        focus:outline-none
-        hover:bg-orange-100 hover:text-orange-500
-        active:scale-95
-        transition-transform
-        rounded-md py-1 px-2
-        opacity-0 group-hover:opacity-100
-        hidden group-hover:inline
-      ">
-      Panier
-    </a>
-  </div>
-</aside>
-<!-- ...existing code... -->
+    <aside class="flex flex-col items-center py-4 px-2 bg-[#E7E4E0] h-full transition-all duration-300 group w-16 hover:w-56 z-20 relative">
+      <!-- Flèche ouverture -->
+      <div class="absolute top-1/2 right-[-12px] transform -translate-y-1/2 flex items-center justify-center w-6 h-6 bg-[#E7E4E0] rounded-full shadow border border-orange-300 z-30 pointer-events-none">
+        <!-- Petite flèche pointant vers la droite -->
+        <svg class="w-4 h-4 text-orange-400 group-hover:scale-x-[-1] transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+          <path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <!-- Liens de navigation sans icones -->
+      <div class="flex items-center mb-8 w-full">
+        <button class="ml-4 w-full text-left text-lg font-semibold text-gray-700 opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap
+                       focus:outline-none
+                       hover:bg-orange-100 hover:text-orange-500
+                       active:scale-95
+                       transition-transform
+                       rounded-md py-1 px-2">
+          Accueil
+        </button>
+      </div>
+      <div class="flex items-center mb-8 w-full">
+        <button class="ml-4 w-full text-left text-lg font-semibold text-gray-700 opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap
+                       focus:outline-none
+                       hover:bg-orange-100 hover:text-orange-500
+                       active:scale-95
+                       transition-transform
+                       rounded-md py-1 px-2">
+          Nos Menus
+        </button>
+      </div>
+      <div class="flex items-center mb-8 w-full">
+        <button class="ml-4 w-full text-left text-lg font-semibold text-gray-700 opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap
+                        focus:outline-none
+                        hover:bg-orange-100 hover:text-orange-500
+                        active:scale-95
+                        transition-transform
+                        rounded-md py-1 px-2">
+          Catégorie
+        </button>
+      </div>
+      <div class="flex items-center mb-8 w-full relative">
+        <button class="ml-4 w-full text-left text-lg font-semibold text-gray-700 opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap
+                        focus:outline-none
+                        hover:bg-orange-100 hover:text-orange-500
+                        active:scale-95
+                        transition-transform
+                        rounded-md py-1 px-2">
+          Panier
+        </button>
+      </div>
+      <div class="flex items-center mt-auto w-full">
+        <button class="ml-4 w-full text-left text-lg font-semibold text-gray-700 opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap
+                        focus:outline-none
+                        hover:bg-orange-100 hover:text-orange-500
+                        active:scale-95
+                        transition-transform
+                        rounded-md py-1 px-2">
+          Profil
+        </button>
+      </div>
+    </aside>
+
 
   <!-- Main Content -->
   <div class="flex-1 flex flex-col px-10 py-6">
@@ -94,7 +81,7 @@
     </div>
 
     <!-- Titre -->
-    <h1 class="text-5xl font-extrabold text-orange-400 mb-8 tracking-wide">NOS MENUS</h1>
+    <h1 class="text-5xl font-extrabold text-orange-400 mb-8 tracking-wide">NOS PLATS</h1>
 
     <!-- Menus List -->
     <div class="flex gap-10 justify-center">
