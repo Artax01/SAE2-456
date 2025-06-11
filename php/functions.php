@@ -6,18 +6,26 @@ require_once("connexion.php");
 function getPlats($conn): array{
     $tab = [];
     
-    $req_sql = "SELECT * FROM rap_plat";
+    $req_sql = "SELECT * FROM RAP_PLAT";
     $cur = preparerRequetePDO($conn, $req_sql);
     LireDonneesPDOPreparee($cur, $tab);
     return $tab;
-    
 }
 
-function isPlatExist($conn, $plat_num): bool{
+function getImgInfoPerPlats($conn, $pla_num): array{
+    $plat = [];
+    $req_sql = "SELECT * FROM RAP_PLAT_IMAGE WHERE PLA_NUM=?";
+    $cur = preparerRequetePDO($conn, $req_sql);
+    majDonneesPrepareesTabPDO($cur, [$pla_num]);
+    LireDonneesPDOPreparee($cur, $plat);
+    return $plat[0];
+}
+
+function isPlatExist($conn, $pla_num): bool{
     $tab = [];
     $req_sql = "SELECT * FROM RAP_PLAT WHERE PLA_NUM=?";
     $cur = preparerRequetePDO($conn, $req_sql);
-    majDonneesPrepareesTabPDO($cur, [$plat_num]);
+    majDonneesPrepareesTabPDO($cur, [$pla_num]);
     LireDonneesPDOPreparee($cur, $tab);
     return !empty($tab);
 }
@@ -31,7 +39,7 @@ function isClientExist($conn, $cli_num): bool{
     return !empty($tab);
 }
 
-
+/*
 function payerPlat($conn, $plat_num, $cli_num){
     try{
         if(!isPlatExist($conn, $plat_num)){
@@ -56,4 +64,4 @@ function payerPlat($conn, $plat_num, $cli_num){
         echo json_encode(["error"=>"Erreur lors du paiement"]);
     }
     
-}
+}*/

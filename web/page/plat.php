@@ -1,3 +1,5 @@
+<?php require_once("../../php/functions.php"); ?>
+
 <!-- Menu "Nos Menus" avec effets Tailwind CSS, image de fond et animation navbar -->
 <div class="relative min-h-screen w-full">
   <!-- Image de fond + filtre opaque -->
@@ -86,73 +88,33 @@
     <!-- Menus List -->
     <div class="flex gap-10 justify-center">
       <!-- Menu Card -->
-      <div class="relative group w-80">
-        <div class="relative rounded-2xl overflow-hidden h-40 w-full border-4 border-orange-300 shadow-lg transition-all duration-500 group-hover:h-56">
-          <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80" alt="Pizza 4 fromages" class="h-full w-full object-cover transition-all duration-500 group-hover:scale-105">
-          <!-- Description Hover (dans l'image, bulle qui s'agrandit uniquement au hover) -->
-          <div class="absolute inset-0 flex items-end pointer-events-none">
-            <div class="w-full transition-all duration-500 ease-out transform translate-y-16 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 group-hover:min-h-[96px] pointer-events-auto bg-gradient-to-t from-black/90 to-transparent text-white rounded-b-2xl p-4 text-center min-h-0 flex flex-col items-center justify-end"
-              style="will-change: transform, opacity, min-height;">
-              <div class="font-bold text-lg mb-1 break-words">Description</div>
-              <div class="text-sm break-words">La pizza est une recette de cuisine traditionnelle de la cuisine italienne, originaire de Naples à base de galette de pâte à pain, garnie principalement d'huile d'olive, de sauce tomate, de mozzarella et d'autres ingrédients</div>
+      <?php foreach(getPlats($conn) as $plat): ?>
+        <?php 
+          $infoPlat = getImgInfoPerPlats($conn, $plat["PLA_NUM"]);
+            
+        ?>
+        <div class="relative group w-80">
+          <div class="relative rounded-2xl overflow-hidden h-40 w-full border-4 border-orange-300 shadow-lg transition-all duration-500 group-hover:h-56">
+            <img src="<?=$infoPlat["CHEMIN_IMG"] ?>" alt="<?=$infoPlat["ALT_DESC_IMG"] ?>" class="h-full w-full object-cover transition-all duration-500 group-hover:scale-105">
+            <!-- Description Hover (dans l'image, bulle qui s'agrandit uniquement au hover) -->
+            <div class="absolute inset-0 flex items-end pointer-events-none">
+              <div class="w-full transition-all duration-500 ease-out transform translate-y-16 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 group-hover:min-h-[96px] pointer-events-auto bg-gradient-to-t from-black/90 to-transparent text-white rounded-b-2xl p-4 text-center min-h-0 flex flex-col items-center justify-end"
+                style="will-change: transform, opacity, min-height;">
+                <div class="font-bold text-lg mb-1 break-words">Description</div>
+                <div class="text-sm break-words">La pizza est une recette de cuisine traditionnelle de la cuisine italienne, originaire de Naples à base de galette de pâte à pain, garnie principalement d'huile d'olive, de sauce tomate, de mozzarella et d'autres ingrédients</div>
+              </div>
+            </div>
+          </div>
+          <!-- Infos Plat -->
+          <div class="flex flex-col items-center mt-4">
+            <div class="bg-white rounded-full px-8 py-2 font-bold text-lg mb-2 shadow"><?=$plat["PLA_NOM"] ?><br><span class="font-normal"><?=$plat["PLA_PRIX_VENTE_UNIT_HT"] ?>€</span></div>
+            <div class="flex gap-4">
+              <button class="border-2 border-orange-400 text-orange-400 font-semibold px-4 py-2 rounded-full hover:bg-orange-50 transition">Ajouter au panier</button>
+              <button onclick="" class="bg-orange-400 text-white font-semibold px-6 py-2 rounded-full hover:bg-orange-500 transition">Commander</button>
             </div>
           </div>
         </div>
-        <!-- Infos Plat -->
-        <div class="flex flex-col items-center mt-4">
-          <div class="bg-white rounded-full px-8 py-2 font-bold text-lg mb-2 shadow">Pizza 4 fromages<br><span class="font-normal">25€</span></div>
-          <div class="flex gap-4">
-            <button class="border-2 border-orange-400 text-orange-400 font-semibold px-4 py-2 rounded-full hover:bg-orange-50 transition">Ajouter au panier</button>
-            <button class="bg-orange-400 text-white font-semibold px-6 py-2 rounded-full hover:bg-orange-500 transition">Commander</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Menu 2 -->
-      <div class="relative group w-80">
-        <div class="relative rounded-2xl overflow-hidden h-40 w-full border-4 border-orange-300 shadow-lg transition-all duration-500 group-hover:h-56">
-          <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80" alt="Pizza 2 fromages" class="h-full w-full object-cover transition-all duration-500 group-hover:scale-105">
-          <!-- Description Hover (dans l'image, bulle qui s'agrandit uniquement au hover) -->
-          <div class="absolute inset-0 flex items-end pointer-events-none">
-            <div class="w-full transition-all duration-500 ease-out transform translate-y-16 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 group-hover:min-h-[96px] pointer-events-auto bg-gradient-to-t from-black/90 to-transparent text-white rounded-b-2xl p-4 text-center min-h-0 flex flex-col items-center justify-end"
-              style="will-change: transform, opacity, min-height;">
-              <div class="font-bold text-lg mb-1 break-words">Description</div>
-              <div class="text-sm break-words">La pizza est une recette de cuisine traditionnelle de la cuisine italienne, originaire de Naples à base de galette de pâte à pain, garnie principalement d'huile d'olive, de sauce tomate, de mozzarella et d'autres ingrédients</div>
-            </div>
-          </div>
-        </div>
-        <!-- Infos Plat -->
-        <div class="flex flex-col items-center mt-4">
-          <div class="bg-white rounded-full px-8 py-2 font-bold text-lg mb-2 shadow">Pizza 2 fromages<br><span class="font-normal">25€</span></div>
-          <div class="flex gap-4">
-            <button class="border-2 border-orange-400 text-orange-400 font-semibold px-4 py-2 rounded-full hover:bg-orange-50 transition">Ajouter au panier</button>
-            <button class="bg-orange-400 text-white font-semibold px-6 py-2 rounded-full hover:bg-orange-500 transition">Commander</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Menu 3 -->
-      <div class="relative group w-80">
-        <div class="relative rounded-2xl overflow-hidden h-40 w-full border-4 border-orange-300 shadow-lg transition-all duration-500 group-hover:h-56">
-          <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80" alt="Pizza 3 fromages" class="h-full w-full object-cover transition-all duration-500 group-hover:scale-105">
-          <!-- Description Hover (dans l'image, bulle qui s'agrandit uniquement au hover) -->
-          <div class="absolute inset-0 flex items-end pointer-events-none">
-            <div class="w-full transition-all duration-500 ease-out transform translate-y-16 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 group-hover:min-h-[96px] pointer-events-auto bg-gradient-to-t from-black/90 to-transparent text-white rounded-b-2xl p-4 text-center min-h-0 flex flex-col items-center justify-end"
-              style="will-change: transform, opacity, min-height;">
-              <div class="font-bold text-lg mb-1 break-words">Description</div>
-              <div class="text-sm break-words">La pizza est une recette de cuisine traditionnelle de la cuisine italienne, originaire de Naples à base de galette de pâte à pain, garnie principalement d'huile d'olive, de sauce tomate, de mozzarella et d'autres ingrédients</div>
-            </div>
-          </div>
-        </div>
-        <!-- Infos Plat -->
-        <div class="flex flex-col items-center mt-4">
-          <div class="bg-white rounded-full px-8 py-2 font-bold text-lg mb-2 shadow">Pizza 3 fromages<br><span class="font-normal">25€</span></div>
-          <div class="flex gap-4">
-            <button class="border-2 border-orange-400 text-orange-400 font-semibold px-4 py-2 rounded-full hover:bg-orange-50 transition">Ajouter au panier</button>
-            <button class="bg-orange-400 text-white font-semibold px-6 py-2 rounded-full hover:bg-orange-500 transition">Commander</button>
-          </div>
-        </div>
-      </div>
+      <?php endforeach; ?>>
     </div>
   </div>
 </div>
