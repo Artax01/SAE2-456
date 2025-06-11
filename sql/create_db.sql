@@ -80,8 +80,10 @@ CREATE TABLE RAP_LEGUME
 CREATE TABLE RAP_CLIENT
 (
     CLI_NUM NUMBER(4),
-    CLI_NOM VARCHAR2(32)  NULL,
-    CLI_PRENOM VARCHAR2(32)  NULL,
+    CLI_NOM VARCHAR2(32),
+    CLI_PRENOM VARCHAR2(32),
+    CLI_MDP VARCHAR(32),
+    CLI_TEL VARCHAR(32) NULL,
     CLI_COURRIEL VARCHAR2(32)  NULL,
 	CONSTRAINT PK_RAP_CLIENT PRIMARY KEY (CLI_NUM)  
 );
@@ -188,33 +190,33 @@ ALTER TABLE RAP_APPARTENIR ADD (
                REFERENCES RAP_PLAT (PLA_NUM));
 REM INSERTING into RAP_CLIENT
 SET DEFINE OFF;
-insert into rap_client values ('0','NON CLIENT','NON CLIENT','NON CLIENT');
-insert into rap_client values ('1','LEPERE','Noël','perno@rso.fr');
-insert into rap_client values ('2','LAMERE','Michele','memere@ego.fr');
-insert into rap_client values ('124','PELLE','Emma','emapelle@ihm.fr');
-insert into rap_client values ('139','FOTO','Thomas','thoma.foto@ppp.fr');
-insert into rap_client values ('246','BORNE','Camille','K1000borne@algo.fr');
-insert into rap_client values ('249','ABOIS','Clovis','clovis666@bdd.fr');
-insert into rap_client values ('261','COLOGNE','Claude','claude.cologne@bdd.fr');
-insert into rap_client values ('269','AUBOISDORMANT','ABEL','abel14@iut.com');
-insert into rap_client values ('984','ESEL','Jean-François','jpe@sys.fr');
-insert into rap_client values ('998','PRIOR','Béatrice','b.prior@div.fr');
-insert into rap_client values ('1001','NERONS','Philippe','p_nerons@ihm.fr');
-insert into rap_client values ('1008','DELIVAROT','Paul','p.delivatot@algo.fr');
-insert into rap_client values ('1034','KUSCHENFRAU','Angela','akf@lakers.de');
-insert into rap_client values ('1041','SUPORMOI','Steven','ssupormoi@donnay.fr');
-insert into rap_client values ('1052','FROUSSARD','Stéphane','sfroussard@thales.fr');
-insert into rap_client values ('1058','PASAMSUNG','Christelle','cpc@iut.com');
-insert into rap_client values ('1059','DEWAERE','Marlène','m.dewaere@audio.fr');
-insert into rap_client values ('1070','BOUCHEZ','Olivier','olivier.bouchez@iut.fr');
-insert into rap_client values ('1074','MAIALEQ','Eric','Eric.Maialeq@tdf.fr');
-insert into rap_client values ('1076','ROUSELLE','Kader','kader.rouselle@3maisons.fr');
-insert into rap_client values ('1078','SUPER','Didier','didier.super@poire.fr');
-insert into rap_client values ('1079','SUPER','Simone','simone.super@poire.fr');
-insert into rap_client values ('1120','FONCOMBE','Arwen','Arwen.foncombe@ring.fr');
-insert into rap_client values ('1213','LEGRIS','Gandalf','gandalf.legris@ring.fr');
-insert into rap_client values ('1234','FONCOMBE','Aragorn','grand_pas@ring.fr');
-insert into rap_client values ('1239','BORNE','Elisabeth','Bab_borne@algo.fr');
+insert into rap_client values ('0','NON CLIENT','NON CLIENT', 'NON CLIENT', 'NON CLIENT', 'NON CLIENT');
+insert into rap_client values ('1','LEPERE','Noël','LEPERENOEL','0102030405','perno@rso.fr');
+insert into rap_client values ('2','LAMERE','Michele','LAMEREMICHELE', null,'memere@ego.fr');
+insert into rap_client values ('124','PELLE','Emma','PELLEEMMA', null,'emapelle@ihm.fr');
+insert into rap_client values ('139','FOTO','Thomas','FOTOTHOMAS', null,'thoma.foto@ppp.fr');
+insert into rap_client values ('246','BORNE','Camille','BORNECAMILLE', null,'K1000borne@algo.fr');
+insert into rap_client values ('249','ABOIS','Clovis','ABOISCLOVIS', null,'clovis666@bdd.fr');
+insert into rap_client values ('261','COLOGNE','Claude','COLOGNECLAUDE', null,'claude.cologne@bdd.fr');
+insert into rap_client values ('269','AUBOISDORMANT','ABEL','AUBOISDORMANTABEL', null,'abel14@iut.com');
+insert into rap_client values ('984','ESEL','Jean-François','ESELJEANFRANCOIS', null,'jpe@sys.fr');
+insert into rap_client values ('998','PRIOR','Béatrice','PRIORBEATRICE', null,'b.prior@div.fr');
+insert into rap_client values ('1001','NERONS','Philippe','NERONSPHILIPPE', null,'p_nerons@ihm.fr');
+insert into rap_client values ('1008','DELIVAROT','Paul','DELIVAROT', null,'p.delivatot@algo.fr');
+insert into rap_client values ('1034','KUSCHENFRAU','Angela','KUSCHENFRAUANGELA', null,'akf@lakers.de');
+insert into rap_client values ('1041','SUPORMOI','Steven','SUPORMOISTEVEN', null,'ssupormoi@donnay.fr');
+insert into rap_client values ('1052','FROUSSARD','Stéphane','FROUSSARDSTEPHANE', null,'sfroussard@thales.fr');
+insert into rap_client values ('1058','PASAMSUNG','Christelle','PASAMSUNGCHRISTELLE', null,'cpc@iut.com');
+insert into rap_client values ('1059','DEWAERE','Marlène','DEWAEREMARLENE', null,'m.dewaere@audio.fr');
+insert into rap_client values ('1070','BOUCHEZ','Olivier','BOUCHEZOLIVIER', null,'olivier.bouchez@iut.fr');
+insert into rap_client values ('1074','MAIALEQ','Eric','MAIALEQERIC', null,'Eric.Maialeq@tdf.fr');
+insert into rap_client values ('1076','ROUSELLE','Kader','ROUSELLEKADER', null,'kader.rouselle@3maisons.fr');
+insert into rap_client values ('1078','SUPER','Didier','SUPERDIDIER', null,'didier.super@poire.fr');
+insert into rap_client values ('1079','SUPER','Simone','SUPERSIMONE', null,'simone.super@poire.fr');
+insert into rap_client values ('1120','FONCOMBE','Arwen','FONCOMBEARWEN', null,'Arwen.foncombe@ring.fr');
+insert into rap_client values ('1213','LEGRIS','Gandalf','LEGRISGANDALF', null,'gandalf.legris@ring.fr');
+insert into rap_client values ('1234','FONCOMBE','Aragorn','FONCOMBEARAGON', null,'grand_pas@ring.fr');
+insert into rap_client values ('1239','BORNE','Elisabeth','BORNEELISABETH', null,'Bab_borne@algo.fr');
 
 
 REM INSERTING into RAP_FIDELISATION
