@@ -79,7 +79,7 @@
           </div>
         </div>
         <!-- Infos Plat -->
-        <div class="flex flex-col items-center  mt-4">
+        <div class="text-black flex flex-col text-center mt-4">
           <div class="bg-white rounded-full px-8 py-2 font-bold text-lg mb-2 shadow">Pizza 4 fromages<br><span class="font-normal">25€</span></div>
           <div class="flex gap-4">
             <button class="border-2 border-orange-400 text-orange-400 font-semibold px-4 py-2 rounded-full hover:bg-orange-50 transition">Ajouter au panier</button>
@@ -102,7 +102,7 @@
           </div>
         </div>
         <!-- Infos Plat -->
-        <div class="flex flex-col items-center mt-4">
+        <div class="text-black flex flex-col text-center mt-4">
           <div class="bg-white rounded-full px-8 py-2 font-bold text-lg mb-2 shadow">Pizza 2 fromages<br><span class="font-normal">25€</span></div>
           <div class="flex gap-4">
             <button class="border-2 border-orange-400 text-orange-400 font-semibold px-4 py-2 rounded-full hover:bg-orange-50 transition">Ajouter au panier</button>
@@ -125,7 +125,7 @@
           </div>
         </div>
         <!-- Infos Plat -->
-        <div class="flex flex-col items-center mt-4">
+        <div class="text-black flex flex-col text-center mt-4">
           <div class="bg-white rounded-full px-8 py-2 font-bold text-lg mb-2 shadow">Pizza 3 fromages<br><span class="font-normal">25€</span></div>
           <div class="flex gap-4">
             <button class="border-2 border-orange-400 text-orange-400 font-semibold px-4 py-2 rounded-full hover:bg-orange-50 transition">Ajouter au panier</button>

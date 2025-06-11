@@ -37,7 +37,7 @@
     <!-- logo centré sur mobile -->
     <div class="w-full md:w-auto flex justify-center md:justify-start order-1 md:order-none">
       <button id="btn-title" class="text-white font-semibold focus:outline-hidden focus:opacity-80" onclick="loadPage('accueil.php', this)">
-        <img src="img/logoC3.png" alt="logo RAPID-C3" class="h-20 w-20">
+        <img src="img/logoC3.png" alt="logo RAPID-C3" class="h-20 w-23">
       </button>
     </div>
     <!-- end logo -->
