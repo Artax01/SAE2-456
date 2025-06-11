@@ -1,4 +1,4 @@
-<div class="fixed inset-0 w-full h-full bg-[url('img/rapidc3.png')] bg-cover bg-center bg-no-repeat z-0">
+<div class="bg-[url('img/mountains.jpg')] bg-cover bg-center bg-no-repeat bg-fixed w-full h-screen">
     <!-- Zone invisible pour hover menu latéral -->
     <div class="fixed left-0 top-0 h-full w-10 z-30 group">
         <!-- Fenêtre latérale affichée au hover -->
@@ -11,9 +11,9 @@
             </a>
             <a href="?page=menu.php" class="flex flex-col items-center group">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-orange-400 group-hover:text-orange-500 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <rect x="4" y="8" width="16" height="12" rx="2" stroke-width="2" stroke="currentColor" fill="none"/>
-                    <path d="M9 12h6M9 16h6" stroke-width="2" stroke="currentColor" stroke-linecap="round"/>
-                    <circle cx="12" cy="10" r="1" fill="currentColor"/>
+                    <rect x="4" y="8" width="16" height="12" rx="2" stroke-width="2" stroke="currentColor" fill="none" />
+                    <path d="M9 12h6M9 16h6" stroke-width="2" stroke="currentColor" stroke-linecap="round" />
+                    <circle cx="12" cy="10" r="1" fill="currentColor" />
                 </svg>
                 <span class="mt-1 text-xs font-semibold text-gray-700">Menu</span>
             </a>
@@ -29,10 +29,10 @@
     <div class="absolute inset-0 flex flex-col items-center justify-center z-10">
         <h1 class="text-7xl font-extrabold tracking-tight mb-4 text-black drop-shadow-lg">RAPID C3</h1>
         <p class="text-2xl font-semibold text-black text-center max-w-2xl drop-shadow-lg">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a sagittis leo. Aliquam ut nibh ac massa scelerisque pretium non id nisi. Quisque sodales, urna eu tempor mollis, diam nisl porttitor tellus, vitae tempus libero nisi non nulla. Aliquam erat volutpat.
+            Commandez en ligne rapidement et simplement
         </p>
     </div>
-    <div class="absolute bottom-0 left-0 right-0 flex justify-center items-center py-4 bg-white bg-opacity-80 backdrop-blur-md z-20">
-       <p>TEST</p>
-    </div>    
+    <div class="fixed bottom-0 left-0 right-0 flex justify-center items-center py-4 bg-black bg-opacity-80 backdrop-blur-md z-20">
+        <p class="text-lg font-semibold text-gray-800">Bienvenue sur RapidC3</p>
+    </div>
 </div>
