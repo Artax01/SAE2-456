@@ -1,6 +1,11 @@
-<div class="bg-[url('img/mountains.jpg')] bg-cover bg-center bg-no-repeat bg-fixed w-full h-screen">
-    <!-- Zone invisible pour hover menu latéral -->
-    <div class="fixed left-0 top-0 h-full w-10 z-30 group">
+<div class="fixed inset-0 w-full h-full bg-[url('img/rapidc3.png')] bg-cover bg-center bg-no-repeat z-0 ">
+      <!-- Flèche menu latéral -->
+    <button class="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white bg-opacity-80 rounded-full shadow p-2 hover:bg-orange-100 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7" />
+        </svg>
+    </button>
+    <div class="fixed left-0 top-0 h-full w-20 z-30 group"> <!-- w-10 -> w-20 -->
         <!-- Fenêtre latérale affichée au hover -->
         <div class="absolute left-0 top-1/2 -translate-y-1/2 bg-white shadow-xl rounded-r-2xl px-6 py-8 flex flex-col items-center gap-8 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-300">
             <a href="?page=accueil.php" class="flex flex-col items-center group">
@@ -31,8 +36,5 @@
         <p class="text-2xl font-semibold text-black text-center max-w-2xl drop-shadow-lg">
             Commandez en ligne rapidement et simplement
         </p>
-    </div>
-    <div class="fixed bottom-0 left-0 right-0 flex justify-center items-center py-4 bg-black bg-opacity-80 backdrop-blur-md z-20">
-        <p class="text-lg font-semibold text-gray-800">Bienvenue sur RapidC3</p>
     </div>
 </div>
