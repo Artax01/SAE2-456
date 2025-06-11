@@ -7,7 +7,7 @@
     <div class="w-full md:w-auto flex justify-center md:justify-start order-1 md:order-none">
       <a href="../../index.php">
         <button id="btn-title" class="text-white font-semibold focus:outline-hidden focus:opacity-80">
-          <img src="../assets/img/logoC3.png" class="h-20 w-20">
+          <img src="../assets/img/logoC3.png" class="h-20 w-21">
         </button>
       </a>
     </div>
