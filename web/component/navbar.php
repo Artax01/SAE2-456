@@ -42,7 +42,9 @@
           <button id="btn-commander" onclick="loadPage('commander.php', this)" class="p-2 flex items-center text-gray-800 hover:bg-gray-100 rounded-lg focus:outline-hidden focus:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 hs-scrollspy-active:bg-gray-100">
             Commander
           </button>
-          <button id="btn-fidelite">Fidélité</button>
+          <button id="btn-fidelite" class="p-2 flex items-center text-gray-800 hover:bg-gray-100 rounded-lg focus:outline-hidden focus:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 hs-scrollspy-active:bg-gray-100">
+            Fidélité
+          </button>
           <button id="btn-compte" onclick="loadPage('compte.php', this)" class="p-2 flex items-center text-gray-800 hover:bg-gray-100 rounded-lg focus:outline-hidden focus:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 hs-scrollspy-active:bg-gray-100">
             Compte
           </button>

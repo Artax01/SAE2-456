@@ -25,7 +25,6 @@
             </a>
         </div>
     </div>
-
     <div class="absolute inset-0 bg-white opacity-60"></div>
     <div class="absolute inset-0 flex flex-col items-center justify-center z-10">
         <h1 class="text-7xl font-extrabold tracking-tight mb-4 text-black drop-shadow-lg">RAPID C3</h1>
@@ -33,4 +32,7 @@
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi a sagittis leo. Aliquam ut nibh ac massa scelerisque pretium non id nisi. Quisque sodales, urna eu tempor mollis, diam nisl porttitor tellus, vitae tempus libero nisi non nulla. Aliquam erat volutpat.
         </p>
     </div>
+    <div class="absolute bottom-0 left-0 right-0 flex justify-center items-center py-4 bg-white bg-opacity-80 backdrop-blur-md z-20">
+       <p>TEST</p>
+    </div>    
 </div>
