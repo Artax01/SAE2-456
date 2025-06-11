@@ -48,6 +48,10 @@
     require_once './component/dialog.php';
 ?>
 
+<?php
+    require_once './component/footer.php';
+?>
+
 
 </body>
 </html>
