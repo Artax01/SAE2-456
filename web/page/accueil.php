@@ -1,6 +1,12 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<div class="fixed inset-0 w-full h-full bg-[url('img/rapidc3.png')] bg-cover bg-center bg-no-repeat z-0 ">
-        <!-- Sidebar Navigation -->
+<div class="relative min-h-screen w-full">
+  <!-- Image de fond + filtre opaque -->
+ <div class="fixed inset-0 w-full h-full bg-[url('img/rapidc3.png')] bg-cover bg-center bg-no-repeat z-0 ">
+    <div class="absolute inset-0 bg-black opacity-55"></div>
+  </div>
+  <!-- Contenu principal en relatif -->
+  <div class="relative z-10 flex h-screen">
+    <!-- Sidebar Navigation -->
 <aside class="flex flex-col items-center py-4 px-2 backdrop-blur border-b border-gray-200 dark:bg-neutral-800 dark:border-neutral-700 h-full transition-all duration-300 group w-20 hover:w-56 z-20 relative">
   <!-- Flèche ouverture -->
   <div class="absolute top-1/2 right-[-12px] transform -translate-y-1/2 flex items-center justify-center w-6 h-6 bg-[#E7E4E0] rounded-full shadow border border-orange-300 z-30 pointer-events-none">
@@ -10,77 +16,77 @@
   </div>
   <!-- Liens de navigation avec icônes -->
 <div class="flex items-center mb-8 w-full justify-center group-hover:justify-start">
-  <a href="?page=accueil.php" class="material-icons text-orange-400 text-5xl transition-all duration-300 mx-auto group-hover:mr-2 group-hover:mx-0 flex items-center justify-center">home</a>
-  <a href="?page=accueil.php"
-    class="ml-0 w-full text-left text-lg font-semibold text-white
-      transition-all duration-300 whitespace-nowrap
-      focus:outline-none
-      hover:bg-orange-100 hover:text-orange-500
-      active:scale-95
-      transition-transform
-      rounded-md py-1 px-2
-      opacity-0 group-hover:opacity-100
-      hidden group-hover:inline
-    ">
-    Accueil
-  </a>
+    <a href="?page=accueil.php" class="material-icons text-orange-400 text-7xl transition-all duration-300 mx-auto group-hover:mr-2 group-hover:mx-0 flex items-center justify-center">home</a>
+    <a href="?page=accueil.php"
+      class="ml-0 w-full text-left text-lg font-semibold text-white
+        transition-all duration-300 whitespace-nowrap
+        focus:outline-none
+        hover:bg-orange-100 hover:text-orange-500
+        active:scale-95
+        transition-transform
+        rounded-md py-1 px-2
+        opacity-0 group-hover:opacity-100
+        hidden group-hover:inline
+      ">
+      Accueil
+    </a>
 </div>
 <div class="flex items-center mb-8 w-full justify-center group-hover:justify-start">
-  <a href="?page=menu.php" class="material-icons text-orange-400 text-5xl transition-all duration-300 mx-auto group-hover:mr-2 group-hover:mx-0 flex items-center justify-center">restaurant_menu</a>
-  <a href="?page=menu.php"
-    class="ml-0 w-full text-left text-lg font-semibold text-white
-      transition-all duration-300 whitespace-nowrap
-      focus:outline-none
-      hover:bg-orange-100 hover:text-orange-500
-      active:scale-95
-      transition-transform
-      rounded-md py-1 px-2
-      opacity-0 group-hover:opacity-100
-      hidden group-hover:inline
-    ">
-    Nos Menus
-  </a>
+    <a href="?page=menu.php" class="material-icons text-orange-400 text-7xl transition-all duration-300 mx-auto group-hover:mr-2 group-hover:mx-0 flex items-center justify-center">restaurant_menu</a>
+    <a href="?page=menu.php"
+      class="ml-0 w-full text-left text-lg font-semibold text-white
+        transition-all duration-300 whitespace-nowrap
+        focus:outline-none
+        hover:bg-orange-100 hover:text-orange-500
+        active:scale-95
+        transition-transform
+        rounded-md py-1 px-2
+        opacity-0 group-hover:opacity-100
+        hidden group-hover:inline
+      ">
+      Nos Menus
+    </a>
 </div>
 <div class="flex items-center mb-8 w-full justify-center group-hover:justify-start">
-  <a href="?page=plat.php" class="material-icons text-orange-400 text-5xl transition-all duration-300 mx-auto group-hover:mr-2 group-hover:mx-0 flex items-center justify-center">restaurant</a>
-  <a href="?page=plat.php"
-    class="ml-0 w-full text-left text-lg font-semibold text-white
-      transition-all duration-300 whitespace-nowrap
-      focus:outline-none
-      hover:bg-orange-100 hover:text-orange-500
-      active:scale-95
-      transition-transform
-      rounded-md py-1 px-2
-      opacity-0 group-hover:opacity-100
-      hidden group-hover:inline
-    ">
-    Nos Plats
-  </a>
+    <a href="?page=plat.php" class="material-icons text-orange-400 text-7xl transition-all duration-300 mx-auto group-hover:mr-2 group-hover:mx-0 flex items-center justify-center">restaurant</a>
+    <a href="?page=plat.php"
+      class="ml-0 w-full text-left text-lg font-semibold text-white
+        transition-all duration-300 whitespace-nowrap
+        focus:outline-none
+        hover:bg-orange-100 hover:text-orange-500
+        active:scale-95
+        transition-transform
+        rounded-md py-1 px-2
+        opacity-0 group-hover:opacity-100
+        hidden group-hover:inline
+      ">
+      Nos Plats
+    </a>
 </div>
 <div class="flex items-center mb-8 w-full justify-center group-hover:justify-start">
-  <a href="?page=panier.php" class="material-icons text-orange-400 text-5xl transition-all duration-300 mx-auto group-hover:mr-2 group-hover:mx-0 flex items-center justify-center">shopping_cart</a>
-  <a href="?page=panier.php"
-    class="ml-0 w-full text-left text-lg font-semibold text-white
-      transition-all duration-300 whitespace-nowrap
-      focus:outline-none
-      hover:bg-orange-100 hover:text-orange-500
-      active:scale-95
-      transition-transform
-      rounded-md py-1 px-2
-      opacity-0 group-hover:opacity-100
-      hidden group-hover:inline
-    ">
-    Panier
-  </a>
+    <a href="?page=panier.php" class="material-icons text-orange-400 text-7xl transition-all duration-300 mx-auto group-hover:mr-2 group-hover:mx-0 flex items-center justify-center">shopping_cart</a>
+    <a href="?page=panier.php"
+      class="ml-0 w-full text-left text-lg font-semibold text-white
+        transition-all duration-300 whitespace-nowrap
+        focus:outline-none
+        hover:bg-orange-100 hover:text-orange-500
+        active:scale-95
+        transition-transform
+        rounded-md py-1 px-2
+        opacity-0 group-hover:opacity-100
+        hidden group-hover:inline
+      ">
+      Panier
+    </a>
 </div>
 </aside>
-    <div class="absolute inset-0 bg-white opacity-70"></div>
+
     <div class="absolute inset-0 flex flex-col items-center justify-center z-10">
         <h1 class="text-9xl font-extrabold tracking-tight mb-4 drop-shadow-lg">
             <span class="text-white drop-shadow-[0_4px_4px_rgba(0,0,0,1)]">RAPID</span>
             <span class="text-orange-400 drop-shadow-[0_4px_4px_rgba(0,0,0,1)]">C3</span>
         </h1>
-        <p class="text-2xl font-semibold text-black text-center max-w-2xl drop-shadow-lg">
+        <p class="text-2xl font-semibold text-white text-center max-w-2xl drop-shadow-lg">
             Commandez en ligne rapidement et simplement
         </p>
     </div>

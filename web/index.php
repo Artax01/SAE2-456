@@ -1,9 +1,10 @@
 <?php
-    $titre = "RAPIDC3";
+$titre = "RAPIDC3";
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,26 +33,34 @@
 
     <!-- S'il vous plaît ne supprimez pas cette balise script: elle sert à utliser TailWindCSS.-->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <?php session_start(); // Démarrer la session
+    $isLoggedIn = isset($_SESSION["user_id"]); // Vérifier si l'utilisateur est connecté 
+    ?>
+
 </head>
+
 <body>
 
 
-<?php 
+    <?php
     require_once './component/navbar.php';
-?>
+    ?>
 
-<div id="content">
-    <!-- Le contenu se charge ici -->
-</div>
+    <div id="content">
+        <!-- Le contenu se charge ici -->
+    </div>
 
-<?php 
+    <?php
     require_once './component/dialog.php';
-?>
+    ?>
 
-<?php
+    <?php
     require_once './component/footer.php';
-?>
+    ?>
 
 
-</body>
+
+    </body>
+
 </html>
