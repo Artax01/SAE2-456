@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'email' => $user[0]['CLI_COURRIEL'],
             ];
         }
-        header('Location: ../index.php?page=accueil.php');
+        header('Location: ../../index.php?page=accueil.php');
         exit;
 
     } catch (PDOException $e) {

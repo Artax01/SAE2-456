@@ -9,3 +9,11 @@
 #div-signup input {
     border: 1px solid var(--glasmorphism-border-color);
 }
+
+#div-signup button {
+    background-color: var(--rapidc3-main-color) !important;
+}
+
+#div-signup a {
+    color: var(--rapidc3-main-color) !important;
+}

@@ -14,6 +14,7 @@ else {
 <link rel="stylesheet" href="../assets/css/root.css">
 <link rel="stylesheet" href="../assets/css/signin.css">
 
+<?php require_once '../component/CASBanner.php';?>
 
 <p>test@gmail.com</p>
 <p>123testABC</p>
@@ -30,7 +31,7 @@ else {
     </h1>
       <p class="mt-2 text-sm text-gray-600 dark:text-neutral-400">
         Vous n'avez pas encore de compte ?
-        <a href="../page/signup.php" class="text-blue-600 decoration-2 hover:underline focus:outline-hidden focus:underline font-medium dark:text-blue-500">
+        <a href="./signup.php" class="text-blue-600 decoration-2 hover:underline focus:outline-hidden focus:underline font-medium dark:text-blue-500">
           Inscrivez-vous ici
         </a>
       </p>

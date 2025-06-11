@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="./assets/css/navbar.css">
+<link rel="stylesheet" href="./web/assets/css/navbar.css">
 
 <!-- ========== NAVBAR MOBILE ========== -->
 <div class="navbar">
@@ -32,7 +32,7 @@
     <!-- logo centré sur mobile -->
     <div class="w-full md:w-auto flex justify-center md:justify-start order-1 md:order-none">
       <button id="btn-title" class="text-white font-semibold focus:outline-hidden focus:opacity-80" onclick="loadPage('accueil.php', this)">
-        <img src="img/logoC3.png" alt="logo RAPID-C3" class="h-20 w-20">
+        <img src="./web/assets/img/logoC3.png" class="h-20 w-20">
       </button>
     </div>
     <!-- end logo -->
@@ -44,12 +44,12 @@
         <div data-hs-scrollspy="#scrollspy" class="text-xl py-2 md:py-0 [--scrollspy-offset:220] md:[--scrollspy-offset:70] flex flex-col md:flex-row md:items-center md:justify-end gap-0.5 md:gap-1">
 
           <?php if (!$isLoggedIn): ?>
-            <button id="btn-inscription" onclick="loadPage('signup.php', this)"
+            <button id="btn-signup" onclick="loadPage('signup.php', this)"
               class="py-2 px-6 flex items-center text-white hover:bg-orange-600 !bg-orange-400 !hover:bg-orange-600 rounded-full">
               Inscription
             </button>
 
-            <button id="btn-connexion" onclick="loadPage('signin.php', this)" class="py-2 !bg-orange-400 !hover:bg-orange-600 px-6 flex items-center text-gray-800 hover:bg-gray-100 rounded-full focus:outline-hidden focus:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 hs-scrollspy-active:bg-gray-100">
+            <button id="btn-signin" onclick="loadPage('signin.php', this)" class="py-2 !bg-orange-400 !hover:bg-orange-600 px-6 flex items-center text-gray-800 hover:bg-gray-100 rounded-full focus:outline-hidden focus:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 hs-scrollspy-active:bg-gray-100">
               Connexion
             </button>
 
@@ -67,4 +67,4 @@
 </header>
 <!-- ========== END NAVBAR DESKTOP ========== -->
 
-<script src="./assets/js/navbar.js"></script>
+<script src="./web/assets/js/navbar.js"></script>

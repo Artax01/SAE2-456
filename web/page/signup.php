@@ -7,14 +7,16 @@ require_once '../session/session.php';
 <link rel="stylesheet" href="../assets/css/root.css">
 <link rel="stylesheet" href="../assets/css/signup.css">
 
+<?php require_once '../component/CASBanner.php';?>
+
 <div id="div-signup" class="mt-7 bg-white border border-gray-200 rounded-xl shadow-2xs dark:bg-neutral-900 dark:border-neutral-700">
   <div class="p-4 sm:p-7">
     <div class="text-center">
-      <h1 class="block text-2xl font-bold text-gray-800 dark:text-white">Sign up</h1>
+      <h1 class="block text-2xl font-bold text-gray-800 dark:text-white">S'inscrire</h1>
       <p class="mt-2 text-sm text-gray-600 dark:text-neutral-400">
-        Already have an account?
-        <a class="text-blue-600 decoration-2 hover:underline focus:outline-hidden focus:underline font-medium dark:text-blue-500" href="../examples/html/signin.html">
-          Sign in here
+        Vous avez déjà un compte ?
+        <a class="text-blue-600 decoration-2 hover:underline focus:outline-hidden focus:underline font-medium dark:text-blue-500" href="./signin.php">
+          Connectez-vous ici
         </a>
       </p>
     </div>
@@ -40,7 +42,7 @@ require_once '../session/session.php';
         <div class="grid gap-y-4">
           <!-- Form Group -->
           <div>
-            <label for="email" class="block text-sm mb-2 dark:text-white">Email address</label>
+            <label for="email" class="block text-sm mb-2 dark:text-white">Adresse mail</label>
             <div class="relative">
               <input type="email" id="email" name="email" class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" required aria-describedby="email-error">
               <div class="hidden absolute inset-y-0 end-0 pointer-events-none pe-3">
@@ -49,13 +51,15 @@ require_once '../session/session.php';
                 </svg>
               </div>
             </div>
-            <p class="hidden text-xs text-red-600 mt-2" id="email-error">Please include a valid email address so we can get back to you</p>
+            <p class="hidden text-xs text-red-600 mt-2" id="email-error">
+              S'il vous plait, entrez un email valide pour que nous puissions vous recontacter !
+            </p>
           </div>
           <!-- End Form Group -->
 
           <!-- Form Group -->
           <div>
-            <label for="password" class="block text-sm mb-2 dark:text-white">Password</label>
+            <label for="password" class="block text-sm mb-2 dark:text-white">Mot de passe</label>
             <div class="relative">
               <input type="password" id="password" name="password" class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" required aria-describedby="password-error">
               <div class="hidden absolute inset-y-0 end-0 pointer-events-none pe-3">
@@ -64,13 +68,13 @@ require_once '../session/session.php';
                 </svg>
               </div>
             </div>
-            <p class="hidden text-xs text-red-600 mt-2" id="password-error">8+ characters required</p>
+            <p class="hidden text-xs text-red-600 mt-2" id="password-error">+8 caractères requis</p>
           </div>
           <!-- End Form Group -->
 
           <!-- Form Group -->
           <div>
-            <label for="confirm-password" class="block text-sm mb-2 dark:text-white">Confirm Password</label>
+            <label for="confirm-password" class="block text-sm mb-2 dark:text-white">Confirmez le mot de passe</label>
             <div class="relative">
               <input type="password" id="confirm-password" name="confirm-password" class="py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" required aria-describedby="confirm-password-error">
               <div class="hidden absolute inset-y-0 end-0 pointer-events-none pe-3">
@@ -79,11 +83,11 @@ require_once '../session/session.php';
                 </svg>
               </div>
             </div>
-            <p class="hidden text-xs text-red-600 mt-2" id="confirm-password-error">Password does not match the password</p>
+            <p class="hidden text-xs text-red-600 mt-2" id="confirm-password-error">Les mot de passe ne correspondent pas !</p>
           </div>
           <!-- End Form Group -->
 
-          <!-- Checkbox -->
+          <!-- Checkbox
           <div class="flex items-center">
             <div class="flex">
               <input id="remember-me" name="remember-me" type="checkbox" class="shrink-0 mt-0.5 border-gray-200 rounded-sm text-blue-600 focus:ring-blue-500 dark:bg-neutral-800 dark:border-neutral-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800">
@@ -92,9 +96,11 @@ require_once '../session/session.php';
               <label for="remember-me" class="text-sm dark:text-white">I accept the <a class="text-blue-600 decoration-2 hover:underline focus:outline-hidden focus:underline font-medium dark:text-blue-500" href="#">Terms and Conditions</a></label>
             </div>
           </div>
-          <!-- End Checkbox -->
+           End Checkbox -->
 
-          <button type="submit" class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">Sign up</button>
+          <button type="submit" class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
+            Envoyer
+          </button>
         </div>
       </form>
       <!-- End Form -->

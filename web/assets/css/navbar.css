@@ -1,10 +1,10 @@
 /* navbar du haut */
 
 #top-navbar {
-    background-color: var(--glasmorphism-bg);
+    /* background-color: var(--glasmorphism-bg); */
     border-color: var(--glasmorphism-border-color);
-    backdrop-filter: var(--glasmorphism-backdrop-filter);
-    -webkit-backdrop-filter: var(--glasmorphism-backdrop-filter);
+    /* backdrop-filter: var(--glasmorphism-backdrop-filter); */
+    /* -webkit-backdrop-filter: var(--glasmorphism-backdrop-filter); */
 }
 
 #top-navbar button {
@@ -27,7 +27,7 @@
     -webkit-backdrop-filter: var(--glasmorphism-backdrop-filter);
     display: flex;
     justify-content: space-around;
-    z-index: 10;
+    z-index: 999;
     bottom: 0;
     transition: 0.3s;
 }
@@ -71,11 +71,8 @@
     color: var(--rapidc3-main-color);
 }
 
-#content {
-    padding: 0px;
-    min-height: 100vh;
-    box-sizing: border-box;
-    transition: opacity 0.3s ease;
+aside {
+    display: none;
 }
 
 
@@ -100,5 +97,9 @@
 @media (min-width: 768px) {
     .navbar {
         display: none;
+    }
+
+    aside {
+        display: flex;
     }
 }

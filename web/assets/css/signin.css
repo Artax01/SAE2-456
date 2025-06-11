@@ -9,3 +9,11 @@
 #div-signin input {
     border: 1px solid var(--glasmorphism-border-color);
 }
+
+#div-signin button {
+    background-color: var(--rapidc3-main-color) !important;
+}
+
+#div-signin a {
+    color: var(--rapidc3-main-color) !important;
+}
