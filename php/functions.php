@@ -3,10 +3,57 @@
 require_once("connexion.php");
 
 
-function getPlats($conn){
-    $req_sql = "SELECT * FROM RAP_PLATS";
+function getPlats($conn): array{
     $tab = [];
+    
+    $req_sql = "SELECT * FROM rap_plat";
     $cur = preparerRequetePDO($conn, $req_sql);
     LireDonneesPDOPreparee($cur, $tab);
-    var_dump($tab);
+    return $tab;
+    
+}
+
+function isPlatExist($conn, $plat_num): bool{
+    $tab = [];
+    $req_sql = "SELECT * FROM RAP_PLAT WHERE PLA_NUM=?";
+    $cur = preparerRequetePDO($conn, $req_sql);
+    majDonneesPrepareesTabPDO($cur, [$plat_num]);
+    LireDonneesPDOPreparee($cur, $tab);
+    return !empty($tab);
+}
+
+function isClientExist($conn, $cli_num): bool{
+    $tab = [];
+    $req_sql = "SELECT * FROM RAP_CLIENT WHERE CLI_NUM=?";
+    $cur = preparerRequetePDO($conn, $req_sql);
+    majDonneesPrepareesTabPDO($cur, [$cli_num]);
+    LireDonneesPDOPreparee($cur, $tab);
+    return !empty($tab);
+}
+
+
+function payerPlat($conn, $plat_num, $cli_num){
+    try{
+        if(!isPlatExist($conn, $plat_num)){
+            http_response_code(400);
+            echo json_encode([
+                "error" => "Plat inexistant !",
+            ]);
+            exit;
+        }
+
+        if(!isClientExist($conn, $cli_num) || !isset($_SESSION["CLI_NUM"])){
+            http_response_code(400);
+            echo json_encode([
+                "error" => "Vous devez être connecté pour payer un plat !",
+                "redirect" => "login.php"
+            ]);
+            exit;
+        }
+
+
+    } catch(Exception $e) {
+        echo json_encode(["error"=>"Erreur lors du paiement"]);
+    }
+    
 }
