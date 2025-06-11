@@ -39,4 +39,17 @@
 
     </div>
   </div>
+    <!-- Ligne secondaire : mentions légales & orbitweb -->
+    <div class="relative z-10 flex justify-between items-center pt-4">
+    <!-- Mentions légales -->
+    <a class="text-sm text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+        Mentions légales
+    </a>
+
+    <!-- Propulsé par -->
+    <div class="flex items-center space-x-2">
+      <span class="text-sm text-gray-500 dark:text-gray-400">Propulsé par :</span>
+      <img src="img/orbitweb.png" alt="OrbitWeb" class="h-10">
+    </div>
+  </div>
 </footer>
