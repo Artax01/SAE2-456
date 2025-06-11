@@ -5,9 +5,22 @@ if (isLoggedIn()) {
     header('Location: index.php?page=compte.php');
     exit;
 }
+else {
+  echo "<script>console.log(" . json_encode("client déconnecter") . ");</script>";
+}
 ?>
 
-<link rel="stylesheet" href="./assets/css/signup.css">
+<?php require_once '../component/meta.php'; ?>
+<link rel="stylesheet" href="../assets/css/root.css">
+<link rel="stylesheet" href="../assets/css/signin.css">
+
+
+<p>test@gmail.com</p>
+<p>123testABC</p>
+<br/>
+
+<p>perno@rso.fr</p>
+<p>LEPERENOEL</p>
 
 <div id="div-signup" class="mt-7 bg-white border border-gray-200 rounded-xl shadow-2xs dark:bg-neutral-900 dark:border-neutral-700">
   <div class="p-4 sm:p-7">
@@ -17,7 +30,7 @@ if (isLoggedIn()) {
     </h1>
       <p class="mt-2 text-sm text-gray-600 dark:text-neutral-400">
         Vous n'avez pas encore de compte ?
-        <a class="text-blue-600 decoration-2 hover:underline focus:outline-hidden focus:underline font-medium dark:text-blue-500" href="../examples/html/signup.html">
+        <a href="../page/signup.php" class="text-blue-600 decoration-2 hover:underline focus:outline-hidden focus:underline font-medium dark:text-blue-500">
           Inscrivez-vous ici
         </a>
       </p>
@@ -40,7 +53,7 @@ if (isLoggedIn()) {
     </div>  -->
 
       <!-- Form -->
-      <form>
+      <form action="../session/login.php" method="POST">
         <div class="grid gap-y-4">
           <!-- Form Group -->
           <div>
@@ -79,7 +92,7 @@ if (isLoggedIn()) {
                 </svg>
               </div>
             </div>
-            <p class="hidden text-xs text-red-600 mt-2" id="password-error">8+ caractères requis</p>
+            <p class="hidden text-xs text-red-600 mt-2" id="password-error">+8 caractères requis</p>
           </div>
           <!-- End Form Group -->
 

@@ -11,10 +11,10 @@
     <small>Commander</small>
   </button>
   <!-- <button id="btn-commander" onclick="showMenu('commander.php')">Commander</button> -->
-  <button id="btn-compte" onclick="loadPage('compte.php', this)">
-    <svg fill="gray" viewBox="0 0 24 24"><path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"/></svg>
-    <small>Compte</small>
-  </button>
+    <button id="btn-compte" onclick="loadPage('compte.php', this)">
+        <svg fill="gray" viewBox="0 0 24 24"><path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"/></svg>
+        <small>Compte</small>
+    </button>
 </div>
 <!-- ========== END NAVBAR MOBILE ========== -->
 
@@ -42,9 +42,11 @@
           <button id="btn-commander" onclick="loadPage('commander.php', this)" class="p-2 flex items-center text-gray-800 hover:bg-gray-100 rounded-lg focus:outline-hidden focus:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 hs-scrollspy-active:bg-gray-100">
             Commander
           </button>
-          <button id="btn-fidelite">Fidélité</button>
+          <button id="btn-fidelite">
+            Fidélité
+          </button>
           <button id="btn-compte" onclick="loadPage('compte.php', this)" class="p-2 flex items-center text-gray-800 hover:bg-gray-100 rounded-lg focus:outline-hidden focus:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 hs-scrollspy-active:bg-gray-100">
-            Compte
+              Compte
           </button>
         </div>
       </div>
