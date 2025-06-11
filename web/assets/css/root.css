@@ -7,7 +7,7 @@
     --roundness: 12px;
     
     /* style glassmorphique */
-    --glasmorphism-bg: rgba(0, 0, 0, 0.05);
+    --glasmorphism-bg: rgba(255, 255, 255, 0.8);
     --glasmorphism-border-color: rgba(0, 0, 0, 0.2);
     --glasmorphism-backdrop-filter: blur(10px);
 }
