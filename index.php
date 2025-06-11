@@ -37,7 +37,7 @@
 
 
 <?php 
-    require_once './component/navbar.php';
+    require_once './web/component/navbar.php';
 ?>
 
 <div id="content">
@@ -45,7 +45,7 @@
 </div>
 
 <?php 
-    require_once './component/dialog.php';
+    require_once './web/component/dialog.php';
 ?>
 
 
