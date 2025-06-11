@@ -1,7 +1,9 @@
 <!-- Menu "Nos Menus" avec effets Tailwind CSS, image de fond et animation navbar -->
 <div class="relative min-h-screen w-full">
   <!-- Image de fond + filtre opaque -->
- <div class="fixed inset-0 w-full h-full bg-[url('img/menu.png')] bg-cover bg-center bg-no-repeat z-0 ">
+  <div class="absolute inset-0 z-0">
+    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80" alt="Restaurant" class="w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-white/60"></div> <!-- Opacité légère, ajuste /60 pour plus/moins opaque -->
   </div>
   <!-- Contenu principal en relatif -->
   <div class="relative z-10 flex h-screen">
@@ -79,7 +81,7 @@
     </div>
 
     <!-- Titre -->
-    <h1 class="text-5xl font-extrabold text-orange-400 mb-8 tracking-wide">NOS MENUS</h1>
+    <h1 class="text-5xl font-extrabold text-orange-400 mb-8 tracking-wide">NOS PLATS</h1>
 
     <!-- Menus List -->
     <div class="flex gap-10 justify-center">
