@@ -1,12 +1,12 @@
 -- -----------------------------------------------------------------------------
---             Génération d'une base de données pour
+--             Gï¿½nï¿½ration d'une base de donnï¿½es pour
 --                      Oracle Version 10g
 --                     (3/3/2025 13:42:20)
 -- -----------------------------------------------------------------------------
 --      Nom de la base : MLR V4
 --      Projet : pizza
 --      Auteur : PORCQ Erc
---      Date de dernière modification : 3/3/2025 13:41:18
+--      Date de derniï¿½re modification : 3/3/2025 13:41:18
 -- -----------------------------------------------------------------------------
 
 DROP TABLE RAP_BOISSON CASCADE CONSTRAINTS;
@@ -20,11 +20,12 @@ DROP TABLE RAP_KEBAB CASCADE CONSTRAINTS;
 DROP TABLE RAP_FIDELISATION CASCADE CONSTRAINTS;
 DROP TABLE RAP_APPARTENIR CASCADE CONSTRAINTS;
 DROP TABLE RAP_RESTAURANT CASCADE CONSTRAINTS;
+DROP TABLE RAP_PLAT_IMAGE CASCADE CONSTRAINTS;
 
 CREATE TABLE RAP_BOISSON
 (
     PLA_NUM VARCHAR2(4),
-	CONSTRAINT PK_RAP_BOISSON PRIMARY KEY (PLA_NUM)  
+	CONSTRAINT PK_RAP_BOISSON PRIMARY KEY (PLA_NUM)
 );
 
 CREATE TABLE RAP_COMMANDE
@@ -38,7 +39,7 @@ CREATE TABLE RAP_COMMANDE
     COM_REDUC_POINTS NUMBER(4,2)  NULL,
     COM_REDUC_PROMO NUMBER(4,2)  NULL,
     COM_DUREE_TOTALE_PREPA NUMBER(5)  NULL,
-    CONSTRAINT PK_RAP_COMMANDE PRIMARY KEY (RES_NUM, COM_NUM)  
+    CONSTRAINT PK_RAP_COMMANDE PRIMARY KEY (RES_NUM, COM_NUM)
 );
 
 CREATE  INDEX I_FK_RAP_COMMANDE_RAP_RESTAURA
@@ -54,13 +55,14 @@ CREATE TABLE RAP_RESTAURANT
     RES_ADRESSE VARCHAR2(64)  NULL,
     RES_CODE_POSTAL CHAR(5)  NULL,
     RES_VILLE VARCHAR2(32)  NULL,
-    CONSTRAINT PK_RAP_RESTAURANT PRIMARY KEY (RES_NUM)  
+    CONSTRAINT PK_RAP_RESTAURANT PRIMARY KEY (RES_NUM)
 );
 
 CREATE TABLE RAP_PLAT
 (
     PLA_NUM VARCHAR2(4),
     PLA_NOM VARCHAR2(100)  NULL,
+
     PLA_MENU NUMBER(1)  NULL,
     PLA_PRIX_VENTE_UNIT_HT NUMBER(6,2)  NULL,
     PLA_PRIX_ACHAT_UNIT_HT NUMBER(6,2)  NULL,
@@ -68,13 +70,22 @@ CREATE TABLE RAP_PLAT
     PLA_PROMOTION NUMBER(4,2)  NULL,
     PLA_NB_POINTS NUMBER(2)  NULL,
     PLA_DUREE_PREPARATION NUMBER(3)  NULL,
-	CONSTRAINT PK_RAP_PLAT PRIMARY KEY (PLA_NUM)  
+	CONSTRAINT PK_RAP_PLAT PRIMARY KEY (PLA_NUM)
 );
+
+CREATE TABLE RAP_PLAT_IMAGE
+(
+     PLA_NUM VARCHAR2(4),
+     CHEMIN_IMG VARCHAR2(255) NULL,
+     ALT_DESC_IMG VARCHAR2(100) NULL,
+     CONSTRAINT PK_RAP_IMAGE PRIMARY KEY(PLA_NUM, CHEMIN_IMG)
+
+)
 
 CREATE TABLE RAP_LEGUME
 (
     PLA_NUM VARCHAR2(4),
-	CONSTRAINT PK_RAP_LEGUME PRIMARY KEY (PLA_NUM)  
+	CONSTRAINT PK_RAP_LEGUME PRIMARY KEY (PLA_NUM)
 );
 
 CREATE TABLE RAP_CLIENT
@@ -85,26 +96,26 @@ CREATE TABLE RAP_CLIENT
     CLI_MDP VARCHAR(32),
     CLI_TEL VARCHAR(32) NULL,
     CLI_COURRIEL VARCHAR2(32)  NULL,
-	CONSTRAINT PK_RAP_CLIENT PRIMARY KEY (CLI_NUM)  
+	CONSTRAINT PK_RAP_CLIENT PRIMARY KEY (CLI_NUM)
 );
 
 CREATE TABLE RAP_DESSERT
 (
     PLA_NUM VARCHAR2(4),
-	CONSTRAINT PK_RAP_DESSERT PRIMARY KEY (PLA_NUM)  
+	CONSTRAINT PK_RAP_DESSERT PRIMARY KEY (PLA_NUM)
 );
 
 CREATE TABLE RAP_PIZZA
 (
     PLA_NUM VARCHAR2(4),
     PIZ_TAILLE NUMBER(2)  NULL,
-	CONSTRAINT PK_RAP_PIZZA PRIMARY KEY (PLA_NUM)  
+	CONSTRAINT PK_RAP_PIZZA PRIMARY KEY (PLA_NUM)
 );
 
 CREATE TABLE RAP_KEBAB
 (
     PLA_NUM VARCHAR2(4),
-	CONSTRAINT PK_RAP_KEBAB PRIMARY KEY (PLA_NUM)  
+	CONSTRAINT PK_RAP_KEBAB PRIMARY KEY (PLA_NUM)
 );
 
 CREATE TABLE RAP_FIDELISATION
@@ -112,7 +123,7 @@ CREATE TABLE RAP_FIDELISATION
     CLI_NUM NUMBER(4),
     SUI_DATE_POINTS DATE,
     TOTAL_POINTS NUMBER(5)  NULL,
-	CONSTRAINT PK_RAP_FIDELISATION PRIMARY KEY (CLI_NUM, SUI_DATE_POINTS)  
+	CONSTRAINT PK_RAP_FIDELISATION PRIMARY KEY (CLI_NUM, SUI_DATE_POINTS)
 );
 
 CREATE  INDEX I_FK_RAP_FIDELISATION_RAP_SUIV
@@ -127,7 +138,7 @@ CREATE TABLE RAP_APPARTENIR
     COM_NUM NUMBER(6),
     PLA_NUM VARCHAR2(4),
     APP_QUANTITE NUMBER(2)  NULL,
-    CONSTRAINT PK_RAP_APPARTENIR PRIMARY KEY (RES_NUM, COM_NUM, PLA_NUM)  
+    CONSTRAINT PK_RAP_APPARTENIR PRIMARY KEY (RES_NUM, COM_NUM, PLA_NUM)
 );
 
 CREATE  INDEX I_FK_RAP_APPARTENIR_RAP_COMMAN
@@ -188,10 +199,15 @@ ALTER TABLE RAP_APPARTENIR ADD (
      CONSTRAINT FK_RAP_APPARTENIR_RAP_PLAT
           FOREIGN KEY (PLA_NUM)
                REFERENCES RAP_PLAT (PLA_NUM));
-REM INSERTING into RAP_CLIENT
+
+ALTER TABLE RAP_PLAT_IMAGE ADD (
+     CONSTRAINT FK_RAP_PLAT_IMAGE_RAP_PLAT
+          FOREIGN KEY(PLA_NUM)
+               REFERENCES RAP_PLAT (PLA_NUM));
+REM INSERTING into RAP_CLIENT;
 SET DEFINE OFF;
 insert into rap_client values ('0','NON CLIENT','NON CLIENT', 'NON CLIENT', 'NON CLIENT', 'NON CLIENT');
-insert into rap_client values ('1','LEPERE','Noël','LEPERENOEL','0102030405','perno@rso.fr');
+insert into rap_client values ('1','LEPERE','Noï¿½l','LEPERENOEL','0102030405','perno@rso.fr');
 insert into rap_client values ('2','LAMERE','Michele','LAMEREMICHELE', null,'memere@ego.fr');
 insert into rap_client values ('124','PELLE','Emma','PELLEEMMA', null,'emapelle@ihm.fr');
 insert into rap_client values ('139','FOTO','Thomas','FOTOTHOMAS', null,'thoma.foto@ppp.fr');
@@ -199,15 +215,15 @@ insert into rap_client values ('246','BORNE','Camille','BORNECAMILLE', null,'K10
 insert into rap_client values ('249','ABOIS','Clovis','ABOISCLOVIS', null,'clovis666@bdd.fr');
 insert into rap_client values ('261','COLOGNE','Claude','COLOGNECLAUDE', null,'claude.cologne@bdd.fr');
 insert into rap_client values ('269','AUBOISDORMANT','ABEL','AUBOISDORMANTABEL', null,'abel14@iut.com');
-insert into rap_client values ('984','ESEL','Jean-François','ESELJEANFRANCOIS', null,'jpe@sys.fr');
-insert into rap_client values ('998','PRIOR','Béatrice','PRIORBEATRICE', null,'b.prior@div.fr');
+insert into rap_client values ('984','ESEL','Jean-Franï¿½ois','ESELJEANFRANCOIS', null,'jpe@sys.fr');
+insert into rap_client values ('998','PRIOR','Bï¿½atrice','PRIORBEATRICE', null,'b.prior@div.fr');
 insert into rap_client values ('1001','NERONS','Philippe','NERONSPHILIPPE', null,'p_nerons@ihm.fr');
 insert into rap_client values ('1008','DELIVAROT','Paul','DELIVAROT', null,'p.delivatot@algo.fr');
 insert into rap_client values ('1034','KUSCHENFRAU','Angela','KUSCHENFRAUANGELA', null,'akf@lakers.de');
 insert into rap_client values ('1041','SUPORMOI','Steven','SUPORMOISTEVEN', null,'ssupormoi@donnay.fr');
-insert into rap_client values ('1052','FROUSSARD','Stéphane','FROUSSARDSTEPHANE', null,'sfroussard@thales.fr');
+insert into rap_client values ('1052','FROUSSARD','Stï¿½phane','FROUSSARDSTEPHANE', null,'sfroussard@thales.fr');
 insert into rap_client values ('1058','PASAMSUNG','Christelle','PASAMSUNGCHRISTELLE', null,'cpc@iut.com');
-insert into rap_client values ('1059','DEWAERE','Marlène','DEWAEREMARLENE', null,'m.dewaere@audio.fr');
+insert into rap_client values ('1059','DEWAERE','Marlï¿½ne','DEWAEREMARLENE', null,'m.dewaere@audio.fr');
 insert into rap_client values ('1070','BOUCHEZ','Olivier','BOUCHEZOLIVIER', null,'olivier.bouchez@iut.fr');
 insert into rap_client values ('1074','MAIALEQ','Eric','MAIALEQERIC', null,'Eric.Maialeq@tdf.fr');
 insert into rap_client values ('1076','ROUSELLE','Kader','ROUSELLEKADER', null,'kader.rouselle@3maisons.fr');
@@ -303,7 +319,7 @@ insert into rap_plat values ('10','Eau plate 33 cl','0','0,8','0,1','5,5','0','5
 insert into rap_plat values ('20','Eau gazeuse 25 cl','0','1,1','0,3','5,5','0','5','0');
 insert into rap_plat values ('30','C3 cola 33 cl','0','1,3','0,1','5,5','0','5','0');
 insert into rap_plat values ('40','Jus d''orange 25 cl','0','0,9','0,2','5,5','0','5','0');
-insert into rap_plat values ('50','Britel Délices 25 cl','0','1,3','0,25','5,5','0','5','0');
+insert into rap_plat values ('50','Britel Dï¿½lices 25 cl','0','1,3','0,25','5,5','0','5','0');
 insert into rap_plat values ('60','Dronembourg 33 cl','0','1,5','0,35','20','0','5','0');
 insert into rap_plat values ('100','Salade','0','1','0,2','5,5','0','6','0');
 insert into rap_plat values ('200','Petite Frites natures','0','1,4','0,3','5,5','0','5','6');
@@ -319,12 +335,12 @@ insert into rap_plat values ('B00','Grande Frites Ketchup','0','2,1','0,4','5,5'
 insert into rap_plat values ('C00','Grande Frites Mayonnaise','0','2,1','0,4','5,5','0','7','6');
 insert into rap_plat values ('D00','Grande Frites Moutarde','0','2,1','0,4','5,5','0','7','6');
 insert into rap_plat values ('1000','Kebab sauce blanche','0','5,5','1,8','5,5','0','16','7');
-insert into rap_plat values ('2000','Kebab sauce algérienne','0','5,5','1,8','5,5','0','16','7');
-insert into rap_plat values ('3000','Kebab sauce samouraï','0','5,5','1,8','5,5','0','16','7');
+insert into rap_plat values ('2000','Kebab sauce algï¿½rienne','0','5,5','1,8','5,5','0','16','7');
+insert into rap_plat values ('3000','Kebab sauce samouraï¿½','0','5,5','1,8','5,5','0','16','7');
 insert into rap_plat values ('4000','Kebab sauce barbecue','0','5,5','1,8','5,5','0','16','7');
 insert into rap_plat values ('5000','Kebab royal sauce blanche','0','6,8','2,2','5,5','0','23','7');
-insert into rap_plat values ('6000','Kebab royal sauce algérienne','0','6,8','2,2','5,5','0','23','7');
-insert into rap_plat values ('7000','Kebab royal sauce samouraï','0','6,8','2,2','5,5','0','23','7');
+insert into rap_plat values ('6000','Kebab royal sauce algï¿½rienne','0','6,8','2,2','5,5','0','23','7');
+insert into rap_plat values ('7000','Kebab royal sauce samouraï¿½','0','6,8','2,2','5,5','0','23','7');
 insert into rap_plat values ('8000','Kebab royal sauce barbecue','0','6,8','2,2','5,5','0','23','7');
 insert into rap_plat values ('9000','Pizza Margherita (moyenne)','0','5,8','1,1','5,5','0','16','7');
 insert into rap_plat values ('A000','Pizza Margherita (grande)','0','6,8','1,25','5,5','0','23','7');
@@ -2595,318 +2611,318 @@ insert into rap_plat values ('D963','Pizza Rathoustra','1','12','4,8','5,5','0',
 insert into rap_plat values ('D964','Pizza Rathoustra','1','12','4,8','5,5','0','44','8');
 insert into rap_plat values ('D965','Pizza Rathoustra','1','12','4,8','5,5','0','44','8');
 
-insert into rap_plat values ('1A10','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1A20','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1A30','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1A40','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1A50','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1A60','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1B10','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1B20','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1B30','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1B40','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1B50','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1B60','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1C10','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1C20','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1C30','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1C40','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1C50','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1C60','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1D10','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1D20','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1D30','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1D40','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1D50','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1D60','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1110','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1120','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1130','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1140','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1150','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1160','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1210','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1220','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1230','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1240','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1250','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1260','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1310','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1320','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1330','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1340','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1350','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1360','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1410','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1420','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1430','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1440','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1450','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1460','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1510','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1520','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1530','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1540','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1550','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1560','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1610','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1620','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1630','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1640','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1650','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1660','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1710','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1720','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1730','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1740','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1750','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1760','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1810','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1820','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1830','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1840','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1850','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1860','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1910','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1920','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1930','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1940','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1950','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('1960','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2A10','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2A20','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2A30','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2A40','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2A50','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2A60','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2B10','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2B20','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2B30','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2B40','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2B50','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2B60','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2C10','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2C20','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2C30','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2C40','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2C50','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2C60','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2D10','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2D20','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2D30','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2D40','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2D50','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2D60','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2110','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2120','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2130','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2140','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2150','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2160','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2210','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2220','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2230','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2240','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2250','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2260','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2310','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2320','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2330','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2340','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2350','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2360','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2410','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2420','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2430','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2440','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2450','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2460','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2510','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2520','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2530','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2540','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2550','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2560','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2610','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2620','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2630','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2640','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2650','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2660','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2710','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2720','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2730','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2740','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2750','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2760','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2810','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2820','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2830','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2840','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2850','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2860','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2910','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2920','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2930','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2940','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2950','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('2960','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3A10','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3A20','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3A30','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3A40','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3A50','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3A60','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3B10','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3B20','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3B30','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3B40','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3B50','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3B60','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3C10','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3C20','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3C30','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3C40','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3C50','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3C60','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3D10','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3D20','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3D30','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3D40','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3D50','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3D60','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3110','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3120','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3130','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3140','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3150','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3160','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3210','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3220','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3230','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3240','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3250','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3260','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3310','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3320','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3330','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3340','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3350','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3360','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3410','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3420','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3430','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3440','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3450','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3460','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3510','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3520','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3530','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3540','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3550','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3560','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3610','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3620','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3630','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3640','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3650','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3660','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3710','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3720','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3730','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3740','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3750','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3760','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3810','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3820','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3830','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3840','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3850','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3860','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3910','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3920','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3930','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3940','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3950','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('3960','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4A10','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4A20','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4A30','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4A40','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4A50','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4A60','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4B10','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4B20','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4B30','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4B40','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4B50','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4B60','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4C10','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4C20','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4C30','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4C40','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4C50','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4C60','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4D10','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4D20','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4D30','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4D40','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4D50','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4D60','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4110','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4120','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4130','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4140','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4150','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4160','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4210','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4220','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4230','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4240','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4250','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4260','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4310','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4320','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4330','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4340','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4350','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4360','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4410','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4420','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4430','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4440','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4450','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4460','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4510','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4520','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4530','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4540','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4550','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4560','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4610','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4620','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4630','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4640','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4650','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4660','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4710','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4720','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4730','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4740','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4750','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4760','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4810','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4820','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4830','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4840','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4850','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4860','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4910','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4920','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4930','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4940','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4950','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
-insert into rap_plat values ('4960','Kebab à cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1A10','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1A20','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1A30','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1A40','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1A50','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1A60','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1B10','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1B20','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1B30','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1B40','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1B50','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1B60','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1C10','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1C20','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1C30','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1C40','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1C50','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1C60','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1D10','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1D20','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1D30','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1D40','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1D50','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1D60','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1110','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1120','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1130','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1140','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1150','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1160','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1210','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1220','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1230','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1240','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1250','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1260','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1310','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1320','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1330','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1340','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1350','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1360','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1410','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1420','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1430','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1440','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1450','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1460','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1510','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1520','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1530','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1540','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1550','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1560','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1610','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1620','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1630','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1640','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1650','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1660','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1710','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1720','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1730','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1740','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1750','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1760','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1810','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1820','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1830','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1840','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1850','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1860','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1910','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1920','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1930','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1940','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1950','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('1960','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2A10','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2A20','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2A30','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2A40','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2A50','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2A60','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2B10','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2B20','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2B30','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2B40','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2B50','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2B60','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2C10','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2C20','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2C30','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2C40','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2C50','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2C60','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2D10','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2D20','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2D30','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2D40','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2D50','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2D60','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2110','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2120','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2130','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2140','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2150','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2160','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2210','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2220','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2230','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2240','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2250','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2260','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2310','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2320','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2330','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2340','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2350','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2360','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2410','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2420','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2430','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2440','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2450','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2460','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2510','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2520','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2530','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2540','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2550','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2560','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2610','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2620','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2630','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2640','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2650','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2660','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2710','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2720','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2730','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2740','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2750','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2760','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2810','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2820','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2830','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2840','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2850','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2860','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2910','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2920','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2930','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2940','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2950','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('2960','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3A10','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3A20','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3A30','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3A40','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3A50','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3A60','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3B10','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3B20','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3B30','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3B40','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3B50','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3B60','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3C10','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3C20','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3C30','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3C40','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3C50','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3C60','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3D10','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3D20','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3D30','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3D40','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3D50','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3D60','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3110','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3120','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3130','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3140','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3150','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3160','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3210','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3220','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3230','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3240','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3250','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3260','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3310','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3320','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3330','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3340','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3350','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3360','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3410','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3420','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3430','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3440','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3450','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3460','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3510','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3520','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3530','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3540','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3550','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3560','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3610','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3620','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3630','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3640','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3650','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3660','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3710','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3720','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3730','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3740','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3750','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3760','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3810','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3820','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3830','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3840','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3850','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3860','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3910','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3920','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3930','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3940','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3950','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('3960','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4A10','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4A20','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4A30','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4A40','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4A50','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4A60','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4B10','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4B20','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4B30','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4B40','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4B50','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4B60','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4C10','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4C20','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4C30','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4C40','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4C50','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4C60','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4D10','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4D20','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4D30','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4D40','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4D50','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4D60','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4110','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4120','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4130','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4140','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4150','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4160','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4210','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4220','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4230','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4240','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4250','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4260','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4310','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4320','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4330','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4340','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4350','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4360','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4410','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4420','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4430','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4440','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4450','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4460','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4510','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4520','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4530','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4540','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4550','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4560','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4610','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4620','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4630','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4640','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4650','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4660','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4710','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4720','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4730','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4740','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4750','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4760','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4810','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4820','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4830','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4840','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4850','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4860','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4910','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4920','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4930','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4940','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4950','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
+insert into rap_plat values ('4960','Kebab ï¿½ cool','1','8,8','2,8','5,5','0','35','8');
 
 insert into rap_plat values ('5A10','Kebab in Town','1','11,5','3,4','5,5','0','44','8');
 insert into rap_plat values ('5A20','Kebab in Town','1','11,5','3,4','5,5','0','44','8');
