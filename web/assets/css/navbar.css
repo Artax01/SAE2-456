@@ -1,10 +1,9 @@
 /* navbar du haut */
-
+/*
 #top-navbar {
-    background-color: var(--glasmorphism-bg);
+    background-color: #333;
     border-color: var(--glasmorphism-border-color);
     backdrop-filter: var(--glasmorphism-backdrop-filter);
-    -webkit-backdrop-filter: var(--glasmorphism-backdrop-filter);
 }
 
 #top-navbar button {
@@ -14,7 +13,14 @@
 #top-navbar button:not([id="btn-title"]) {
     background-color: var(--glasmorphism-bg);
     border: 1px solid var(--glasmorphism-border-color);
-}
+}*/
+
+#top-navbar {
+    background-color: rgba(23, 23, 23, 0.2); /* Très transparent */
+    backdrop-filter: blur(20px); /* Flou plus prononcé */
+    -webkit-backdrop-filter: blur(20px); /* Compatibilité Safari */
+  }
+  
 
 /* navbar du bas (seulement mobile) */
 

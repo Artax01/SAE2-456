@@ -58,7 +58,7 @@
             <div class="flex items-center gap-4">
               <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=80&q=80" alt="Pizza 4 fromages" class="w-20 h-20 rounded-xl object-cover border-2 border-orange-200">
               <div>
-                <div class="font-bold text-lg">Pizza 4 fromages</div>
+                <div class="font-bold text-black text-lg">Pizza 4 fromages</div>
                 <div class="text-gray-500">1 x 25€</div>
               </div>
             </div>
@@ -68,7 +68,7 @@
             <div class="flex items-center gap-4">
               <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=80&q=80" alt="Pizza 2 fromages" class="w-20 h-20 rounded-xl object-cover border-2 border-orange-200">
               <div>
-                <div class="font-bold text-lg">Pizza 2 fromages</div>
+                <div class="font-bold text-black text-lg">Pizza 2 fromages</div>
                 <div class="text-gray-500">2 x 22€</div>
               </div>
             </div>
@@ -76,7 +76,7 @@
           </li>
         </ul>
         <div class="flex justify-between items-center mb-6">
-          <span class="text-xl font-bold">Total</span>
+          <span class="text-xl font-bold text-black">Total</span>
           <span class="text-xl font-bold text-orange-500">69€</span>
         </div>
         <button class="w-full bg-orange-400 hover:bg-orange-500 text-white font-bold py-3 rounded-full text-xl transition">Payer</button>
