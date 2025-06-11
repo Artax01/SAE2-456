@@ -1,3 +1,8 @@
+<?php
+    require_once "../../php/connexion.php";
+    
+?>
+
 <h1 class=" text-center text-6xl font-extrabold text-orange-400 mb-8 tracking-tight uppercase" style="font-family: 'Montserrat', sans-serif;">Votre commande</h1>
 <div class="max-w-2xl mx-auto mt-10 bg-white rounded-xl shadow-lg p-8">
     <h2 class="text-3xl font-bold text-orange-400 mb-6">Détails de la commande</h2>
