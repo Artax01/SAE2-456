@@ -77,39 +77,27 @@ if (isset($_POST['send_mail'])) {
             $successCount = 0;
             $failCount = 0;
             foreach ($emails as $email) {
-                $result = @mail(
-                    $email,
-                    $subject,
-                    $message,
-                    "From: no-reply@tondomaine.com\r\nReply-To: no-reply@tondomaine.com\r\n"
-                );
-            
+                $headers = "From: no-reply@users.info.unicaen.fr\r\n";
+                $headers .= "Reply-To: no-reply@users.info.unicaen.fr\r\n";
+                $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+
+                $result = @mail($email, $subject, $message, $headers);
+
                 if ($result) {
                     $successCount++;
                 } else {
                     $failCount++;
                 }
-            
+
                 file_put_contents(
                     'mail_log.txt',
                     date('Y-m-d H:i:s') . " - Envoi à $email : " . ($result ? "OK" : "ÉCHEC") . "\n",
                     FILE_APPEND
                 );
             }
+            echo "<script>alert('Envois terminés : $successCount succès, $failCount échecs.');</script>";
         }
     }
-    echo "<script>alert('Envois terminés : $successCount succès, $failCount échecs.');</script>";
-}
-
-$to = "nathanelie.06@gmail.com"; // Mets ici TON email réel
-$subject = "Test d'envoi de mail";
-$message = "Bonjour,\n\nCeci est un mail de test envoyé depuis mon serveur.";
-$headers = "From: no-reply@users.info.unicaen.fr\r\n";
-
-if (mail($to, $subject, $message, $headers)) {
-    echo "Mail envoyé avec succès !";
-} else {
-    echo "Erreur lors de l'envoi du mail.";
 }
 
 ?>
@@ -198,7 +186,7 @@ if (mail($to, $subject, $message, $headers)) {
         Message
       </label>
       <textarea 
-        id="mail_message" 
+
         name="mail_message" 
         rows="5" 
         required
