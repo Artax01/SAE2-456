@@ -8,11 +8,9 @@ $db = $dbOracle;
 
 $conn = OuvrirConnexionPDO($db,$db_username,$db_password);
 
-// echo "<script>console.log($conn);</script>";
-
 if ($conn)
 	{
-		echo ("Connexion réussie à la base de données <br/>");
+		echo (" Connexion réussie à la base de données <br/>");
 		
 	}
 	else

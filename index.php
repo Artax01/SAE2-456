@@ -1,5 +1,3 @@
-
-
 <?php
 require_once './web/session/session.php';
 $isLoggedIn = getClient();

@@ -73,3 +73,4 @@
 <!-- ========== END NAVBAR DESKTOP ========== -->
 
 <script src="./web/assets/js/navbar.js"></script>
+<script src="./web/assets/js/commander.js"></script>
