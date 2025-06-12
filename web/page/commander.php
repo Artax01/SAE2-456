@@ -1,7 +1,7 @@
 <?php
     require_once "../../php/functions.php";
     // getPlats($conn);
-    isPlatExist($conn, "P101");
+    var_dump("TEST");
 ?>
 
 <h1 class=" text-center text-6xl font-extrabold text-orange-400 mb-8 tracking-tight uppercase" style="font-family: 'Montserrat', sans-serif;">Votre commande</h1>
