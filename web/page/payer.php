@@ -34,9 +34,12 @@ if (isset($_SESSION['client_id'])) {
     $conn = OuvrirConnexionPDO($db, $db_username, $db_password);
 
     if ($conn) {
-        // On reprend la logique de compte.php
         $cli_num = $_SESSION['client_id'];
-        $sql = "SELECT SUM(SUI_POINTS) AS SOMME FROM RAP_FIDELISATION WHERE CLI_NUM = :cli_num";
+        $sql = "SELECT SUM(total_points) AS somme FROM rap_client
+                JOIN rap_commande USING(cli_num)
+                JOIN rap_fidelisation USING(cli_num)
+                JOIN rap_restaurant USING(res_num)
+                WHERE cli_num = :cli_num";
         $cur = preparerRequetePDO($conn, $sql);
         $cur->bindParam(':cli_num', $cli_num, PDO::PARAM_INT);
         $cur->execute();
