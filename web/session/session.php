@@ -1,10 +1,31 @@
 <?php
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
 function isLoggedIn() {
     return isset($_SESSION['client']);
+}
+
+function isLoggedInAdmin($conn) {
+    try {
+        $sql = "select cli_num from rap_client
+                where cli_num in (
+                    select cli_num from rap_administrateur
+                ) and cli_num = 1240";
+        $res = LireDonneesPDO1($conn,$sql,$donnees);
+
+        if (isset($donnees[0]["CLI_NUM"])) {
+            return $donnees[0]["CLI_NUM"] == getId();
+        }
+        return false;
+    }
+    catch (PDOException $e) {
+        var_dump($e);
+        return false;
+    }
+    return false;
 }
 
 function getClient() {

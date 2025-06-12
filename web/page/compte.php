@@ -2,9 +2,6 @@
 require_once '../session/session.php';
 require_once '../../php/connexion.php';
 
-
-require_once '../../php/connexion.php';
-
 if (!isLoggedIn()) {
     header('Location: ../page/signin.php');
     exit;
@@ -46,6 +43,7 @@ if (!isLoggedIn()) {
         <div class="flex justify-center items-baseline gap-3 tex-gray-800">
             <div class="text-gray-800 text-6xl font-semibold">
                 <?php
+
                     $sql = "select sum(total_points) as somme from rap_client
                             join rap_commande using(cli_num)
                             join rap_fidelisation using(cli_num)
@@ -70,6 +68,8 @@ if (!isLoggedIn()) {
                     
                     // echo $donnees[0];
                     // echo 'Vous avez ' . $points . ' point' . ($points > 1 ? 's' : '') . ' de fidélité.'; 
+
+                    $result = isLoggedInAdmin($conn);
                 ?>
             </div>
         <div class="text-gray-800 text-2xl font-semibold">
