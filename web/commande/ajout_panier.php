@@ -8,6 +8,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $item = [
             'id' => $_POST['pla_num'],
             'quantite' => 1,
+            'prix' => 0,
+            'nom' => 'placeholder',
         ];
         for ($i = 0; $i < count($_SESSION['panier']['produits']); $i = $i + 1) {
             if ($_SESSION['panier']['produits'][$i]['id'] == $item['id']) {

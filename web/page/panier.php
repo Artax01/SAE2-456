@@ -64,11 +64,11 @@ require_once('../session/session.php');
                   <div class="flex items-center gap-4">
                       <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=80&q=80" alt="<?= $nom ?>" class="w-20 h-20 rounded-xl object-cover border-2 border-orange-200">
                       <div>
-                          <div class="font-bold text-black text-lg"><?php echo 'produit '.$item['id']; ?></div>
+                          <div class="font-bold text-black text-lg"><?= $item['nom']; ?></div>
                           <div class="text-gray-500 flex items-center gap-2">
-                              <button type="button" class="btn-moins text-3xl px-4 py-1 bg-orange-100 rounded hover:bg-orange-200" data-nom="<?php echo 'nom'; ?>" data-type="<?= $type ?>">-</button>
-                              <span><?= $item['quantite']; ?> x <?php echo 'jsp'; ?>€</span>
-                              <button type="button" class="btn-plus text-3xl px-4 py-1 bg-orange-100 rounded hover:bg-orange-200" data-nom="<?php echo 'nom'; ?>" data-type="<?= $type ?>">+</button>
+                              <button type="button" class="btn-moins text-3xl px-4 py-1 bg-orange-100 rounded hover:bg-orange-200" data-nom="<?= $item['nom']; ?>" data-type="<?= $type ?>">-</button>
+                              <span><?= $item['quantite']; ?> x <?= $item['prix'] ?>€</span>
+                              <button type="button" class="btn-plus text-3xl px-4 py-1 bg-orange-100 rounded hover:bg-orange-200" data-nom="<?= $item['nom']; ?>" data-type="<?= $type ?>">+</button>
                           </div>
                       </div>
                   </div>
