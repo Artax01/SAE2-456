@@ -86,23 +86,15 @@ if (!isLoggedIn()) {
         <div class="flex justify-center items-baseline gap-3 tex-gray-800">
             <div class="text-gray-800 text-6xl font-semibold">
                 <?php
-                    $sql = "select sum(total_points) as somme from rap_client
-                            join rap_commande using(cli_num)
-                            join rap_fidelisation using(cli_num)
-                            join rap_restaurant using(res_num)
-                            where cli_num = ".getId();
-                    $res = LireDonneesPDO1($conn,$sql,$donnees);
+                    $sql = "select nvl(sum(total_points),0) as somme from rap_fidelisation where cli_num = :id";
+                    $stmt = preparerRequetePDO($conn, $sql);
+                    $id = getId();
+                    ajouterParamPDO($stmt, ":id", $id, 'nombre');
+                    $stmt->execute();
+                    $donnees = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                    if($donnees != null){
-                        //echo "<script>console.log(".$donnees.")</script>";
-                        //echo ($donnees[0]);
-                        // print_r($donnees);
-                        if (isset($donnees[0]["SOMME"])) {
-                            echo $donnees[0]["SOMME"];
-                        }
-                        else {
-                            echo 0;
-                        }
+                    if (isset($donnees["SOMME"])) {
+                        echo $donnees["SOMME"];
                     }
                     else{
                         echo (0);
