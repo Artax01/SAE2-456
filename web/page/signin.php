@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 <?php
 require_once '../session/session.php';
+=======
+<div class="bg-gray-800 h-full">
+<?php
+require_once '../session/session.php';
+require_once '../../php/connexion.php';
+>>>>>>> web
 
 if (isLoggedIn()) {
     header('Location: index.php?page=compte.php');
@@ -8,6 +15,7 @@ if (isLoggedIn()) {
 else {
   echo "<script>console.log(" . json_encode("client déconnecter") . ");</script>";
 }
+<<<<<<< HEAD
 ?>
 
 <?php
@@ -16,6 +24,12 @@ require_once '../session/session.php';
 if($isLoggedInAdmin) {
     header('Location: index.php?page=gerer.php');
     exit;
+=======
+
+if(isLoggedInAdmin($conn)) {
+  header('Location: index.php?page=gerer.php');
+  exit;
+>>>>>>> web
 }
 ?>
 
@@ -25,13 +39,22 @@ if($isLoggedInAdmin) {
 
 <?php require_once '../component/CASBanner.php';?>
 
+<<<<<<< HEAD
 <div id="box-container">
   <div id="div-signin" class="mt-7 bg-white border border-gray-200 rounded-xl shadow-2xs ">
+=======
+<div id="box-container" class="bg-black">
+  <div id="div-signin" class="mt-7 bg-white border border-gray-200 rounded-xl shadow-2xs">
+>>>>>>> web
     <div class="p-4 sm:p-7">
       <div class="text-center">
         <h1 class="block text-2xl font-bold text-gray-800">
           Se connecter
+<<<<<<< HEAD
       </h1>
+=======
+        </h1>
+>>>>>>> web
         <p class="mt-2 text-sm text-gray-600">
           Vous n'avez pas encore de compte ?
           <a href="./signup.php" class="text-blue-600 decoration-2 hover:underline focus:outline-hidden focus:underline font-medium dark:text-blue-500">
@@ -122,6 +145,7 @@ if($isLoggedInAdmin) {
       </div>
     </div>
   </div>
+<<<<<<< HEAD
 </div>
 
 <p>test@gmail.com</p>
@@ -129,3 +153,6 @@ if($isLoggedInAdmin) {
 
 <p>perno@rso.fr</p>
 <p>LEPERENOEL</p>
+=======
+</div>
+>>>>>>> web

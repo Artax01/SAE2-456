@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> web
 <?php
 session_start();
 
@@ -129,6 +133,10 @@ $_SESSION['panier_total'] = $total;
       <!-- Titre -->
       <h1 class="text-5xl font-extrabold text-orange-400 mb-8 tracking-wide text-center">VOTRE PANIER</h1>
       <!-- Liste des articles du panier -->
+<<<<<<< HEAD
+=======
+
+>>>>>>> web
       <div class="bg-white bg-opacity-90 rounded-2xl shadow-lg p-8 max-w-2xl mx-auto" id="panier-content">
         <ul class="divide-y divide-gray-200 mb-6">
           <?php
@@ -157,7 +165,12 @@ $_SESSION['panier_total'] = $total;
           ?>
         </ul>
         <div class="flex justify-between items-center mb-6">
+<<<<<<< HEAD
           <span class="text-xl font-bold text-black">Total </span>
+=======
+          <span class="text-xl font-bold text-black">Total :</span>
+
+>>>>>>> web
           <span class="text-xl font-bold text-orange-500"><?php echo number_format($total, 2, ',', ' '); ?> €</span>
         </div>
         <a href="?page=payer.php">

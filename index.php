@@ -7,6 +7,7 @@ if (!isset($_SESSION["panier"])) {
 }
 ?>
 
+<<<<<<< HEAD
 <head>
 
     <!DOCTYPE html>
@@ -27,6 +28,10 @@ if (!isset($_SESSION["panier"])) {
     <meta property="og:description" content="Découvrez RapidC3 : restaurants à emporter avec commandes en ligne, points de fidélité et promotions personnalisées." inertia="og:description">
     <link rel="stylesheet" href="assets/css/root.css">
 </head>
+=======
+<!DOCTYPE html>
+
+>>>>>>> web
 <?php require_once './web/component/meta.php'; ?>
 <!-- style commun de l'application -->
 <link rel="stylesheet" href="./web/assets/css/root.css">

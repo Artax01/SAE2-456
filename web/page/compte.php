@@ -1,5 +1,6 @@
 <?php
 require_once '../session/session.php';
+<<<<<<< HEAD
 
 if (!isLoggedIn()) {
     header('Location: ../page/signin.php');
@@ -24,6 +25,15 @@ if (!isLoged()){
  exit;
 }
  */
+=======
+require_once '../../php/connexion.php';
+
+
+if (!isLoggedIn()) {
+    header('Location: ../page/signin.php');
+    exit;
+}
+>>>>>>> web
 ?>
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -31,6 +41,7 @@ if (!isLoged()){
         <div class="absolute inset-0 bg-black opacity-55"></div>
     </div>
 
+<<<<<<< HEAD
 <!-- Sidebar Navigation -->
 
 <aside class="fixed top-1/2 left-0 transform -translate-y-1/2 flex flex-col items-center py-6 px-4 backdrop-blur dark:bg-neutral-800 h-auto w-64 z-20 rounded-r-3xl shadow-lg">
@@ -74,11 +85,14 @@ if (!isLoged()){
 </aside>
 
 
+=======
+>>>>>>> web
 <div class="fixed inset-0 flex flex-col items-center justify-center gap-10 z-30">
     
     <!-- Boîte 1 : Infos utilisateur -->
     <div class="bg-white rounded-2xl shadow-xl p-8 w-[650px] max-w-full text-center">
         <div class="text-orange-400 text-4xl font-bold mb-6">
+<<<<<<< HEAD
             <?php echo 'Bienvenue ' . getNom() . ' ' . getPrenom(); ?>
         </div>
         
@@ -92,6 +106,30 @@ if (!isLoged()){
         
         <div class="text-gray-800 text-2xl font-semibold">
             <?php echo 'Votre numéro de téléphone : ' . getTel(); ?>
+=======
+            <?php echo 'Bienvenue ' . getPrenom(); ?>
+        </div>
+        
+        <div class="text-gray-800 text-2xl font-semibold mb-4 flex gap-5 justify-center">
+            <?php echo 'Votre adresse mail : ' . getEmail(); ?>
+            <form action="">
+                <button><small class="text-orange-400">modifier</small></button>
+            </form>
+        </div>
+        
+        <div class="text-gray-800 text-2xl font-semibold mb-4 flex gap-5 justify-center">
+            <?php echo 'Votre mot de passe : *********'; ?>
+            <form action="">
+                <button><small class="text-orange-400">modifier</small></button>
+            </form>
+        </div>
+        
+        <div class="text-gray-800 text-2xl font-semibold flex gap-4 justify-center">
+            <?php echo 'Votre numéro de téléphone : ' . getTel(); ?>
+            <form action="">
+                <button><small class="text-orange-400">modifier</small></button>
+            </form>
+>>>>>>> web
         </div>
     </div>
 
@@ -128,6 +166,11 @@ if (!isLoged()){
                     
                     // echo $donnees[0];
                     // echo 'Vous avez ' . $points . ' point' . ($points > 1 ? 's' : '') . ' de fidélité.'; 
+<<<<<<< HEAD
+=======
+
+                    $result = isLoggedInAdmin($conn);
+>>>>>>> web
                 ?>
             </div>
         <div class="text-gray-800 text-2xl font-semibold">
@@ -140,3 +183,7 @@ if (!isLoged()){
         </button>
     </div>
 </div>
+<<<<<<< HEAD
+=======
+</div>
+>>>>>>> web
