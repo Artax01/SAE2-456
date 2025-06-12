@@ -1,3 +1,8 @@
+<?php
+require_once __DIR__ . '/../session/session.php';
+require_once __DIR__ . '/../../php/connexion.php';
+?>
+
 <head>
   <meta charset="UTF-8">
   <title>Paiement - RapidC3</title>
@@ -20,49 +25,51 @@
       <div class="bg-white bg-opacity-95 rounded-2xl shadow-lg p-10 max-w-xl w-full">
 
 <?php
-session_start();
-require_once __DIR__ . '/../../php/pdo_agile.php';
-require_once __DIR__ . '/../../php/param_connexion_etu.php';
-
-// Ouvre la connexion comme dans compte.php
-$db_username = $db_usernameOracle;
-$db_password = $db_passwordOracle;
-$db = $dbOracle;
-$conn = OuvrirConnexionPDO($db, $db_username, $db_password);
-
-$points_fidelite = 0;
-if ($conn && isset($_SESSION['client_id'])) {
-    $cli_num = $_SESSION['client_id'];
-    $sql = "SELECT SUM(TOTAL_POINTS) AS SOMME FROM RAP_CLIENT
-            JOIN RAP_COMMANDE USING(CLI_NUM)
-            JOIN RAP_FIDELISATION USING(CLI_NUM)
-            JOIN RAP_RESTAURANT USING(RES_NUM)
-            WHERE CLI_NUM = $cli_num";
-    $donnees = [];
-    $res = LireDonneesPDO1($conn, $sql, $donnees);
-
-    if ($donnees != null && isset($donnees[0]["SOMME"])) {
-        $points_fidelite = $donnees[0]["SOMME"];
-    }
-}
+// Ajoute ce bloc PHP tout en haut du fichier payer.php
+// Exemple : on suppose que le total du panier est stocké dans $_SESSION['panier_total']
+// Sinon, adapte ce calcul selon ta logique panier
+$prix_total = isset($_SESSION['panier_total']) ? number_format($_SESSION['panier_total'], 2, ',', ' ') : '0,00';
 ?>
 <h1 class="text-4xl font-extrabold text-orange-400 mb-6 text-center">Paiement</h1>
 <p class="text-center text-2xl font-bold mb-6">
     Total à payer : <span class="text-orange-500"><?= $prix_total ?> €</span>
 </p>
-<div class="bg-white rounded-2xl shadow-xl p-8 w-[650px] max-w-full text-center mb-8">
-    <div class="text-orange-400 text-4xl font-bold mb-6">
-        Vos points de fidélité
-    </div>
-    <div class="flex justify-center items-baseline gap-3 tex-gray-800">
-        <div class="text-gray-800 text-6xl font-semibold">
-            <?= htmlspecialchars($points_fidelite) ?>
-        </div>
-        <div class="text-gray-800 text-2xl font-semibold">
-            points
-        </div>
-    </div>
-</div>
+<?php
+
+$points_fidelite = 0;
+if (isLoggedIn()) {
+    if ($conn) {
+        $sql = "SELECT SUM(TOTAL_POINTS) AS POINTS
+                FROM RAP_CLIENT
+                JOIN RAP_COMMANDE USING(CLI_NUM)
+                JOIN RAP_FIDELISATION USING(CLI_NUM)
+                JOIN RAP_RESTAURANT USING(RES_NUM)
+                WHERE CLI_NUM = :cli_num";
+        $cur = preparerRequetePDO($conn, $sql);
+        $cli_num = getId();
+        $cur->bindParam(':cli_num', $cli_num, PDO::PARAM_INT);
+        $cur->execute();
+        $row = $cur->fetch(PDO::FETCH_ASSOC);
+        if ($row && isset($row['POINTS'])) {
+            $points_fidelite = $row['POINTS'];
+        }
+    }
+}
+?>
+<p class="text-center text-xl mb-6 flex items-center justify-center gap-2">
+    Vos points fidélités :
+    <span class="text-orange-500" id="points-fidelite"><?= htmlspecialchars($points_fidelite) ?></span>
+    <input
+        type="number"
+        name="points_utilises"
+        id="points_utilises"
+        min="0"
+        max="<?= htmlspecialchars($points_fidelite) ?>"
+        class="border rounded px-2 py-1 w-35 text-center"
+        placeholder="À utiliser"
+        style="margin-left: 10px;"
+    >
+</p>
 <p class="text-center text-lg mb-6" id="reduction-fidelite">
     Réduction appliquée : <span class="text-green-600" id="reduction-montant">0,00 €</span>
 </p>
