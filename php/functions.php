@@ -54,6 +54,61 @@ function isClientExist($conn, $cli_num): bool{
     return !empty($tab);
 }
 
+function getAllMenus($conn){
+    $tab = [];
+    
+    $req_sql = "SELECT * FROM RAP_PLAT WHERE PLA_MENU = 1 AND ROWNUM<=10";
+    $cur = preparerRequetePDO($conn, $req_sql);
+    LireDonneesPDOPreparee($cur, $tab);
+    return $tab;
+}
+
+function getPlatesByMenu($conn, $pla_num){
+    $tab = [];
+    
+    $req_sql = "SELECT * FROM RAP_PLAT WHERE PLA_MENU=1 AND PLA_NUM=?";
+    $cur = preparerRequetePDO($conn, $req_sql);
+    majDonneesPrepareesTabPDO($cur, [$pla_num]);
+    LireDonneesPDOPreparee($cur, $tab);
+    if(empty($tab)) return [];
+
+    $newTab = [];
+    $plats = [];
+
+    //Premier plat
+
+    $reqSqlPremierPlat = "SELECT * FROM RAP_PLAT WHERE PLA_NUM=SUBSTR(?, 1,1) || '000'";
+    $cur = preparerRequetePDO($conn, $reqSqlPremierPlat);
+    majDonneesPrepareesTabPDO($cur, [$tab[0]["PLA_NUM"]]);
+    LireDonneesPDOPreparee($cur, $newTab);
+    array_push($plats, $newTab[0]);
+
+    $reqSqlPremierPlat = "SELECT * FROM RAP_PLAT WHERE PLA_NUM=SUBSTR(?, 2,1) || '00'";
+    $cur = preparerRequetePDO($conn, $reqSqlPremierPlat);
+    majDonneesPrepareesTabPDO($cur, [$tab[0]["PLA_NUM"]]);
+    LireDonneesPDOPreparee($cur, $newTab);
+    array_push($plats, $newTab[0]);
+
+    $reqSqlPremierPlat = "SELECT * FROM RAP_PLAT WHERE PLA_NUM=SUBSTR(?, 3,1) || '0'";
+    $cur = preparerRequetePDO($conn, $reqSqlPremierPlat);
+    majDonneesPrepareesTabPDO($cur, [$tab[0]["PLA_NUM"]]);
+    LireDonneesPDOPreparee($cur, $newTab);
+    array_push($plats, $newTab[0]);
+
+    $reqSqlPremierPlat = "SELECT * FROM RAP_PLAT WHERE PLA_NUM=SUBSTR(?, 4,1)";
+    $cur = preparerRequetePDO($conn, $reqSqlPremierPlat);
+    majDonneesPrepareesTabPDO($cur, [$tab[0]["PLA_NUM"]]);
+    LireDonneesPDOPreparee($cur, $newTab);
+    
+
+    array_push($plats, $newTab[0]);
+    
+    
+    
+
+    return $plats;
+}
+
 /*
 function payerPlat($conn, $plat_num, $cli_num){
     try{
