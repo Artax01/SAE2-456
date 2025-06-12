@@ -9,8 +9,6 @@
   <div class="relative z-10 flex h-screen">
     <!-- Sidebar Navigation -->
     <aside class="fixed top-1/2 left-0 transform -translate-y-1/2 flex flex-col items-center py-6 px-4 backdrop-blur dark:bg-neutral-800 h-auto w-64 z-20 rounded-r-3xl shadow-lg">
-    
-
     <!-- Lien 1 -->
     <div class="flex items-center mb-10 w-full justify-start">
         <a href="?page=accueil.php" class="material-icons text-orange-400 text-[4.5rem] mr-4 flex items-center justify-center">home</a>
@@ -19,16 +17,14 @@
             Accueil
         </a>
     </div>
-
     <!-- Lien 2 -->
     <div class="flex items-center mb-10 w-full justify-start">
-        <a href="?page=menu.php" class="material-icons text-orange-400 text-[4.5rem] mr-4 flex items-center justify-center">restaurant_menu</a>
+        <a href="?page=menu.php" class="material-icons text-orange-400 text-[4.5rem] mr-4 flex items-center justify-center">menu_book</a>
         <a href="?page=menu.php"
            class="w-full text-left text-xl font-bold text-white transition-all duration-300 whitespace-nowrap focus:outline-none hover:bg-orange-100 hover:text-orange-500 active:scale-95 transition-transform rounded-md py-2 px-3">
             Nos Menus
         </a>
     </div>
-
     <!-- Lien 3 -->
     <div class="flex items-center mb-10 w-full justify-start">
         <a href="?page=plat.php" class="material-icons text-orange-400 text-[4.5rem] mr-4 flex items-center justify-center">restaurant</a>
@@ -37,7 +33,6 @@
             Nos Plats
         </a>
     </div>
-
     <!-- Lien 4 -->
     <div class="flex items-center mb-10 w-full justify-start">
         <a href="?page=panier.php" class="material-icons text-orange-400 text-[4.5rem] mr-4 flex items-center justify-center">shopping_cart</a>
