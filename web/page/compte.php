@@ -19,19 +19,28 @@ if (!isLoggedIn()) {
     <!-- Boîte 1 : Infos utilisateur -->
     <div class="bg-white rounded-2xl shadow-xl p-8 w-[650px] max-w-full text-center">
         <div class="text-orange-400 text-4xl font-bold mb-6">
-            <?php echo 'Bienvenue ' . getNom() . ' ' . getPrenom(); ?>
+            <?php echo 'Bienvenue ' . getPrenom(); ?>
         </div>
         
-        <div class="text-gray-800 text-2xl font-semibold mb-4">
+        <div class="text-gray-800 text-2xl font-semibold mb-4 flex gap-5 justify-center">
             <?php echo 'Votre adresse mail : ' . getEmail(); ?>
+            <form action="">
+                <button><small class="text-orange-400">modifier</small></button>
+            </form>
         </div>
         
-        <div class="text-gray-800 text-2xl font-semibold mb-4">
+        <div class="text-gray-800 text-2xl font-semibold mb-4 flex gap-5 justify-center">
             <?php echo 'Votre mot de passe : *********'; ?>
+            <form action="">
+                <button><small class="text-orange-400">modifier</small></button>
+            </form>
         </div>
         
-        <div class="text-gray-800 text-2xl font-semibold">
+        <div class="text-gray-800 text-2xl font-semibold flex gap-4 justify-center">
             <?php echo 'Votre numéro de téléphone : ' . getTel(); ?>
+            <form action="">
+                <button><small class="text-orange-400">modifier</small></button>
+            </form>
         </div>
     </div>
 
