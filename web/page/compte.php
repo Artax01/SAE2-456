@@ -1,17 +1,19 @@
 <?php
 require_once '../session/session.php';
+
+
 require_once '../../php/connexion.php';
 
-if (!isLoggedIn()) {
+if (!isLo
     header('Location: ../page/signin.php');
-    exit;
+?>  exit;
 }
 ?>
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="fixed inset-0 w-full h-full bg-[url('./web/assets/img/rapidc3.png')] bg-cover bg-center bg-no-repeat z-0 ">
         <div class="absolute inset-0 bg-black opacity-55"></div>
-    </div>
+        </div>
 
 <!-- Sidebar Navigation -->
 
