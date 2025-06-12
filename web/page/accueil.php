@@ -18,6 +18,7 @@
             Accueil
         </a>
     </div>
+
     <!-- Lien 2 -->
     <div class="flex items-center mb-10 w-full justify-start">
         <a href="?page=menu.php" class="material-icons text-orange-400 text-[4.5rem] mr-4 flex items-center justify-center">menu_book</a>
