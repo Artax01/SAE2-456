@@ -21,7 +21,7 @@
     </div>
     <!-- Lien 2 -->
     <div class="flex items-center mb-10 w-full justify-start">
-        <a href="?page=menu.php" class="material-icons text-orange-400 text-[4.5rem] mr-4 flex items-center justify-center">restaurant_menu</a>
+        <a href="?page=menu.php" class="material-icons text-orange-400 text-[4.5rem] mr-4 flex items-center justify-center">menu_book</a>
         <a href="?page=menu.php"
            class="w-full text-left text-xl font-bold text-white transition-all duration-300 whitespace-nowrap focus:outline-none hover:bg-orange-100 hover:text-orange-500 active:scale-95 transition-transform rounded-md py-2 px-3">
             Nos Menus
@@ -43,7 +43,6 @@
             Panier
         </a>
     </div>
-    
 </aside>
 <!-- ...existing code... -->
 
