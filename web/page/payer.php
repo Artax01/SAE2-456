@@ -20,19 +20,11 @@
       <div class="bg-white bg-opacity-95 rounded-2xl shadow-lg p-10 max-w-xl w-full">
 
 <?php
-// Ajoute ce bloc PHP tout en haut du fichier payer.php
 session_start();
-// Exemple : on suppose que le total du panier est stocké dans $_SESSION['panier_total']
-// Sinon, adapte ce calcul selon ta logique panier
-$prix_total = isset($_SESSION['panier_total']) ? number_format($_SESSION['panier_total'], 2, ',', ' ') : '0,00';
-?>
-<h1 class="text-4xl font-extrabold text-orange-400 mb-6 text-center">Paiement</h1>
-<p class="text-center text-2xl font-bold mb-6">
-    Total à payer : <span class="text-orange-500"><?= $prix_total ?> €</span>
-</p>
-<?php
 require_once __DIR__ . '/../../php/pdo_agile.php';
 require_once __DIR__ . '/../../php/param_connexion_etu.php';
+
+$prix_total = isset($_SESSION['panier_total']) ? number_format($_SESSION['panier_total'], 2, ',', ' ') : '0,00';
 
 $points_fidelite = 0;
 if (isset($_SESSION['client_id'])) {
@@ -42,18 +34,23 @@ if (isset($_SESSION['client_id'])) {
     $conn = OuvrirConnexionPDO($db, $db_username, $db_password);
 
     if ($conn) {
-        $sql = "SELECT MAX(SUI_POINTS) AS POINTS FROM RAP_FIDELISATION WHERE CLI_NUM = :cli_num";
-        $cur = preparerRequetePDO($conn, $sql);
+        // On reprend la logique de compte.php
         $cli_num = $_SESSION['client_id'];
+        $sql = "SELECT SUM(SUI_POINTS) AS SOMME FROM RAP_FIDELISATION WHERE CLI_NUM = :cli_num";
+        $cur = preparerRequetePDO($conn, $sql);
         $cur->bindParam(':cli_num', $cli_num, PDO::PARAM_INT);
         $cur->execute();
         $row = $cur->fetch(PDO::FETCH_ASSOC);
-        if ($row && isset($row['POINTS'])) {
-            $points_fidelite = $row['POINTS'];
+        if ($row && isset($row['SOMME'])) {
+            $points_fidelite = $row['SOMME'];
         }
     }
 }
 ?>
+<h1 class="text-4xl font-extrabold text-orange-400 mb-6 text-center">Paiement</h1>
+<p class="text-center text-2xl font-bold mb-6">
+    Total à payer : <span class="text-orange-500"><?= $prix_total ?> €</span>
+</p>
 <p class="text-center text-xl mb-6 flex items-center justify-center gap-2">
     Vos points fidélités :
     <span class="text-orange-500" id="points-fidelite"><?= htmlspecialchars($points_fidelite) ?></span>
@@ -62,6 +59,7 @@ if (isset($_SESSION['client_id'])) {
         name="points_utilises"
         id="points_utilises"
         min="0"
+        max="<?= htmlspecialchars($points_fidelite) ?>"
         class="border rounded px-2 py-1 w-24 text-center"
         placeholder="À utiliser"
         style="margin-left: 10px;"
@@ -73,19 +71,35 @@ if (isset($_SESSION['client_id'])) {
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const input = document.getElementById('points_utilises');
+    const maxPoints = parseInt(document.getElementById('points-fidelite').textContent, 10);
     const reductionSpan = document.getElementById('reduction-montant');
 
     function updateReduction() {
-        let val = input.value.trim();
-        let reduction = "0,00";
-        if (/^\d+$/.test(val)) {
+        let val = input.value;
+        let reduction = 0;
+        if (/^\d+$/.test(val) && parseInt(val, 10) <= maxPoints) {
             reduction = (parseInt(val, 10) * 0.01).toFixed(2).replace('.', ',');
+        } else {
+            reduction = "0,00";
         }
         reductionSpan.textContent = reduction + " €";
     }
 
-    input.addEventListener('input', updateReduction);
-    input.addEventListener('change', updateReduction);
+    input.addEventListener('input', function() {
+        let val = input.value;
+        if (val === "") {
+            input.setCustomValidity("");
+            updateReduction();
+            return;
+        }
+        if (!/^\d+$/.test(val) || parseInt(val, 10) > maxPoints) {
+            input.setCustomValidity("Veuillez entrer un nombre entier inférieur ou égal à vos points fidélité.");
+            input.reportValidity();
+        } else {
+            input.setCustomValidity("");
+        }
+        updateReduction();
+    });
 
     // Initialisation
     updateReduction();
