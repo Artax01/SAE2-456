@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateReduction() {
         let val = input.value;
         let reduction = 0;
-        if (/^\d+$/.test(val)) {
+        if (/^\d+$/.test(val) && parseInt(val, 10) > 0) {
             reduction = (parseInt(val, 10) * 0.01).toFixed(2).replace('.', ',');
         } else {
             reduction = "0,00";
