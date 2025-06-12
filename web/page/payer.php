@@ -60,6 +60,7 @@ $prix_total = isset($_SESSION['panier_total']) ? number_format($_SESSION['panier
               </div>
             </div>
           </div>
+        
           <!-- Bouton payer -->
           <button type="submit" class="w-full bg-orange-400 hover:bg-orange-500 text-white font-bold py-3 rounded-full text-xl transition">Payer</button>
           <!-- Bouton retour au panier -->
