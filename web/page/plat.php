@@ -1,120 +1,267 @@
 <?php require_once("../../php/functions.php"); ?>
 
-<!-- Menu "Nos Menus" avec effets Tailwind CSS, image de fond et animation navbar -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="relative min-h-screen w-full">
   <!-- Image de fond + filtre opaque -->
-  <div class="absolute inset-0 z-0">
-    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80" alt="Restaurant" class="w-full h-full object-cover" />
-    <div class="absolute inset-0 bg-white/60"></div> <!-- Opacité légère, ajuste /60 pour plus/moins opaque -->
+  <div class="fixed inset-0 w-full h-full bg-[url('./web/assets/img/fast-food.jpeg')] bg-cover bg-center bg-no-repeat z-0">
+    <div class="absolute inset-0 bg-black opacity-55"></div>
   </div>
   <!-- Contenu principal en relatif -->
-  <div class="relative z-10 flex h-screen">
+  <div class="relative z-10 flex">
     <!-- Sidebar Navigation -->
-    <aside class="flex flex-col items-center py-4 px-2 bg-[#E7E4E0] h-full transition-all duration-300 group w-16 hover:w-56 z-20 relative">
-      <!-- Flèche ouverture -->
-      <div class="absolute top-1/2 right-[-12px] transform -translate-y-1/2 flex items-center justify-center w-6 h-6 bg-[#E7E4E0] rounded-full shadow border border-orange-300 z-30 pointer-events-none">
-        <!-- Petite flèche pointant vers la droite -->
-        <svg class="w-4 h-4 text-orange-400 group-hover:scale-x-[-1] transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
-          <path d="M9 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <!-- Liens de navigation sans icones -->
-      <div class="flex items-center mb-8 w-full">
-        <button class="ml-4 w-full text-left text-lg font-semibold text-gray-700 opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap
-                       focus:outline-none
-                       hover:bg-orange-100 hover:text-orange-500
-                       active:scale-95
-                       transition-transform
-                       rounded-md py-1 px-2">
+    <aside class="fixed top-1/2 left-0 transform -translate-y-1/2 flex flex-col items-center py-6 px-4 backdrop-blur dark:bg-neutral-800 h-auto w-64 z-20 rounded-r-3xl shadow-lg">
+    <!-- Lien 1 -->
+    <div class="flex items-center mb-10 w-full justify-start">
+        <a href="?page=accueil.php" class="material-icons text-orange-400 text-[4.5rem] mr-4 flex items-center justify-center">home</a>
+        <a href="?page=accueil.php"
+           class="w-full text-left text-xl font-bold text-white transition-all duration-300 whitespace-nowrap focus:outline-none hover:bg-orange-100 hover:text-orange-500 active:scale-95 transition-transform rounded-md py-2 px-3">
           Accueil
-        </button>
-      </div>
-      <div class="flex items-center mb-8 w-full">
-        <button class="ml-4 w-full text-left text-lg font-semibold text-gray-700 opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap
-                       focus:outline-none
-                       hover:bg-orange-100 hover:text-orange-500
-                       active:scale-95
-                       transition-transform
-                       rounded-md py-1 px-2">
+        </a>
+    </div>
+    <!-- Lien 2 -->
+    <div class="flex items-center mb-10 w-full justify-start">
+        <a href="?page=menu.php" class="material-icons text-orange-400 text-[4.5rem] mr-4 flex items-center justify-center">menu_book</a>
+        <a href="?page=menu.php"
+           class="w-full text-left text-xl font-bold text-white transition-all duration-300 whitespace-nowrap focus:outline-none hover:bg-orange-100 hover:text-orange-500 active:scale-95 transition-transform rounded-md py-2 px-3">
           Nos Menus
-        </button>
-      </div>
-      <div class="flex items-center mb-8 w-full">
-        <button class="ml-4 w-full text-left text-lg font-semibold text-gray-700 opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap
-                        focus:outline-none
-                        hover:bg-orange-100 hover:text-orange-500
-                        active:scale-95
-                        transition-transform
-                        rounded-md py-1 px-2">
-          Catégorie
-        </button>
-      </div>
-      <div class="flex items-center mb-8 w-full relative">
-        <button class="ml-4 w-full text-left text-lg font-semibold text-gray-700 opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap
-                        focus:outline-none
-                        hover:bg-orange-100 hover:text-orange-500
-                        active:scale-95
-                        transition-transform
-                        rounded-md py-1 px-2">
+        </a>
+    </div>
+    <!-- Lien 3 -->
+    <div class="flex items-center mb-10 w-full justify-start">
+        <a href="?page=plat.php" class="material-icons text-orange-400 text-[4.5rem] mr-4 flex items-center justify-center">restaurant</a>
+        <a href="?page=plat.php"
+           class="w-full text-left text-xl font-bold text-white transition-all duration-300 whitespace-nowrap focus:outline-none hover:bg-orange-100 hover:text-orange-500 active:scale-95 transition-transform rounded-md py-2 px-3">
+          Nos Plats
+        </a>
+    </div>
+    <!-- Lien 4 -->
+    <div class="flex items-center mb-10 w-full justify-start">
+        <a href="?page=panier.php" class="material-icons text-orange-400 text-[4.5rem] mr-4 flex items-center justify-center">shopping_cart</a>
+        <a href="?page=panier.php"
+           class="w-full text-left text-xl font-bold text-white transition-all duration-300 whitespace-nowrap focus:outline-none hover:bg-orange-100 hover:text-orange-500 active:scale-95 transition-transform rounded-md py-2 px-3">
           Panier
-        </button>
-      </div>
-      <div class="flex items-center mt-auto w-full">
-        <button class="ml-4 w-full text-left text-lg font-semibold text-gray-700 opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap
-                        focus:outline-none
-                        hover:bg-orange-100 hover:text-orange-500
-                        active:scale-95
-                        transition-transform
-                        rounded-md py-1 px-2">
-          Profil
-        </button>
+        </a>
       </div>
     </aside>
 
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col pl-72 pr-10 py-6 overflow-y-auto">
+      <!-- Titre -->
+      <h1 class="text-5xl font-extrabold text-orange-400 mb-8 tracking-wide">NOS PLATS</h1>
 
-  <!-- Main Content -->
-  <div class="flex-1 flex flex-col px-10 py-6">
-    <!-- Barre de recherche -->
-    <div class="flex justify-center mb-6">
-      <div class="relative w-[600px]">
-        <input type="text" placeholder="Rechercher..." class="w-full rounded-full py-2 pl-12 pr-4 bg-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-400 text-lg shadow"/>
-        <svg class="absolute left-3 top-2.5 w-6 h-6 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-      </div>
-    </div>
-
-    <!-- Titre -->
-    <h1 class="text-5xl font-extrabold text-orange-400 mb-8 tracking-wide">NOS PLATS</h1>
-
-    <!-- Menus List -->
-    <div class="flex gap-10 justify-center">
-      <!-- Menu Card -->
-      <?php foreach(getPlats($conn) as $plat): ?>
-        <?php 
-          $infoPlat = getImgInfoPerPlats($conn, $plat["PLA_NUM"]);
-            
-        ?>
-        <div class="relative group w-80">
-          <div class="relative rounded-2xl overflow-hidden h-40 w-full border-4 border-orange-300 shadow-lg transition-all duration-500 group-hover:h-56">
-            <img src="<?=$infoPlat["CHEMIN_IMG"] ?>" alt="<?=$infoPlat["ALT_DESC_IMG"] ?>" class="h-full w-full object-cover transition-all duration-500 group-hover:scale-105">
-            <!-- Description Hover (dans l'image, bulle qui s'agrandit uniquement au hover) -->
-            <div class="absolute inset-0 flex items-end pointer-events-none">
-              <div class="w-full transition-all duration-500 ease-out transform translate-y-16 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 group-hover:min-h-[96px] pointer-events-auto bg-gradient-to-t from-black/90 to-transparent text-white rounded-b-2xl p-4 text-center min-h-0 flex flex-col items-center justify-end"
-                style="will-change: transform, opacity, min-height;">
+      <!-- Grille des menus -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 justify-items-center">
+        <!-- Menu Card (exemple, duplique-le pour chaque item) -->
+        <!-- Menu 1 -->
+        <div class="relative group w-80 h-[380px]">
+          <!-- Image + overlay description (s'ouvre vers le haut) -->
+          <div class="absolute top-0 left-0 w-full flex flex-col items-center">
+            <div class="relative rounded-2xl overflow-hidden h-40 w-full border-4 border-orange-300 shadow-lg">
+              <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80"
+                   alt="Pizza 4 fromages"
+                   class="h-full w-full object-cover transition-all duration-500 group-hover:scale-105">
+              <!-- Overlay Description qui s'ouvre VERS LE HAUT -->
+              <div class="absolute left-0 top-0 w-full
+                          transition-all duration-500 ease-out
+                          -translate-y-full group-hover:translate-y-0
+                          opacity-0 group-hover:opacity-100
+                          bg-gradient-to-b from-black/90 to-transparent
+                          text-white rounded-t-2xl p-4 text-center flex flex-col items-center justify-start pointer-events-auto
+                          overflow-y-auto max-h-36 scrollbar-thin scrollbar-thumb-orange-400 scrollbar-track-black/40 desc-overlay-scroll"
+                   style="will-change: transform, opacity;">
                 <div class="font-bold text-lg mb-1 break-words">Description</div>
-                <div class="text-sm break-words">La pizza est une recette de cuisine traditionnelle de la cuisine italienne, originaire de Naples à base de galette de pâte à pain, garnie principalement d'huile d'olive, de sauce tomate, de mozzarella et d'autres ingrédients</div>
+                <div class="text-sm break-words">
+                  La pizza est une recette de cuisine traditionnelle de la cuisine italienne, originaire de Naples à base de galette de pâte à pain, garnie principalement d'huile d'olive, de sauce tomate, de mozzarella et d'autres ingrédients
+                </div>
               </div>
             </div>
           </div>
-          <!-- Infos Plat -->
-          <div class="flex flex-col items-center mt-4">
-            <div class="bg-white rounded-full px-8 py-2 font-bold text-lg mb-2 shadow"><?=$plat["PLA_NOM"] ?><br><span class="font-normal"><?=$plat["PLA_PRIX_VENTE_UNIT_HT"] ?>€</span></div>
-            <div class="flex gap-4">
+          <!-- Infos Plat + boutons, toujours en bas -->
+          <div class="absolute bottom-0 left-0 w-full flex flex-col items-center">
+            <div class="bg-white rounded-full px-8 py-2 font-bold text-lg mb-6 shadow text-black mt-1">Pizza 4 fromages<br><span class="font-normal">25€</span></div>
+            <div class="flex gap-4 mb-4">
               <button class="border-2 border-orange-400 text-orange-400 font-semibold px-4 py-2 rounded-full hover:bg-orange-50 transition">Ajouter au panier</button>
-              <button onclick="" class="bg-orange-400 text-white font-semibold px-6 py-2 rounded-full hover:bg-orange-500 transition">Commander</button>
+              <button class="bg-orange-400 text-white font-semibold px-6 py-2 rounded-full hover:bg-orange-500 transition">Commander</button>
             </div>
           </div>
         </div>
-      <?php endforeach; ?>>
+        <!-- Menu 2 -->
+        <div class="relative group w-80 h-[380px]">
+          <div class="absolute top-0 left-0 w-full flex flex-col items-center">
+            <div class="relative rounded-2xl overflow-hidden h-40 w-full border-4 border-orange-300 shadow-lg">
+              <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80"
+                   alt="Pizza 2 fromages"
+                   class="h-full w-full object-cover transition-all duration-500 group-hover:scale-105">
+              <div class="absolute left-0 top-0 w-full
+                          transition-all duration-500 ease-out
+                          -translate-y-full group-hover:translate-y-0
+                          opacity-0 group-hover:opacity-100
+                          bg-gradient-to-b from-black/90 to-transparent
+                          text-white rounded-t-2xl p-4 text-center flex flex-col items-center justify-start pointer-events-none
+                          overflow-y-auto max-h-36 scrollbar-thin scrollbar-thumb-orange-400 scrollbar-track-black/40"
+                   style="will-change: transform, opacity;">
+                <div class="font-bold text-lg mb-1 break-words">Description</div>
+                <div class="text-sm break-words">
+                  Pizza deux fromages : pâte fine, mozzarella, emmental, sauce tomate maison.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="absolute bottom-0 left-0 w-full flex flex-col items-center">
+            <div class="bg-white rounded-full px-8 py-2 font-bold text-lg mb-6 shadow text-black mt-1">Pizza 2 fromages<br><span class="font-normal">22€</span></div>
+            <div class="flex gap-4 mb-4">
+              <button class="border-2 border-orange-400 text-orange-400 font-semibold px-4 py-2 rounded-full hover:bg-orange-50 transition">Ajouter au panier</button>
+              <button class="bg-orange-400 text-white font-semibold px-6 py-2 rounded-full hover:bg-orange-500 transition">Commander</button>
+            </div>
+          </div>
+        </div>
+        <!-- Menu 3 -->
+        <div class="relative group w-80 h-[380px]">
+          <div class="absolute top-0 left-0 w-full flex flex-col items-center">
+            <div class="relative rounded-2xl overflow-hidden h-40 w-full border-4 border-orange-300 shadow-lg">
+              <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=400&q=80"
+                   alt="Pizza 3 fromages"
+                   class="h-full w-full object-cover transition-all duration-500 group-hover:scale-105">
+              <div class="absolute left-0 top-0 w-full
+                          transition-all duration-500 ease-out
+                          -translate-y-full group-hover:translate-y-0
+                          opacity-0 group-hover:opacity-100
+                          bg-gradient-to-b from-black/90 to-transparent
+                          text-white rounded-t-2xl p-4 text-center flex flex-col items-center justify-start pointer-events-none
+                          overflow-y-auto max-h-36 scrollbar-thin scrollbar-thumb-orange-400 scrollbar-track-black/40"
+                   style="will-change: transform, opacity;">
+                <div class="font-bold text-lg mb-1 break-words">Description</div>
+                <div class="text-sm break-words">
+                  Pizza trois fromages : mozzarella, emmental, chèvre, sauce tomate, origan.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="absolute bottom-0 left-0 w-full flex flex-col items-center">
+            <div class="bg-white rounded-full px-8 py-2 font-bold text-lg mb-6 shadow text-black mt-1">Pizza 3 fromages<br><span class="font-normal">24€</span></div>
+            <div class="flex gap-4 mb-4">
+              <button class="border-2 border-orange-400 text-orange-400 font-semibold px-4 py-2 rounded-full hover:bg-orange-50 transition">Ajouter au panier</button>
+              <button class="bg-orange-400 text-white font-semibold px-6 py-2 rounded-full hover:bg-orange-500 transition">Commander</button>
+            </div>
+          </div>
+        </div>
+        <!-- Menu 4 -->
+        <div class="relative group w-80 h-[380px]">
+          <div class="absolute top-0 left-0 w-full flex flex-col items-center">
+            <div class="relative rounded-2xl overflow-hidden h-40 w-full border-4 border-orange-300 shadow-lg">
+              <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+                   alt="Burger Classique"
+                   class="h-full w-full object-cover transition-all duration-500 group-hover:scale-105">
+              <div class="absolute left-0 top-0 w-full
+                          transition-all duration-500 ease-out
+                          -translate-y-full group-hover:translate-y-0
+                          opacity-0 group-hover:opacity-100
+                          bg-gradient-to-b from-black/90 to-transparent
+                          text-white rounded-t-2xl p-4 text-center flex flex-col items-center justify-start pointer-events-none
+                          overflow-y-auto max-h-36 scrollbar-thin scrollbar-thumb-orange-400 scrollbar-track-black/40"
+                   style="will-change: transform, opacity;">
+                <div class="font-bold text-lg mb-1 break-words">Description</div>
+                <div class="text-sm break-words">
+                  Burger classique avec steak haché, fromage, salade, tomate, sauce maison.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="absolute bottom-0 left-0 w-full flex flex-col items-center">
+            <div class="bg-white rounded-full px-8 py-2 font-bold text-lg mb-6 shadow text-black mt-1">Burger Classique<br><span class="font-normal">18€</span></div>
+            <div class="flex gap-4 mb-4">
+              <button class="border-2 border-orange-400 text-orange-400 font-semibold px-4 py-2 rounded-full hover:bg-orange-50 transition">Ajouter au panier</button>
+              <button class="bg-orange-400 text-white font-semibold px-6 py-2 rounded-full hover:bg-orange-500 transition">Commander</button>
+            </div>
+          </div>
+        </div>
+        <!-- Menu 5 -->
+        <div class="relative group w-80 h-[380px]">
+          <div class="absolute top-0 left-0 w-full flex flex-col items-center">
+            <div class="relative rounded-2xl overflow-hidden h-40 w-full border-4 border-orange-300 shadow-lg">
+              <img src="https://images.unsplash.com/photo-1464306076886-debca5e8a6b0?auto=format&fit=crop&w=400&q=80"
+                   alt="Salade César"
+                   class="h-full w-full object-cover transition-all duration-500 group-hover:scale-105">
+              <div class="absolute left-0 top-0 w-full
+                          transition-all duration-500 ease-out
+                          -translate-y-full group-hover:translate-y-0
+                          opacity-0 group-hover:opacity-100
+                          bg-gradient-to-b from-black/90 to-transparent
+                          text-white rounded-t-2xl p-4 text-center flex flex-col items-center justify-start pointer-events-none
+                          overflow-y-auto max-h-36 scrollbar-thin scrollbar-thumb-orange-400 scrollbar-track-black/40"
+                   style="will-change: transform, opacity;">
+                <div class="font-bold text-lg mb-1 break-words">Description</div>
+                <div class="text-sm break-words">
+                  Salade verte, poulet grillé, croutons, parmesan, sauce César maison.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="absolute bottom-0 left-0 w-full flex flex-col items-center">
+            <div class="bg-white rounded-full px-8 py-2 font-bold text-lg mb-6 shadow text-black mt-1">Salade César<br><span class="font-normal">16€</span></div>
+            <div class="flex gap-4 mb-4">
+              <button class="border-2 border-orange-400 text-orange-400 font-semibold px-4 py-2 rounded-full hover:bg-orange-50 transition">Ajouter au panier</button>
+              <button class="bg-orange-400 text-white font-semibold px-6 py-2 rounded-full hover:bg-orange-500 transition">Commander</button>
+            </div>
+          </div>
+        </div>
+        <!-- Menu 6 -->
+        <div class="relative group w-80 h-[380px]">
+          <div class="absolute top-0 left-0 w-full flex flex-col items-center">
+            <div class="relative rounded-2xl overflow-hidden h-40 w-full border-4 border-orange-300 shadow-lg">
+              <img src="https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=400&q=80"
+                   alt="Wrap Poulet"
+                   class="h-full w-full object-cover transition-all duration-500 group-hover:scale-105">
+              <div class="absolute left-0 top-0 w-full
+                          transition-all duration-500 ease-out
+                          -translate-y-full group-hover:translate-y-0
+                          opacity-0 group-hover:opacity-100
+                          bg-gradient-to-b from-black/90 to-transparent
+                          text-white rounded-t-2xl p-4 text-center flex flex-col items-center justify-start pointer-events-none
+                          overflow-y-auto max-h-36 scrollbar-thin scrollbar-thumb-orange-400 scrollbar-track-black/40"
+                   style="will-change: transform, opacity;">
+                <div class="font-bold text-lg mb-1 break-words">Description</div>
+                <div class="text-sm break-words">
+                  Wrap garni de poulet, crudités, sauce yaourt et herbes fraîches.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="absolute bottom-0 left-0 w-full flex flex-col items-center">
+            <div class="bg-white rounded-full px-8 py-2 font-bold text-lg mb-6 shadow text-black mt-1">Wrap Poulet<br><span class="font-normal">12€</span></div>
+            <div class="flex gap-4 mb-4">
+              <button class="border-2 border-orange-400 text-orange-400 font-semibold px-4 py-2 rounded-full hover:bg-orange-50 transition">Ajouter au panier</button>
+              <button class="bg-orange-400 text-white font-semibold px-6 py-2 rounded-full hover:bg-orange-500 transition">Commander</button>
+            </div>
+          </div>
+        </div>
+        <!-- ...ajoute d'autres menus si besoin... -->
+      </div>
     </div>
   </div>
 </div>
+
+<script>
+  // Cette fonction empêche la propagation du scroll à la page quand la souris est sur la description
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.desc-overlay-scroll').forEach(function (el) {
+      el.addEventListener('wheel', function (e) {
+        // Permet le scroll dans la div seulement si elle peut défiler
+        const atTop = el.scrollTop === 0;
+        const atBottom = el.scrollHeight - el.scrollTop === el.clientHeight;
+
+        if (
+          (e.deltaY < 0 && atTop) ||
+          (e.deltaY > 0 && atBottom)
+        ) {
+          // On est en haut et on veut scroller vers le haut OU en bas et on veut scroller vers le bas -> on laisse la main au parent
+          return;
+        }
+        // Sinon, on scroll la div et on bloque le scroll de la page
+        e.stopPropagation();
+        e.preventDefault();
+      }, { passive: false });
+    });
+  });
+</script>
+
