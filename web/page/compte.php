@@ -13,67 +13,33 @@ if (!isLoggedIn()) {
         <div class="absolute inset-0 bg-black opacity-55"></div>
     </div>
 
-<!-- Sidebar Navigation -->
-
-<aside class="fixed top-1/2 left-0 transform -translate-y-1/2 flex flex-col items-center py-6 px-4 backdrop-blur dark:bg-neutral-800 h-auto w-64 z-20 rounded-r-3xl shadow-lg">
-    
-
-    <!-- Lien 1 -->
-    <div class="flex items-center mb-10 w-full justify-start">
-        <a href="?page=accueil.php" class="material-icons text-orange-400 text-[4.5rem] mr-4 flex items-center justify-center">home</a>
-        <a href="?page=accueil.php"
-           class="w-full text-left text-xl font-bold text-white transition-all duration-300 whitespace-nowrap focus:outline-none hover:bg-orange-100 hover:text-orange-500 active:scale-95 transition-transform rounded-md py-2 px-3">
-            Accueil
-        </a>
-    </div>
-
-    <!-- Lien 2 -->
-    <div class="flex items-center mb-10 w-full justify-start">
-        <a href="?page=menu.php" class="material-icons text-orange-400 text-[4.5rem] mr-4 flex items-center justify-center">restaurant_menu</a>
-        <a href="?page=menu.php"
-           class="w-full text-left text-xl font-bold text-white transition-all duration-300 whitespace-nowrap focus:outline-none hover:bg-orange-100 hover:text-orange-500 active:scale-95 transition-transform rounded-md py-2 px-3">
-            Nos Menus
-        </a>
-    </div>
-
-    <!-- Lien 3 -->
-    <div class="flex items-center mb-10 w-full justify-start">
-        <a href="?page=plat.php" class="material-icons text-orange-400 text-[4.5rem] mr-4 flex items-center justify-center">restaurant</a>
-        <a href="?page=plat.php"
-           class="w-full text-left text-xl font-bold text-white transition-all duration-300 whitespace-nowrap focus:outline-none hover:bg-orange-100 hover:text-orange-500 active:scale-95 transition-transform rounded-md py-2 px-3">
-            Nos Plats
-        </a>
-    </div>
-
-    <!-- Lien 4 -->
-    <div class="flex items-center mb-10 w-full justify-start">
-        <a href="?page=panier.php" class="material-icons text-orange-400 text-[4.5rem] mr-4 flex items-center justify-center">shopping_cart</a>
-        <a href="?page=panier.php"
-           class="w-full text-left text-xl font-bold text-white transition-all duration-300 whitespace-nowrap focus:outline-none hover:bg-orange-100 hover:text-orange-500 active:scale-95 transition-transform rounded-md py-2 px-3">
-            Panier
-        </a>
-    </div>
-</aside>
-
-
 <div class="fixed inset-0 flex flex-col items-center justify-center gap-10 z-30">
     
     <!-- Boîte 1 : Infos utilisateur -->
     <div class="bg-white rounded-2xl shadow-xl p-8 w-[650px] max-w-full text-center">
         <div class="text-orange-400 text-4xl font-bold mb-6">
-            <?php echo 'Bienvenue ' . getNom() . ' ' . getPrenom(); ?>
+            <?php echo 'Bienvenue ' . getPrenom(); ?>
         </div>
         
-        <div class="text-gray-800 text-2xl font-semibold mb-4">
+        <div class="text-gray-800 text-2xl font-semibold mb-4 flex gap-5 justify-center">
             <?php echo 'Votre adresse mail : ' . getEmail(); ?>
+            <form action="">
+                <button><small class="text-orange-400">modifier</small></button>
+            </form>
         </div>
         
-        <div class="text-gray-800 text-2xl font-semibold mb-4">
+        <div class="text-gray-800 text-2xl font-semibold mb-4 flex gap-5 justify-center">
             <?php echo 'Votre mot de passe : *********'; ?>
+            <form action="">
+                <button><small class="text-orange-400">modifier</small></button>
+            </form>
         </div>
         
-        <div class="text-gray-800 text-2xl font-semibold">
+        <div class="text-gray-800 text-2xl font-semibold flex gap-4 justify-center">
             <?php echo 'Votre numéro de téléphone : ' . getTel(); ?>
+            <form action="">
+                <button><small class="text-orange-400">modifier</small></button>
+            </form>
         </div>
     </div>
 
@@ -110,6 +76,8 @@ if (!isLoggedIn()) {
                     
                     // echo $donnees[0];
                     // echo 'Vous avez ' . $points . ' point' . ($points > 1 ? 's' : '') . ' de fidélité.'; 
+
+                    $result = isLoggedInAdmin($conn);
                 ?>
             </div>
         <div class="text-gray-800 text-2xl font-semibold">
@@ -121,4 +89,5 @@ if (!isLoggedIn()) {
                 Mes commandes
         </button>
     </div>
+</div>
 </div>
