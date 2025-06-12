@@ -11,7 +11,7 @@ $conn = OuvrirConnexionPDO($db,$db_username,$db_password);
 if ($conn)
 	{
 		echo (" Connexion réussie à la base de données <br/>");
-		
+
 	}
 	else
 		echo ("Connexion impossible à la base de données <br/>");
