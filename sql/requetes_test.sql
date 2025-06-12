@@ -1,0 +1,8 @@
+select * from RAP_CLIENT;
+
+select * from RAP_CLIENT where CLI_COURRIEL like 'test@gmail.com';
+
+select max(cli_num) as max from rap_client;
+
+select * from rap_commande
+where cli_num = 0;
