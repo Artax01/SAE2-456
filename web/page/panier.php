@@ -159,7 +159,7 @@ $_SESSION['panier_total'] = $total;
           ?>
         </ul>
         <div class="flex justify-between items-center mb-6">
-          <span class="text-xl font-bold text-black">Total </span>
+          <span class="text-xl font-bold text-black">Total :</span>
           <span class="text-xl font-bold text-orange-500"><?php echo number_format($total, 2, ',', ' '); ?> €</span>
         </div>
         <a href="?page=payer.php">
