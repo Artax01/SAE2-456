@@ -1,31 +1,5 @@
 <?php
 require_once '../session/session.php';
-<<<<<<< HEAD
-
-if (!isLoggedIn()) {
-    header('Location: ../page/signin.php');
-   exit;
-}
-?>
-
-<h2>Mon Compte</h2>
-<p>Gérez vos informations personnelles, paramètres et préférences ici.</p><br/>
-<p>Visualisez egalement la liste de vos commandes actuelles et passées.</p><br/>
-
-<?php
-echo 'Bienvenue '.getNom().' '.getPrenom();
-?>
-<?php
-
-
-require_once '../../php/connexion.php';
-/*
-if (!isLoged()){
-    header('Location: ../page/signin.php');
- exit;
-}
- */
-=======
 require_once '../../php/connexion.php';
 
 
@@ -33,7 +7,6 @@ if (!isLoggedIn()) {
     header('Location: ../page/signin.php');
     exit;
 }
->>>>>>> web
 ?>
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -41,72 +14,11 @@ if (!isLoggedIn()) {
         <div class="absolute inset-0 bg-black opacity-55"></div>
     </div>
 
-<<<<<<< HEAD
-<!-- Sidebar Navigation -->
-
-<aside class="fixed top-1/2 left-0 transform -translate-y-1/2 flex flex-col items-center py-6 px-4 backdrop-blur dark:bg-neutral-800 h-auto w-64 z-20 rounded-r-3xl shadow-lg">
-    
-
-    <!-- Lien 1 -->
-    <div class="flex items-center mb-10 w-full justify-start">
-        <a href="?page=accueil.php" class="material-icons text-orange-400 text-[4.5rem] mr-4 flex items-center justify-center">home</a>
-        <a href="?page=accueil.php"
-           class="w-full text-left text-xl font-bold text-white transition-all duration-300 whitespace-nowrap focus:outline-none hover:bg-orange-100 hover:text-orange-500 active:scale-95 transition-transform rounded-md py-2 px-3">
-            Accueil
-        </a>
-    </div>
-
-    <!-- Lien 2 -->
-    <div class="flex items-center mb-10 w-full justify-start">
-        <a href="?page=menu.php" class="material-icons text-orange-400 text-[4.5rem] mr-4 flex items-center justify-center">restaurant_menu</a>
-        <a href="?page=menu.php"
-           class="w-full text-left text-xl font-bold text-white transition-all duration-300 whitespace-nowrap focus:outline-none hover:bg-orange-100 hover:text-orange-500 active:scale-95 transition-transform rounded-md py-2 px-3">
-            Nos Menus
-        </a>
-    </div>
-
-    <!-- Lien 3 -->
-    <div class="flex items-center mb-10 w-full justify-start">
-        <a href="?page=plat.php" class="material-icons text-orange-400 text-[4.5rem] mr-4 flex items-center justify-center">restaurant</a>
-        <a href="?page=plat.php"
-           class="w-full text-left text-xl font-bold text-white transition-all duration-300 whitespace-nowrap focus:outline-none hover:bg-orange-100 hover:text-orange-500 active:scale-95 transition-transform rounded-md py-2 px-3">
-            Nos Plats
-        </a>
-    </div>
-
-    <!-- Lien 4 -->
-    <div class="flex items-center mb-10 w-full justify-start">
-        <a href="?page=panier.php" class="material-icons text-orange-400 text-[4.5rem] mr-4 flex items-center justify-center">shopping_cart</a>
-        <a href="?page=panier.php"
-           class="w-full text-left text-xl font-bold text-white transition-all duration-300 whitespace-nowrap focus:outline-none hover:bg-orange-100 hover:text-orange-500 active:scale-95 transition-transform rounded-md py-2 px-3">
-            Panier
-        </a>
-    </div>
-</aside>
-
-
-=======
->>>>>>> web
 <div class="fixed inset-0 flex flex-col items-center justify-center gap-10 z-30">
     
     <!-- Boîte 1 : Infos utilisateur -->
     <div class="bg-white rounded-2xl shadow-xl p-8 w-[650px] max-w-full text-center">
         <div class="text-orange-400 text-4xl font-bold mb-6">
-<<<<<<< HEAD
-            <?php echo 'Bienvenue ' . getNom() . ' ' . getPrenom(); ?>
-        </div>
-        
-        <div class="text-gray-800 text-2xl font-semibold mb-4">
-            <?php echo 'Votre adresse mail : ' . getEmail(); ?>
-        </div>
-        
-        <div class="text-gray-800 text-2xl font-semibold mb-4">
-            <?php echo 'Votre mot de passe : *********'; ?>
-        </div>
-        
-        <div class="text-gray-800 text-2xl font-semibold">
-            <?php echo 'Votre numéro de téléphone : ' . getTel(); ?>
-=======
             <?php echo 'Bienvenue ' . getPrenom(); ?>
         </div>
         
@@ -129,7 +41,6 @@ if (!isLoggedIn()) {
             <form action="">
                 <button><small class="text-orange-400">modifier</small></button>
             </form>
->>>>>>> web
         </div>
     </div>
 
@@ -166,11 +77,8 @@ if (!isLoggedIn()) {
                     
                     // echo $donnees[0];
                     // echo 'Vous avez ' . $points . ' point' . ($points > 1 ? 's' : '') . ' de fidélité.'; 
-<<<<<<< HEAD
-=======
 
                     $result = isLoggedInAdmin($conn);
->>>>>>> web
                 ?>
             </div>
         <div class="text-gray-800 text-2xl font-semibold">
@@ -183,7 +91,4 @@ if (!isLoggedIn()) {
         </button>
     </div>
 </div>
-<<<<<<< HEAD
-=======
 </div>
->>>>>>> web

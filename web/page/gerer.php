@@ -57,8 +57,6 @@ $sql = "
 $meilleures_periodes = [];
 LireDonneesPDO1($conn, $sql, $meilleures_periodes);
 
-<<<<<<< HEAD
-=======
 if (isset($_POST['send_mail'])) {
     $subject = trim($_POST['mail_subject'] ?? '');
     $message = trim($_POST['mail_message'] ?? '');
@@ -102,7 +100,6 @@ if (isset($_POST['send_mail'])) {
     }
 }
 
->>>>>>> web
 ?>
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -167,19 +164,6 @@ if (isset($_POST['send_mail'])) {
 <!-- Bloc Envoi de mail -->
 <div class="bg-neutral-800 bg-opacity-95 rounded-2xl shadow-lg p-10 max-w-7xl w-full mb-8 flex flex-col items-center">
     <h1 class="text-4xl font-extrabold text-orange-400 mb-8 text-center">Envoi d'un mail à tous les clients</h1>
-<<<<<<< HEAD
-    <form method="post" action="">
-    <div class="mb-9 w-full flex flex-col items-center">
-        <label class="block mb-2 text-neutral-200 text-lg w-full max-w-5xl" for="mail_subject">Sujet</label>
-        <input class="w-full max-w-5xl p-2 text-lg rounded bg-neutral-900 border border-neutral-700 text-white" type="text" id="mail_subject" name="mail_subject" required>
-    </div>
-    <div class="mb-6 w-full flex flex-col items-center">
-        <label class="block mb-2 text-neutral-200 text-lg w-full max-w-5xl" for="mail_message">Message</label>
-        <textarea class="w-full max-w-5xl p-2 text-lg rounded bg-neutral-900 border border-neutral-700 text-white" id="mail_message" name="mail_message" rows="5" required></textarea>
-    </div>
-    <button type="submit" name="send_mail" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded transition text-lg">Envoyer</button>
-</form>
-=======
     <form method="post" action="" class="w-full flex flex-col items-center">
     
     <!-- Sujet -->
@@ -220,7 +204,6 @@ if (isset($_POST['send_mail'])) {
     </button>
 
   </form>
->>>>>>> web
 </div>
 
             <!-- Bloc Gestion des clients -->
@@ -254,17 +237,10 @@ if (isset($_POST['send_mail'])) {
                     <?php $cli_id = $client['CLI_NUM'] ?? ''; ?>
                     <a href="modifier_client.php?id=<?= $cli_id !== '' ? urlencode($cli_id) : '' ?>" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded">Modifier</a>
                     <!-- Bouton Supprimer (formulaire POST) -->
-<<<<<<< HEAD
-                    <form method="post" action="./web/component/supp.php" onsubmit="return confirm('Supprimer ce client ?');" style="display:inline;">
-                        <input type="hidden" name="delete_id" value="<?= $cli_id ?>">
-                        <button type="submit" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded">Supprimer</button>
-                    </form>
-=======
                     <form method="post" action="/sae2-456-grp2/web/component/supp.php" onsubmit="return confirm('Supprimer ce client ?');" style="display:inline;">
     <input type="hidden" name="delete_id" value="<?= htmlspecialchars($cli_id) ?>">
     <button type="submit" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded">Supprimer</button>
 </form>
->>>>>>> web
                 </td>
             </tr>
             <?php endforeach; ?>
