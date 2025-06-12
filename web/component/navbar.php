@@ -60,7 +60,11 @@
 
           <?php else: ?>
             <button id="btn-compte" onclick="loadPage('compte.php', this)" class="py-2 px-6 !bg-orange-400 !hover:bg-orange-600 flex items-center text-gray-800 hover:bg-gray-100 rounded-full focus:outline-hidden focus:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 hs-scrollspy-active:bg-gray-100">
+<<<<<<< HEAD
               Mon compte
+=======
+              Mon Compte
+>>>>>>> acceuil
             </button>
           <?php endif; ?>
         </div>
