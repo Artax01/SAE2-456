@@ -1,46 +1,64 @@
 <?php
-// filepath: vsls:/web/page/gerer.php
-session_start();
+include("../../php/connexion.php");
+require_once '../component/supp.php';
 
-// Exemple de données clients (à remplacer par une vraie BDD)
-$clients = [
-    [
-        'id' => 1,
-        'nom' => 'Dupont',
-        'prenom' => 'Jean',
-        'email' => 'jean.dupont@email.com',
-        'commandes' => [
-            ['id' => 101, 'date' => '2024-06-01', 'total' => 45.00],
-            ['id' => 102, 'date' => '2024-06-10', 'total' => 22.00],
-        ]
-    ],
-    [
-        'id' => 2,
-        'nom' => 'Martin',
-        'prenom' => 'Claire',
-        'email' => 'claire.martin@email.com',
-        'commandes' => [
-            ['id' => 103, 'date' => '2024-06-05', 'total' => 18.00],
-        ]
-    ]
-];
+// 1. Nombre de clients inscrits
+$sql = "SELECT COUNT(*) AS NB FROM RAP_CLIENT";
+$tab = [];
+LireDonneesPDO1($conn, $sql, $tab);
+$nb_clients = $tab[0]['NB'];
 
-// Traitement suppression (simulation)
-if (isset($_GET['delete'])) {
-    // Ici, supprimer le client de la BDD
-    // ...
-    header('Location: ?page=gerer.php');
-    exit;
-}
+// 2. Nombre de commandes
+$sql = "SELECT COUNT(*) AS NB FROM RAP_COMMANDE";
+$tab = [];
+LireDonneesPDO1($conn, $sql, $tab);
+$nb_commandes = $tab[0]['NB'];
 
-// Traitement modification (simulation)
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_id'])) {
-    // Ici, mettre à jour le client dans la BDD
-    // ...
-    header('Location: ?page=gerer.php');
-    exit;
-}
+// 3. Chiffre d'affaires total (COM_PRIX_TOTAL)
+$sql = "SELECT SUM(COM_PRIX_TOTAL) AS TOTAL FROM RAP_COMMANDE";
+$tab = [];
+LireDonneesPDO1($conn, $sql, $tab);
+$chiffre_affaires = $tab[0]['TOTAL'];
+if ($chiffre_affaires === null) $chiffre_affaires = 0;
+$chiffre_affaires = str_replace(',', '.', $chiffre_affaires);
+$chiffre_affaires = floatval($chiffre_affaires);
+
+// 4. Moyenne du montant des commandes
+$sql = "SELECT AVG(COM_PRIX_TOTAL) AS MOY FROM RAP_COMMANDE";
+$tab = [];
+LireDonneesPDO1($conn, $sql, $tab);
+$moyenne_commande = $tab[0]['MOY'];
+if ($moyenne_commande === null) $moyenne_commande = 0;
+$moyenne_commande = str_replace(',', '.', $moyenne_commande);
+$moyenne_commande = floatval($moyenne_commande);
+
+$sql = "SELECT * FROM RAP_CLIENT ORDER BY CLI_NOM, CLI_PRENOM";
+$clients = [];
+LireDonneesPDO1($conn, $sql, $clients);
+
+$sql = "
+    SELECT C.CLI_NOM, C.CLI_PRENOM, SUM(COM.COM_PRIX_TOTAL) AS TOTAL
+    FROM RAP_CLIENT C
+    JOIN RAP_COMMANDE COM ON C.CLI_NUM = COM.CLI_NUM
+    GROUP BY C.CLI_NOM, C.CLI_PRENOM
+    ORDER BY TOTAL DESC
+    FETCH FIRST 3 ROWS ONLY
+";
+$meilleurs_clients = [];
+LireDonneesPDO1($conn, $sql, $meilleurs_clients);
+
+$sql = "
+    SELECT TO_CHAR(COM_DATE, 'YYYY-MM') AS PERIODE, COUNT(*) AS NB
+    FROM RAP_COMMANDE
+    GROUP BY TO_CHAR(COM_DATE, 'YYYY-MM')
+    ORDER BY NB DESC
+    FETCH FIRST 3 ROWS ONLY
+";
+$meilleures_periodes = [];
+LireDonneesPDO1($conn, $sql, $meilleures_periodes);
+
 ?>
+
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="relative min-h-screen w-full">
     <div class="fixed inset-0 w-full h-full bg-neutral-900 bg-[url('./web/assets/img/rapidc3.png')] bg-cover bg-center bg-no-repeat z-0 ">
@@ -48,100 +66,122 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_id'])) {
     </div>
     <div class="z-10 flex h-screen">
         <!-- Sidebar Navigation -->
-        
+
         <!-- Main Content -->
-        <div class="flex-1 flex flex-col px-10 py-6 items-center justify-start z-30 text-white overflow-y-auto"
-<!-- Bloc Statistiques -->
-<div class="bg-neutral-800 bg-opacity-95 rounded-2xl shadow-lg p-10 max-w-3xl w-full mt-10 mb-8">
-<h1 class="text-4xl font-extrabold text-orange-400 mb-8 text-center">Statistique du site</h1>
-    <div class="flex flex-wrap gap-6 justify-between">
-        <div class="flex-1 min-w-[150px] bg-neutral-900 border border-neutral-700 rounded-lg p-6 flex flex-col items-center">
-            <div class="text-3xl font-bold text-orange-400">1 245</div>
-            <div class="text-neutral-300 mt-2">Utilisateurs inscrits</div>
+        <div class="flex-1 flex flex-col px-10 py-6 items-center justify-start z-30 text-white overflow-y-auto">
+
+           <!-- Bloc Statistiques du site -->
+<div class="bg-neutral-800 bg-opacity-95 rounded-2xl shadow-lg p-10 max-w-5xl w-full mt-10 mb-8 flex flex-col items-center">
+    <h1 class="text-4xl font-extrabold text-orange-400 mb-8 text-center">Statistiques</h1>
+    <div class="flex flex-wrap gap-6 justify-between w-full">
+        <!-- Clients inscrits -->
+        <div class="flex-1 min-w-[180px] bg-neutral-900 border border-neutral-700 rounded-lg p-6 flex flex-col items-center">
+            <div class="text-3xl font-bold text-orange-400"><?= htmlspecialchars($nb_clients) ?></div>
+            <div class="text-neutral-300 mt-2">Clients inscrits</div>
         </div>
-        <div class="flex-1 min-w-[150px] bg-neutral-900 border border-neutral-700 rounded-lg p-6 flex flex-col items-center">
-            <div class="text-3xl font-bold text-orange-400">3 578</div>
+        <!-- Commandes passées -->
+        <div class="flex-1 min-w-[180px] bg-neutral-900 border border-neutral-700 rounded-lg p-6 flex flex-col items-center">
+            <div class="text-3xl font-bold text-orange-400"><?= htmlspecialchars($nb_commandes) ?></div>
             <div class="text-neutral-300 mt-2">Commandes passées</div>
         </div>
-        <div class="flex-1 min-w-[150px] bg-neutral-900 border border-neutral-700 rounded-lg p-6 flex flex-col items-center">
-            <div class="text-3xl font-bold text-orange-400">12 340 €</div>
+        <!-- Montant moyen commande -->
+        <div class="flex-1 min-w-[180px] bg-neutral-900 border border-neutral-700 rounded-lg p-6 flex flex-col items-center">
+            <div class="text-3xl font-bold text-orange-400"><?= number_format($moyenne_commande, 2, ',', ' ') ?> €</div>
+            <div class="text-neutral-300 mt-2">Montant moyen commande</div>
+        </div>
+        <!-- Chiffre d'affaires -->
+        <div class="flex-1 min-w-[180px] bg-neutral-900 border border-neutral-700 rounded-lg p-6 flex flex-col items-center">
+            <div class="text-3xl font-bold text-orange-400"><?= number_format($chiffre_affaires, 2, ',', ' ') ?> €</div>
             <div class="text-neutral-300 mt-2">Chiffre d'affaires</div>
         </div>
-        <div class="flex-1 min-w-[150px] bg-neutral-900 border border-neutral-700 rounded-lg p-6 flex flex-col items-center">
-            <div class="text-3xl font-bold text-orange-400">4.8/5</div>
-            <div class="text-neutral-300 mt-2">Note moyenne</div>
+    </div>
+    <div class="flex flex-wrap gap-6 justify-between w-full mt-6">
+        <!-- Meilleurs clients -->
+        <div class="flex-1 min-w-[250px] bg-neutral-900 border border-neutral-700 rounded-lg p-6 flex flex-col items-center">
+            <div class="text-xl font-bold text-orange-400 mb-2">Meilleurs clients</div>
+            <?php foreach ($meilleurs_clients as $cli): ?>
+                <div class="text-neutral-200">
+                    <?= htmlspecialchars($cli['CLI_NOM'].' '.$cli['CLI_PRENOM']) ?> :
+                    <?= number_format(floatval(str_replace(',', '.', $cli['TOTAL'])), 2, ',', ' ') ?> €
+                </div>
+            <?php endforeach; ?>
+        </div>
+        <!-- Meilleures périodes de ventes -->
+        <div class="flex-1 min-w-[250px] bg-neutral-900 border border-neutral-700 rounded-lg p-6 flex flex-col items-center">
+            <div class="text-xl font-bold text-orange-400 mb-2">Meilleures périodes de ventes</div>
+            <?php foreach ($meilleures_periodes as $periode): ?>
+                <div class="text-neutral-200">
+                    <?= htmlspecialchars($periode['PERIODE']) ?> : <?= $periode['NB'] ?> commandes
+                </div>
+            <?php endforeach; ?>
         </div>
     </div>
 </div>
+
 <!-- Bloc Envoi de mail -->
-<div class="bg-neutral-800 bg-opacity-95 rounded-2xl shadow-lg p-10 max-w-3xl w-full mb-8">
-<h1 class="text-4xl font-extrabold text-orange-400 mb-8 text-center">Envoi d'un mail à tous les clients</h1>
+<div class="bg-neutral-800 bg-opacity-95 rounded-2xl shadow-lg p-10 max-w-7xl w-full mb-8 flex flex-col items-center">
+    <h1 class="text-4xl font-extrabold text-orange-400 mb-8 text-center">Envoi d'un mail à tous les clients</h1>
     <form method="post" action="">
-        <div class="mb-4">
-            <label class="block mb-2 text-neutral-200" for="mail_subject">Sujet</label>
-            <input class="w-full p-2 rounded bg-neutral-900 border border-neutral-700 text-white" type="text" id="mail_subject" name="mail_subject" required>
-        </div>
-        <div class="mb-4">
-            <label class="block mb-2 text-neutral-200" for="mail_message">Message</label>
-            <textarea class="w-full p-2 rounded bg-neutral-900 border border-neutral-700 text-white" id="mail_message" name="mail_message" rows="5" required></textarea>
-        </div>
-        <button type="submit" name="send_mail" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-6 rounded transition">Envoyer</button>
-    </form>
+    <div class="mb-9 w-full flex flex-col items-center">
+        <label class="block mb-2 text-neutral-200 text-lg w-full max-w-5xl" for="mail_subject">Sujet</label>
+        <input class="w-full max-w-5xl p-2 text-lg rounded bg-neutral-900 border border-neutral-700 text-white" type="text" id="mail_subject" name="mail_subject" required>
+    </div>
+    <div class="mb-6 w-full flex flex-col items-center">
+        <label class="block mb-2 text-neutral-200 text-lg w-full max-w-5xl" for="mail_message">Message</label>
+        <textarea class="w-full max-w-5xl p-2 text-lg rounded bg-neutral-900 border border-neutral-700 text-white" id="mail_message" name="mail_message" rows="5" required></textarea>
+    </div>
+    <button type="submit" name="send_mail" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded transition text-lg">Envoyer</button>
+</form>
 </div>
-<div class="bg-neutral-800 bg-opacity-95 rounded-2xl shadow-lg p-10 max-w-3xl w-full mb-8">
+
+            <!-- Bloc Gestion des clients -->
+<div class="bg-neutral-800 bg-opacity-95 rounded-2xl shadow-lg p-10 max-w-7xl w-full mb-8 flex flex-col items-center">
     <h1 class="text-4xl font-extrabold text-orange-400 mb-8 text-center">Gestion des clients</h1>
-    <table class="w-full mb-8 border border-neutral-700">
+    <table class="w-full text-left border-collapse">
         <thead>
-            <tr class="bg-neutral-700">
-                <th class="py-2 px-4 border border-neutral-700 text-white">Nom</th>
-                <th class="py-2 px-4 border border-neutral-700 text-white">Prénom</th>
-                <th class="py-2 px-4 border border-neutral-700 text-white">Email</th>
-                <th class="py-2 px-4 border border-neutral-700 text-white">Commandes</th>
-                <th class="py-2 px-4 border border-neutral-700 text-white">Actions</th>
+            <tr>
+                <th class="border-b border-neutral-700 pb-2">Nom</th>
+                <th class="border-b border-neutral-700 pb-2">Prénom</th>
+                <th class="border-b border-neutral-700 pb-2">Email</th>
+                <th class="border-b border-neutral-700 pb-2">Actions</th>
             </tr>
         </thead>
-                                 
-<tbody>
-    <?php foreach ($clients as $client): ?>
-    <tr class="border-b border-neutral-700">
-        <td class="py-2 px-4 border border-neutral-700"><?= htmlspecialchars($client['nom']) ?></td>
-        <td class="py-2 px-4 border border-neutral-700"><?= htmlspecialchars($client['prenom']) ?></td>
-        <td class="py-2 px-4 border border-neutral-700"><?= htmlspecialchars($client['email']) ?></td>
-        <td class="py-2 px-4 border border-neutral-700">
-            <?php if (count($client['commandes'])): ?>
-                <button type="button"
-                    class="show-commandes bg-neutral-700 text-white px-3 py-1 rounded hover:bg-neutral-600 mb-1"
-                    data-client="<?= $client['id'] ?>"
-                    data-nom="<?= htmlspecialchars($client['nom']) ?>"
-                    data-prenom="<?= htmlspecialchars($client['prenom']) ?>"
-                    data-commandes='<?= htmlspecialchars(json_encode($client['commandes']), ENT_QUOTES) ?>'>
-                    Voir commandes
-                </button>
-            <?php else: ?>
-                <span class="text-neutral-400">Aucune</span>
-            <?php endif; ?>
-        </td>
-        <td class="py-2 px-4 border border-neutral-700 flex gap-2">
-            <!-- Modifier -->
-            <button onclick="showEditForm(<?= $client['id'] ?>, '<?= htmlspecialchars($client['nom'], ENT_QUOTES) ?>', '<?= htmlspecialchars($client['prenom'], ENT_QUOTES) ?>', '<?= htmlspecialchars($client['email'], ENT_QUOTES) ?>')" class="material-icons text-blue-300 hover:text-blue-500 bg-neutral-700 rounded-full p-1">edit</button>
-            <!-- Supprimer -->
-            <a href="?page=gerer.php&delete=<?= $client['id'] ?>" onclick="return confirm('Supprimer ce client ?')" class="material-icons text-red-400 hover:text-red-600 bg-neutral-700 rounded-full p-1">delete</a>
-        </td>
-    </tr>
-    <?php endforeach; ?>
-</tbody>
+        <tbody>
+            <?php foreach ($clients as $client): ?>
+            <tr>
+                <td class="py-2"><?= htmlspecialchars($client['CLI_NOM'] ?? '') ?></td>
+                <td class="py-2"><?= htmlspecialchars($client['CLI_PRENOM'] ?? '') ?></td>
+                <td class="py-2">
+                    <?php
+                        if (array_key_exists('CLI_COURRIEL', $client) && $client['CLI_COURRIEL'] !== null && $client['CLI_COURRIEL'] !== '') {
+                            echo htmlspecialchars($client['CLI_COURRIEL']);
+                        } else {
+                            echo "Pas d'adresse mail renseignée";
+                        }
+                    ?>
+                </td>
+                <td class="py-2 flex gap-2">
+                    <!-- Bouton Modifier (redirige vers une page de modification) -->
+                    <?php $cli_id = $client['CLI_NUM'] ?? ''; ?>
+                    <a href="modifier_client.php?id=<?= $cli_id !== '' ? urlencode($cli_id) : '' ?>" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded">Modifier</a>
+                    <!-- Bouton Supprimer (formulaire POST) -->
+                    <form method="post" action="./web/component/supp.php" onsubmit="return confirm('Supprimer ce client ?');" style="display:inline;">
+                        <input type="hidden" name="delete_id" value="<?= $cli_id ?>">
+                        <button type="submit" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded">Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+            </div>
 
+            
 
-<!-- Pop-up commandes -->
-<div id="popup-commandes" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 hidden">
-    <div class="bg-neutral-900 rounded-xl shadow-xl p-8 max-w-md w-full text-white relative">
-        <button onclick="closePopupCommandes()" class="absolute top-2 right-2 text-2xl text-white hover:text-orange-400">&times;</button>
-        <h2 id="popup-client-name" class="text-2xl font-bold mb-4"></h2>
-        <div id="popup-commandes-list"></div>
+        </div>
     </div>
 </div>
-
-
 
 
 

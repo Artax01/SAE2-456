@@ -54,7 +54,7 @@
             </button>
           <?php endif; ?>
 
-          <?php if (!$isLoggedIn): ?>
+          <?php if (!isLoggedIn()): ?>
             <button id="btn-signup" onclick="loadPage('signup.php', this)"
               class="py-2 px-6 flex items-center text-white hover:bg-orange-600 !bg-orange-400 !hover:bg-orange-600 rounded-full">
               Inscription
