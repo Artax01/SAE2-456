@@ -55,6 +55,7 @@
             </button>
 
             <button id="btn-signin" onclick="loadPage('signin.php', this)" class="py-2 px-6 flex items-center text-white hover:bg-orange-600 !bg-orange-400 !hover:bg-orange-600 rounded-full">
+
               Connexion
             </button>
 

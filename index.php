@@ -39,9 +39,8 @@ if (!isset($_SESSION["panier"])) {
         <!-- Le contenu se charge ici -->
     </div>
 
-    <?php require_once './web/component/dialog.php'; ?>
-    <?php require_once './web/component/footer.php'; ?>
+    <?php require_once './web/component/dialog.php';?>
+    <?php require_once './web/component/footer.php';?>
 
 </body>
-
 </html>
