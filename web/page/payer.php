@@ -3,6 +3,7 @@
   <title>Paiement - RapidC3</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/root.css">
 </head>
 <body>
 <div class="relative min-h-screen w-full">
@@ -61,7 +62,7 @@ $prix_total = isset($_SESSION['panier_total']) ? number_format($_SESSION['panier
           </div>
         
           <!-- Bouton payer -->
-          <button type="submit" class="w-full bg-orange-400 hover:bg-orange-500 text-white font-bold py-3 rounded-full text-xl transition">Payer</button>
+          <button type="submit" id="btn-payer" onclick="loadPage('finalisation.php', this)" class="w-full bg-orange-400 hover:bg-orange-500 text-white font-bold py-3 rounded-full text-xl transition">Payer</button>
           <!-- Bouton retour au panier -->
         <a href="?page=panier.php"
                     class="w-full inline-block text-center bg-white border-2 border-orange-400 text-orange-500 font-bold py-3 rounded-full text-xl transition hover:bg-orange-100 hover:text-orange-600">
