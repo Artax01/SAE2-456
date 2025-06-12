@@ -52,52 +52,53 @@
       <div class="bg-white bg-opacity-90 rounded-2xl shadow-lg p-8 max-w-2xl mx-auto">
         <ul class="divide-y divide-gray-200 mb-6">
           <?php
-
           $panier = [
             ["nom" => "Pomme", "prix" => 1.20, "quantite" => 2],
             ["nom" => "Banane", "prix" => 0.80, "quantite" => 1],
             ["nom" => "Orange", "prix" => 1.50, "quantite" => 4],
             ["nom" => "Mangue", "prix" => 2.00, "quantite" => 2]
           ];
-        
+
           foreach ($panier as $produit) {
-          echo <<<HTML
-            <li class="flex items-center justify-between py-4">
+            echo <<<HTML
+              <li class="flex items-center justify-between py-4">
+                  <div class="flex items-center gap-4">
+                      <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=80&q=80" 
+                          alt="Pizza 4 fromages" 
+                          class="w-20 h-20 rounded-xl object-cover border-2 border-orange-200">
+                      <div>
+                          <div class="font-bold text-black text-lg">{$produit['nom']}</div>
+                          <div class="text-gray-500">
+                              {$produit['quantite']} × {$produit['prix']}€
+                              <button class="text-3xl" onclick="modifierQuantite('{$produit['nom']}', -1)"> - </button>
+                              <button class="text-3xl" onclick="modifierQuantite('{$produit['nom']}', 1)"> + </button>
+                          </div>
+                      </div>
+                  </div>
+              </li>
+              HTML;
+          }
+          ?>
+          <li class="flex items-center justify-between py-4">
             <div class="flex items-center gap-4">
               <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=80&q=80" alt="Pizza 4 fromages" class="w-20 h-20 rounded-xl object-cover border-2 border-orange-200">
               <div>
-                <div class="font-bold text-black text-lg">{$produit['nom']}</div>
-                <div class="text-gray-500">
-                  <button class="text-3xl" onclick="modifierQuantite('<?= $produit['nom'] ?>', 1)" >+</button>
-                  {$produit['quantite']} × {$produit['prix']}€
-                  <button class="text-3xl" onclick="modifierQuantite('<?php echo $produit['nom']; ?>', -1)" >-</button>
-                </div>
+                <div class="font-bold text-black text-lg">Pizza 4 fromages</div>
+                <div class="text-gray-500">1 x 25€</div>
               </div>
             </div>
-            <button class="material-icons text-red-400 hover:text-red-600 text-3xl transition" onclick="">delete</button>
-            </li>
-            HTML;
-            } ?>
-            <li class="flex items-center justify-between py-4">
-              <div class="flex items-center gap-4">
-                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=80&q=80" alt="Pizza 4 fromages" class="w-20 h-20 rounded-xl object-cover border-2 border-orange-200">
-                <div>
-                  <div class="font-bold text-black text-lg">Pizza 4 fromages</div>
-                  <div class="text-gray-500">1 x 25€</div>
-                </div>
+            <button class="material-icons text-red-400 hover:text-red-600 text-3xl transition">delete</button>
+          </li>
+          <li class="flex items-center justify-between py-4">
+            <div class="flex items-center gap-4">
+              <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=80&q=80" alt="Pizza 2 fromages" class="w-20 h-20 rounded-xl object-cover border-2 border-orange-200">
+              <div>
+                <div class="font-bold text-black text-lg">Pizza 2 fromages</div>
+                <div class="text-gray-500">2 x 22€</div>
               </div>
-              <button class="material-icons text-red-400 hover:text-red-600 text-3xl transition">delete</button>
-            </li>
-            <li class="flex items-center justify-between py-4">
-              <div class="flex items-center gap-4">
-                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=80&q=80" alt="Pizza 2 fromages" class="w-20 h-20 rounded-xl object-cover border-2 border-orange-200">
-                <div>
-                  <div class="font-bold text-black text-lg">Pizza 2 fromages</div>
-                  <div class="text-gray-500">2 x 22€</div>
-                </div>
-              </div>
-              <button class="material-icons text-red-400 hover:text-red-600 text-3xl transition">delete</button>
-            </li>
+            </div>
+            <button class="material-icons text-red-400 hover:text-red-600 text-3xl transition">delete</button>
+          </li>
         </ul>
         <div class="flex justify-between items-center mb-6">
           <span class="text-xl font-bold text-black">Total</span>

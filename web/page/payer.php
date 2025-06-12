@@ -16,11 +16,23 @@
     <!-- Contenu principal en relatif -->
     <div class="z-10 flex h-screen">
        
-
     <!-- Main Content -->
     <div class="flex-1 flex flex-col px-10 py-6 items-center justify-center z-30 text-black">
       <div class="bg-white bg-opacity-95 rounded-2xl shadow-lg p-10 max-w-xl w-full">
-        <h1 class="text-4xl font-extrabold text-orange-400 mb-6 text-center">Paiement</h1>
+
+<?php
+// Ajoute ce bloc PHP tout en haut du fichier payer.php
+session_start();
+// Exemple : on suppose que le total du panier est stocké dans $_SESSION['panier_total']
+// Sinon, adapte ce calcul selon ta logique panier
+$prix_total = isset($_SESSION['panier_total']) ? number_format($_SESSION['panier_total'], 2, ',', ' ') : '0,00';
+?>
+<!-- ...existing code... -->
+<h1 class="text-4xl font-extrabold text-orange-400 mb-6 text-center">Paiement</h1>
+<p class="text-center text-2xl font-bold mb-6">
+    Total à payer : <span class="text-orange-500"><?= $prix_total ?> €</span>
+</p>
+<!-- ...existing code... -->
         <form action="?page=payer.php" method="POST" class="space-y-6">
           <div>
             <label class="block font-semibold mb-2 text-gray-700 text-2xl p-8">Méthode de paiement</label>
