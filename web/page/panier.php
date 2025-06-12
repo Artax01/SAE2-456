@@ -1,4 +1,87 @@
 <!-- Panier - Voir les articles ajoutés -->
+<?php
+session_start();
+
+// Initialisation du panier en session si besoin
+if (!isset($_SESSION['panier'])) {
+    $_SESSION['panier'] = [
+        ["nom" => "Pomme", "prix" => 1.20, "quantite" => 2],
+        ["nom" => "Banane", "prix" => 0.80, "quantite" => 1],
+        ["nom" => "Orange", "prix" => 1.50, "quantite" => 4],
+        ["nom" => "Mangue", "prix" => 2.00, "quantite" => 2]
+    ];
+}
+
+// Gestion AJAX pour + et - sans rechargement
+if (isset($_GET['ajax']) && $_GET['ajax'] == 1 && isset($_GET['action'], $_GET['nom'])) {
+    foreach ($_SESSION['panier'] as $i => $produit) {
+        if ($produit['nom'] === $_GET['nom']) {
+            if ($_GET['action'] === 'plus') {
+                $_SESSION['panier'][$i]['quantite']++;
+            } elseif ($_GET['action'] === 'moins') {
+                $_SESSION['panier'][$i]['quantite']--;
+                if ($_SESSION['panier'][$i]['quantite'] <= 0) {
+                    array_splice($_SESSION['panier'], $i, 1);
+                }
+            }
+            break;
+        }
+    }
+    // Recalcule le total
+    $panier = $_SESSION['panier'];
+    $total = 0;
+    foreach ($panier as $produit) {
+        $total += $produit['prix'] * $produit['quantite'];
+    }
+    $_SESSION['panier_total'] = $total;
+
+    // Génère le HTML du panier à renvoyer
+    ob_start();
+    ?>
+    <ul class="divide-y divide-gray-200 mb-6">
+      <?php foreach ($panier as $produit): 
+        $nom = htmlspecialchars($produit['nom']);
+        $prix = number_format($produit['prix'], 2, ',', ' ');
+        $quantite = (int)$produit['quantite'];
+      ?>
+        <li class="flex items-center justify-between py-4">
+            <div class="flex items-center gap-4">
+                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=80&q=80" 
+                    alt="<?= $nom ?>" 
+                    class="w-20 h-20 rounded-xl object-cover border-2 border-orange-200">
+                <div>
+                    <div class="font-bold text-black text-lg"><?= $nom ?></div>
+                    <div class="text-gray-500 flex items-center gap-2">
+                        <button type="button" class="btn-moins text-3xl px-4 py-1 bg-orange-100 rounded hover:bg-orange-200" data-nom="<?= $nom ?>">-</button>
+                        <span><?= $quantite ?> × <?= $prix ?>€</span>
+                        <button type="button" class="btn-plus text-3xl px-4 py-1 bg-orange-100 rounded hover:bg-orange-200" data-nom="<?= $nom ?>">+</button>
+                    </div>
+                </div>
+            </div>
+        </li>
+      <?php endforeach; ?>
+    </ul>
+    <div class="flex justify-between items-center mb-6">
+      <span class="text-xl font-bold text-black">Total </span>
+      <span class="text-xl font-bold text-orange-500"><?= number_format($total, 2, ',', ' ') ?> €</span>
+    </div>
+    <a href="?page=payer.php">
+      <button class="w-full bg-orange-400 hover:bg-orange-500 text-white font-bold py-3 rounded-full text-xl transition">Payer</button>
+    </a>
+    <?php
+    $html = ob_get_clean();
+    echo json_encode(['success' => true, 'html' => $html]);
+    exit;
+}
+
+// Calcul classique pour affichage initial
+$panier = $_SESSION['panier'];
+$total = 0;
+foreach ($panier as $produit) {
+    $total += $produit['prix'] * $produit['quantite'];
+}
+$_SESSION['panier_total'] = $total;
+?>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="relative min-h-screen w-full">
   <!-- Image de fond + filtre opaque -->
@@ -47,35 +130,63 @@
       <!-- Titre -->
       <h1 class="text-5xl font-extrabold text-orange-400 mb-8 tracking-wide text-center">VOTRE PANIER</h1>
       <!-- Liste des articles du panier -->
-      <div class="bg-white bg-opacity-90 rounded-2xl shadow-lg p-8 max-w-2xl mx-auto">
+
+      <div class="bg-white bg-opacity-90 rounded-2xl shadow-lg p-8 max-w-2xl mx-auto" id="panier-content">
         <ul class="divide-y divide-gray-200 mb-6">
-          <li class="flex items-center justify-between py-4">
-            <div class="flex items-center gap-4">
-              <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=80&q=80" alt="Pizza 4 fromages" class="w-20 h-20 rounded-xl object-cover border-2 border-orange-200">
-              <div>
-                <div class="font-bold text-black text-lg">Pizza 4 fromages</div>
-                <div class="text-gray-500">1 x 25€</div>
-              </div>
-            </div>
-            <button class="material-icons text-red-400 hover:text-red-600 text-3xl transition">delete</button>
-          </li>
-          <li class="flex items-center justify-between py-4">
-            <div class="flex items-center gap-4">
-              <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=80&q=80" alt="Pizza 2 fromages" class="w-20 h-20 rounded-xl object-cover border-2 border-orange-200">
-              <div>
-                <div class="font-bold text-black text-lg">Pizza 2 fromages</div>
-                <div class="text-gray-500">2 x 22€</div>
-              </div>
-            </div>
-            <button class="material-icons text-red-400 hover:text-red-600 text-3xl transition">delete</button>
-          </li>
+          <?php
+          foreach ($panier as $produit) {
+            $nom = htmlspecialchars($produit['nom']);
+            $prix = number_format($produit['prix'], 2, ',', ' ');
+            $quantite = (int)$produit['quantite'];
+            echo '
+              <li class="flex items-center justify-between py-4">
+                  <div class="flex items-center gap-4">
+                      <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=80&q=80" 
+                          alt="' . $nom . '" 
+                          class="w-20 h-20 rounded-xl object-cover border-2 border-orange-200">
+                      <div>
+                          <div class="font-bold text-black text-lg">' . $nom . '</div>
+                          <div class="text-gray-500 flex items-center gap-2">
+                              <button type="button" class="btn-moins text-3xl px-4 py-1 bg-orange-100 rounded hover:bg-orange-200" data-nom="' . $nom . '">-</button>
+                              <span>' . $quantite . ' × ' . $prix . '€</span>
+                              <button type="button" class="btn-plus text-3xl px-4 py-1 bg-orange-100 rounded hover:bg-orange-200" data-nom="' . $nom . '">+</button>
+                          </div>
+                      </div>
+                  </div>
+              </li>
+            ';
+          }
+          ?>
         </ul>
         <div class="flex justify-between items-center mb-6">
-          <span class="text-xl font-bold text-black">Total</span>
-          <span class="text-xl font-bold text-orange-500">69€</span>
+          <span class="text-xl font-bold text-black">Total </span>
+          <span class="text-xl font-bold text-orange-500"><?php echo number_format($total, 2, ',', ' '); ?> €</span>
         </div>
-        <button class="w-full bg-orange-400 hover:bg-orange-500 text-white font-bold py-3 rounded-full text-xl transition">Payer</button>
+        <a href="?page=payer.php">
+          <button class="w-full bg-orange-400 hover:bg-orange-500 text-white font-bold py-3 rounded-full text-xl transition">Payer</button>
+        </a>
       </div>
     </div>
   </div>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    function bindPanierButtons() {
+        document.querySelectorAll('.btn-plus, .btn-moins').forEach(btn => {
+            btn.onclick = function () {
+                const nom = this.getAttribute('data-nom');
+                const action = this.classList.contains('btn-plus') ? 'plus' : 'moins';
+                fetch('?page=panier.php&ajax=1&action=' + action + '&nom=' + encodeURIComponent(nom))
+                    .then(r => r.json())
+                    .then(data => {
+                        if (data.success) {
+                            document.getElementById('panier-content').innerHTML = data.html;
+                            bindPanierButtons(); // Re-bind sur le nouveau contenu
+                        }
+                    });
+            };
+        });
+    }
+    bindPanierButtons();
+});
+</script>
