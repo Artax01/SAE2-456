@@ -1,5 +1,3 @@
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
 <?php
 require_once '../session/session.php';
 require_once '../../php/connexion.php';
@@ -9,15 +7,15 @@ if (!isLoggedIn()) {
     exit;
 }
 
-session_start();
-
 // Supprimer toutes les variables de session
-$_SESSION = [];
+$_SESSION['client'] = null;
 
 // Détruire la session
-session_destroy();
+// session_destroy();
 
 // Rediriger vers accueil.php
 header('Location: ?page=accueil.php');
 exit;
 ?>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
