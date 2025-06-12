@@ -1,10 +1,9 @@
 /* navbar du haut */
 
 #top-navbar {
-    background-color: var(--glasmorphism-bg);
+    background-color: #333;
     border-color: var(--glasmorphism-border-color);
     backdrop-filter: var(--glasmorphism-backdrop-filter);
-    -webkit-backdrop-filter: var(--glasmorphism-backdrop-filter);
 }
 
 #top-navbar button {
@@ -15,6 +14,13 @@
     background-color: var(--glasmorphism-bg);
     border: 1px solid var(--glasmorphism-border-color);
 }
+
+#top-navbar {
+    background-color: rgba(23, 23, 23, 0.2); /* Très transparent */
+    backdrop-filter: blur(20px); /* Flou plus prononcé */
+    -webkit-backdrop-filter: blur(20px); /* Compatibilité Safari */
+  }
+  
 
 /* navbar du bas (seulement mobile) */
 
@@ -27,7 +33,7 @@
     -webkit-backdrop-filter: var(--glasmorphism-backdrop-filter);
     display: flex;
     justify-content: space-around;
-    z-index: 10;
+    z-index: 999;
     bottom: 0;
     transition: 0.3s;
 }
@@ -71,11 +77,8 @@
     color: var(--rapidc3-main-color);
 }
 
-#content {
-    padding: 0px;
-    min-height: 100vh;
-    box-sizing: border-box;
-    transition: opacity 0.3s ease;
+aside {
+    display: none;
 }
 
 
@@ -100,5 +103,9 @@
 @media (min-width: 768px) {
     .navbar {
         display: none;
+    }
+
+    aside {
+        display: flex;
     }
 }

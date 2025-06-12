@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="./assets/css/navbar.css">
+<link rel="stylesheet" href="./web/assets/css/navbar.css">
 
 <!-- ========== NAVBAR MOBILE ========== -->
 <div class="navbar">
@@ -15,11 +15,10 @@
     <small>Commander</small>
   </button>
   <!-- <button id="btn-commander" onclick="showMenu('commander.php')">Commander</button> -->
+
   <button id="btn-compte" onclick="loadPage('compte.php', this)">
-    <svg fill="gray" viewBox="0 0 24 24">
-      <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z" />
-    </svg>
-    <small>Compte</small>
+      <svg fill="gray" viewBox="0 0 24 24"><path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"/></svg>
+      <small>Compte</small>
   </button>
 </div>
 <!-- ========== END NAVBAR MOBILE ========== -->
@@ -27,13 +26,18 @@
 
 
 <!-- ========== NAVBAR DESKTOP ========== -->
-<header id="top-navbar" class="sticky top-0 inset-x-0 bg-black border-b border-gray-200 dark:bg-neutral-800 dark:border-neutral-700 flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full">
-  <nav class="relative max-w-[85rem] w-full mx-auto md:flex md:items-center md:justify-between md:gap-3 sm:px-6 lg:px-8 py-2">
+<!-- bg-neutral-800/80 -->
+<body class="bg-neutral-900 text-white">
+<header id="top-navbar"
+  class="sticky top-0 inset-x-0 z-50 w-full text-white">
+  <nav class="relative max-w-[85rem] w-full mx-auto flex items-center justify-between sm:px-6 lg:px-8 py-2">
 
+
+    
     <!-- logo centré sur mobile -->
     <div class="w-full md:w-auto flex justify-center md:justify-start order-1 md:order-none">
       <button id="btn-title" class="text-white font-semibold focus:outline-hidden focus:opacity-80" onclick="loadPage('accueil.php', this)">
-        <img src="img/logoC3.png" alt="logo RAPID-C3" class="h-20 w-20">
+        <img src="./web/assets/img/logoC3.png" class="h-20 w-23">
       </button>
     </div>
     <!-- end logo -->
@@ -45,12 +49,12 @@
         <div data-hs-scrollspy="#scrollspy" class="text-xl py-2 md:py-0 [--scrollspy-offset:220] md:[--scrollspy-offset:70] flex flex-col md:flex-row md:items-center md:justify-end gap-0.5 md:gap-1">
 
           <?php if (!$isLoggedIn): ?>
-            <button id="btn-inscription" onclick="loadPage('inscription.php', this)"
+            <button id="btn-signup" onclick="loadPage('signup.php', this)"
               class="py-2 px-6 flex items-center text-white hover:bg-orange-600 !bg-orange-400 !hover:bg-orange-600 rounded-full">
               Inscription
             </button>
 
-            <button id="btn-connexion" onclick="loadPage('connexion.php', this)" class="py-2 !bg-orange-400 !hover:bg-orange-600 px-6 flex items-center text-gray-800 hover:bg-gray-100 rounded-full focus:outline-hidden focus:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 hs-scrollspy-active:bg-gray-100">
+            <button id="btn-signin" onclick="loadPage('signin.php', this)" class="py-2 px-6 flex items-center text-white hover:bg-orange-600 !bg-orange-400 !hover:bg-orange-600 rounded-full">
               Connexion
             </button>
 
@@ -68,4 +72,4 @@
 </header>
 <!-- ========== END NAVBAR DESKTOP ========== -->
 
-<script src="./assets/js/navbar.js"></script>
+<script src="./web/assets/js/navbar.js"></script>

@@ -1,7 +1,7 @@
 <footer class="relative bg-white rounded-lg shadow p-6 dark:bg-gray-800 antialiased border-t border-gray-300 dark:border-gray-600">
   <!-- Logo centré -->
   <div class="absolute inset-0 flex justify-center items-center pointer-events-none z-0">
-    <img src="img/rapidc3-logo.png" alt="Logo C3" class="w-20 h-20">
+    <img src="./web/assets/img/rapidc3-logo.png" alt="Logo C3" class="w-20 h-20">
   </div>
 
   <!-- Contenu principal : copyright à gauche, icônes à droite -->
@@ -49,7 +49,7 @@
     <!-- Propulsé par -->
     <div class="flex items-center space-x-2">
       <span class="text-sm text-gray-500 dark:text-gray-400">Propulsé par :</span>
-      <img src="img/orbitweb.png" alt="OrbitWeb" class="h-10">
+      <img src="./web/assets/img/orbitweb.png" alt="OrbitWeb" class="h-10">
     </div>
   </div>
 </footer>
