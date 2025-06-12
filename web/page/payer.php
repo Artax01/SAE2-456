@@ -51,6 +51,53 @@ if (isset($_SESSION['client_id'])) {
 <p class="text-center text-2xl font-bold mb-6">
     Total à payer : <span class="text-orange-500"><?= $prix_total ?> €</span>
 </p>
+<?php
+// ...existing code...
+<!-- Boîte Fidélité (comme dans compte.php) -->
+<div class="bg-white rounded-2xl shadow-xl p-8 w-[650px] max-w-full text-center mb-8">
+    <div class="text-orange-400 text-4xl font-bold mb-6">
+        Vos points de fidélité
+    </div>
+    <div class="flex justify-center items-baseline gap-3 tex-gray-800">
+        <div class="text-gray-800 text-6xl font-semibold">
+            <?php
+                $points_fidelite = 0;
+                if (isset($_SESSION['client_id'])) {
+                    $db_username = $db_usernameOracle;
+                    $db_password = $db_passwordOracle;
+                    $db = $dbOracle;
+                    $conn = OuvrirConnexionPDO($db, $db_username, $db_password);
+
+                    if ($conn) {
+                        $cli_num = $_SESSION['client_id'];
+                        $sql = "SELECT SUM(TOTAL_POINTS) AS SOMME FROM RAP_CLIENT
+                                JOIN RAP_COMMANDE USING(CLI_NUM)
+                                JOIN RAP_FIDELISATION USING(CLI_NUM)
+                                JOIN RAP_RESTAURANT USING(RES_NUM)
+                                WHERE CLI_NUM = $cli_num";
+                        $donnees = [];
+                        $res = LireDonneesPDO1($conn, $sql, $donnees);
+
+                        if ($donnees != null && isset($donnees[0]["SOMME"])) {
+                            $points_fidelite = $donnees[0]["SOMME"];
+                            echo $points_fidelite;
+                        } else {
+                            echo 0;
+                        }
+                    } else {
+                        echo 0;
+                    }
+                } else {
+                    echo 0;
+                }
+            ?>
+        </div>
+        <div class="text-gray-800 text-2xl font-semibold">
+            points
+        </div>
+    </div>
+</div>
+<!-- ...suite du code paiement... -->
 <p class="text-center text-xl mb-6 flex items-center justify-center gap-2">
     Vos points fidélités :
     <span class="text-orange-500" id="points-fidelite"><?= htmlspecialchars($points_fidelite) ?></span>
