@@ -76,31 +76,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const reductionSpan = document.getElementById('reduction-montant');
 
     function updateReduction() {
-        let val = input.value;
-        let reduction = 0;
-        if (/^\d+$/.test(val) && parseInt(val, 10) > 0) {
+        let val = input.value.trim();
+        let reduction = "0,00";
+        if (/^\d+$/.test(val)) {
             reduction = (parseInt(val, 10) * 0.01).toFixed(2).replace('.', ',');
-        } else {
-            reduction = "0,00";
         }
         reductionSpan.textContent = reduction + " €";
     }
 
-    input.addEventListener('input', function() {
-        let val = input.value;
-        if (val === "") {
-            input.setCustomValidity("");
-            updateReduction();
-            return;
-        }
-        if (!/^\d+$/.test(val)) {
-            input.setCustomValidity("Veuillez entrer un nombre entier positif.");
-            input.reportValidity();
-        } else {
-            input.setCustomValidity("");
-        }
-        updateReduction();
-    });
+    input.addEventListener('input', updateReduction);
+    input.addEventListener('change', updateReduction);
 
     // Initialisation
     updateReduction();
