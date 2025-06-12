@@ -39,13 +39,14 @@ if (isset($_SESSION['client_id'])) {
                 JOIN rap_commande USING(cli_num)
                 JOIN rap_fidelisation USING(cli_num)
                 JOIN rap_restaurant USING(res_num)
-                WHERE cli_num = :cli_num";
-        $cur = preparerRequetePDO($conn, $sql);
-        $cur->bindParam(':cli_num', $cli_num, PDO::PARAM_INT);
-        $cur->execute();
-        $row = $cur->fetch(PDO::FETCH_ASSOC);
-        if ($row && isset($row['SOMME'])) {
-            $points_fidelite = $row['SOMME'];
+                WHERE cli_num = $cli_num";
+        $donnees = [];
+        $res = LireDonneesPDO1($conn, $sql, $donnees);
+
+        if ($donnees != null && isset($donnees[0]["SOMME"])) {
+            $points_fidelite = $donnees[0]["SOMME"];
+        } else {
+            $points_fidelite = 0;
         }
     }
 }
