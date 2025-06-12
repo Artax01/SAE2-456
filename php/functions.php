@@ -3,7 +3,7 @@
 require_once("connexion.php");
 
 
-function getPlats($conn): array{
+function getAllPlats($conn): array{
     $tab = [];
     
     $req_sql = "SELECT * FROM RAP_PLAT";
@@ -12,14 +12,28 @@ function getPlats($conn): array{
     return $tab;
 }
 
+function getPlatByType($conn, $type){
+    $tab = [];
+    
+    $req_sql = "SELECT * FROM RAP_$type JOIN RAP_PLAT using(PLA_NUM) WHERE ROWNUM <=3";
+    $cur = preparerRequetePDO($conn, $req_sql);
+    LireDonneesPDOPreparee($cur, $tab);
+    return $tab ?? [];
+}
+
+function getNamePlat($conn){
+    return ["PIZZA", "KEBAB", "LEGUME", "DESSERT", "BOISSON"];
+}
+
+
 function getImgInfoPerPlats($conn, $pla_num): array{
     $plat = [];
     $req_sql = "SELECT * FROM RAP_PLAT_IMAGE WHERE PLA_NUM=?";
     $cur = preparerRequetePDO($conn, $req_sql);
     majDonneesPrepareesTabPDO($cur, [$pla_num]);
     LireDonneesPDOPreparee($cur, $plat);
-    var_dump($plat);
-    return $plat[0];
+    
+    return $plat[0] ?? [];
 }
 
 function isPlatExist($conn, $pla_num): bool{
