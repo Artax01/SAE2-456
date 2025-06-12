@@ -8,6 +8,7 @@
   <!-- Contenu principal en relatif -->
   <div class="relative z-10 flex h-screen">
     <!-- Sidebar Navigation -->
+
     <aside class="fixed top-1/2 left-0 transform -translate-y-1/2 flex flex-col items-center py-6 px-4 backdrop-blur dark:bg-neutral-800 h-auto w-64 z-20 rounded-r-3xl shadow-lg">
     
 
@@ -52,8 +53,7 @@
   <!-- Main Content -->
   <div class="flex-1 flex flex-col px-10 py-6">
     <!-- Barre de recherche -->
-    
-    <!--<div class="flex justify-center mb-6">
+    <!-- <div class="flex justify-center mb-6">
       <div class="relative w-[600px]">
         <input type="text" placeholder="Rechercher..." class="w-full rounded-full py-2 pl-12 pr-4 bg-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-400 text-lg shadow"/>
         <svg class="absolute left-3 top-2.5 w-6 h-6 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
@@ -61,7 +61,7 @@
     </div> -->
 
     <!-- Titre -->
-    <h1 class="text-5xl font-extrabold text-orange-400 mb-8 tracking-wide">NOS MENUS</h1>
+    <h1 class="text-5xl font-extrabold text-orange-400 mb-8 tracking-wide">NOS PLATS</h1>
 
     <!-- Menus List -->
     <div class="flex gap-10 justify-center">
@@ -80,7 +80,7 @@
         </div>
         <!-- Infos Plat -->
         <div class="text-black flex flex-col text-center mt-4">
-          <div class="bg-white rounded-full px-8 py-2 font-bold text-lg mb-2 shadow">Pizza 4 fromages<br><span class="font-normal">25€</span></div>
+          <div class="bg-white rounded-full px-8 py-2 font-bold text-lg mb-2 shadow">Margherita<br><span class="font-normal">35€</span></div>
           <div class="flex gap-4">
             <button class="border-2 border-orange-400 text-orange-400 font-semibold px-4 py-2 rounded-full hover:bg-orange-50 transition">Ajouter au panier</button>
             <button class="bg-orange-400 text-white font-semibold px-6 py-2 rounded-full hover:bg-orange-500 transition">Commander</button>
@@ -103,7 +103,7 @@
         </div>
         <!-- Infos Plat -->
         <div class="text-black flex flex-col text-center mt-4">
-          <div class="bg-white rounded-full px-8 py-2 font-bold text-lg mb-2 shadow">Pizza 2 fromages<br><span class="font-normal">25€</span></div>
+          <div class="bg-white rounded-full px-8 py-2 font-bold text-lg mb-2 shadow">Hawaïenne<br><span class="font-normal">30€</span></div>
           <div class="flex gap-4">
             <button class="border-2 border-orange-400 text-orange-400 font-semibold px-4 py-2 rounded-full hover:bg-orange-50 transition">Ajouter au panier</button>
             <button class="bg-orange-400 text-white font-semibold px-6 py-2 rounded-full hover:bg-orange-500 transition">Commander</button>
