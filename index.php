@@ -1,20 +1,14 @@
-<<<<<<< HEAD
-<?php
-=======
 
 
 <?php
 require_once './web/session/session.php';
 $isLoggedIn = getClient();
 
->>>>>>> compte
 if (!isset($_SESSION["panier"])) {
     $_SESSION["panier"] = []; // Initialisation du panier s'il n'existe pas
 }
 ?>
 
-<<<<<<< HEAD
-=======
 <head>
 
     <!DOCTYPE html>
@@ -36,7 +30,6 @@ if (!isset($_SESSION["panier"])) {
     <link rel="stylesheet" href="assets/css/root.css">
 </head>
 
->>>>>>> compte
 <?php require_once './web/component/meta.php'; ?>
 <!-- style commun de l'application -->
 <link rel="stylesheet" href="./web/assets/css/root.css">
