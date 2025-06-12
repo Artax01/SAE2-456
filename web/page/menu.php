@@ -41,9 +41,20 @@
            class="w-full text-left text-xl font-bold text-white transition-all duration-300 whitespace-nowrap focus:outline-none hover:bg-orange-100 hover:text-orange-500 active:scale-95 transition-transform rounded-md py-2 px-3">
           Panier
         </a>
-      </div>
-    </aside>
+    </div>
+</aside>
+<!-- ...existing code... -->
 
+  <!-- Main Content -->
+  <div class="flex-1 flex flex-col px-10 py-6">
+    <!-- Barre de recherche -->
+    
+    <!--<div class="flex justify-center mb-6">
+      <div class="relative w-[600px]">
+        <input type="text" placeholder="Rechercher..." class="w-full rounded-full py-2 pl-12 pr-4 bg-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-400 text-lg shadow"/>
+        <svg class="absolute left-3 top-2.5 w-6 h-6 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      </div>
+    </aside> -->
     <!-- Main Content -->
     <div class="flex-1 flex flex-col pl-72 pr-10 py-6 overflow-y-auto">
       <!-- Titre -->
