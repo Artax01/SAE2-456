@@ -62,7 +62,6 @@ if (isset($_SESSION['client_id'])) {
         name="points_utilises"
         id="points_utilises"
         min="0"
-        max="<?= htmlspecialchars($points_fidelite) ?>"
         class="border rounded px-2 py-1 w-24 text-center"
         placeholder="À utiliser"
         style="margin-left: 10px;"
@@ -74,13 +73,12 @@ if (isset($_SESSION['client_id'])) {
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const input = document.getElementById('points_utilises');
-    const maxPoints = parseInt(document.getElementById('points-fidelite').textContent, 10);
     const reductionSpan = document.getElementById('reduction-montant');
 
     function updateReduction() {
         let val = input.value;
         let reduction = 0;
-        if (/^\d+$/.test(val) && parseInt(val, 10) <= maxPoints) {
+        if (/^\d+$/.test(val)) {
             reduction = (parseInt(val, 10) * 0.01).toFixed(2).replace('.', ',');
         } else {
             reduction = "0,00";
@@ -95,8 +93,8 @@ document.addEventListener('DOMContentLoaded', function() {
             updateReduction();
             return;
         }
-        if (!/^\d+$/.test(val) || parseInt(val, 10) > maxPoints) {
-            input.setCustomValidity("Veuillez entrer un nombre entier inférieur ou égal à vos points fidélité.");
+        if (!/^\d+$/.test(val)) {
+            input.setCustomValidity("Veuillez entrer un nombre entier positif.");
             input.reportValidity();
         } else {
             input.setCustomValidity("");
