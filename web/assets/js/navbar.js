@@ -1,4 +1,11 @@
 function loadPage(page, button = null, updateURL = true) {
+    const fullRedirectPages = ['signin.php', 'signup.php'];
+
+    if (fullRedirectPages.includes(page)) {
+        window.location.href = './web/page/' + page;
+        return;
+    }
+
     const content = document.getElementById('content');
 
     document.querySelectorAll('.navbar button').forEach(btn => btn.classList.remove('active'));
@@ -8,14 +15,25 @@ function loadPage(page, button = null, updateURL = true) {
     content.innerHTML = '<div class="centered"><div class="loader"></div></div>';
     if (updateURL) history.pushState({}, '', '?page=' + page);
 
+    setTimeout(() => {
+        console.log('ok');
+    }, 5000);
+
     // verification de la présence de l'etension .php
     if (!page.endsWith('.php')) {
         content.innerHTML = "<p>Une erreur est survenue car vous avez oublié d'ajouter l'extension .php à la chaîne de caractère.</p>";
         return;
     }
 
-    fetch('./page/' + page)
-        .then(res => res.text())
+    fetch('./web/page/' + page)
+        .then(res => {
+            if (!res.ok) throw new Error('Erreur lors du chargement');
+            if (res.redirected) {
+                window.location.href = res.url;
+                return;
+            }
+            return res.text()
+        })
         .then(html => {
             content.style.opacity = 0;
             setTimeout(() => {

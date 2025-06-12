@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="./assets/css/dialog.css">
+<link rel="stylesheet" href="./web/assets/css/dialog.css">
 
 <div id="dialog">
     <div class="overlay"></div>
@@ -8,4 +8,4 @@
     </div>
 </div>
 
-<script src="./assets/js/dialog.js"></script>
+<script src="./web/assets/js/dialog.js"></script>
