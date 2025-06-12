@@ -1,3 +1,5 @@
+<?php require("../../php/connexion.php");?>
+
 <!-- Panier - Voir les articles ajoutés -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="relative min-h-screen w-full">
@@ -79,7 +81,8 @@
           <span class="text-xl font-bold text-black">Total</span>
           <span class="text-xl font-bold text-orange-500">69€</span>
         </div>
-        <button class="w-full bg-orange-400 hover:bg-orange-500 text-white font-bold py-3 rounded-full text-xl transition">Payer</button>
+        <form action="http://localhost//git/sae2-456-grp2/php/commanderUnPlat.php" method="post">
+        <button id ="payer" class="w-full bg-orange-400 hover:bg-orange-500 text-white font-bold py-3 rounded-full text-xl transition">Payer</button>
       </div>
     </div>
   </div>

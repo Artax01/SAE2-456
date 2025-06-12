@@ -6,8 +6,8 @@ require_once("pdo_agile.php");
 
 
 function récupérerUnPlat($conn){
-    if(isset($_post['bouton'])){
-        $platNum= $_post['bouton'];
+    if(isset($_post['payer'])){
+        $platNum= $_post['payer'];
         return $platNum;
     }
     return null;

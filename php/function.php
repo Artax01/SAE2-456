@@ -38,3 +38,30 @@ function isClientExist($conn, $cli_num): bool{
     LireDonneesPDOPreparee($cur, $tab);
     return !empty($tab);
 }
+function payerPlat($conn, $plat_num, $cli_num){
+    try{
+        if(!isPlatExist($conn, $plat_num)){
+            http_response_code(400);
+            echo json_encode([
+                "error" => "Plat inexistant !",
+            ]);
+            exit;
+        }
+
+        if(!isClientExist($conn, $cli_num) || !isset($_SESSION["CLI_NUM"])){
+            http_response_code(400);
+            echo json_encode([
+                "error" => "Vous devez être connecté pour payer un plat !",
+                "redirect" => "login.php"
+            ]);
+            exit;
+        }
+
+
+    } catch(Exception $e) {
+        echo json_encode(["error"=>"Erreur lors du paiement"]);
+    }
+
+payerPlat($conn, 1, $cli_num);
+
+}
