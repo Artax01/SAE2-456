@@ -43,3 +43,12 @@ select nvl(cli_num,null) as n from rap_client
 where cli_num in (
     select cli_num from rap_administrateur
 ) and cli_num = 1241;
+
+
+select * from rap_client;
+
+select * from rap_client 
+where cli_nom like 'test998%';
+
+delete from rap_client
+where cli_nom like 'test998';
