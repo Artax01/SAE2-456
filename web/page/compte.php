@@ -14,15 +14,16 @@ if (!isLoggedIn()) {
 <?php
 echo 'Bienvenue '.getNom().' '.getPrenom();
 ?>
-=======
+<?php
 
 
 require_once '../../php/connexion.php';
-
-if (!isLo
+/*
+if (!isLoged()){
     header('Location: ../page/signin.php');
-?>  exit;
+ exit;
 }
+ */
 ?>
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

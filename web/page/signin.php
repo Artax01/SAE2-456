@@ -10,6 +10,15 @@ else {
 }
 ?>
 
+<?php
+require_once '../session/session.php';
+
+if($isLoggedInAdmin) {
+    header('Location: index.php?page=gerer.php');
+    exit;
+}
+?>
+
 <?php require_once '../component/meta.php'; ?>
 <link rel="stylesheet" href="../assets/css/root.css">
 <link rel="stylesheet" href="../assets/css/signin.css">
