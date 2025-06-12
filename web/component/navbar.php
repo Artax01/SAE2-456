@@ -1,4 +1,7 @@
-<?php require_once './web/session/session.php'; ?>
+
+<?php 
+require_once './web/session/session.php';
+?>
 
 <link rel="stylesheet" href="./web/assets/css/navbar.css">
 
@@ -44,24 +47,32 @@
     </div>
     <!-- end logo -->
 
+    <?php require_once './php/connexion.php'; ?>
 
     <!-- buttons -->
     <div id="hs-header-scrollspy" class="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow md:block" aria-labelledby="hs-header-scrollspy-collapse">
       <div class="overflow-hidden overflow-y-auto max-h-[75vh] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500">
         <div data-hs-scrollspy="#scrollspy" class="text-xl py-2 md:py-0 [--scrollspy-offset:220] md:[--scrollspy-offset:70] flex flex-col md:flex-row md:items-center md:justify-end gap-0.5 md:gap-1">
-
-          <?php if (!isLoggedIn()): ?>
+        <?php if (!isLoggedIn()): ?>
             <button id="btn-signup" onclick="loadPage('signup.php', this)"
               class="py-2 px-6 flex items-center text-white hover:bg-orange-600 !bg-orange-400 !hover:bg-orange-600 rounded-full">
               Inscription
             </button>
 
             <button id="btn-signin" onclick="loadPage('signin.php', this)" class="py-2 px-6 flex items-center text-white hover:bg-orange-600 !bg-orange-400 !hover:bg-orange-600 rounded-full">
+
               Connexion
             </button>
-
-          <?php else: ?>
+          <?php endif; ?>
+          <?php if (isLoggedIn()): ?>
             <p>Connecté en tant que <?php echo getPrenom(); ?></p>
+
+            <?php if (isLoggedInAdmin($conn)): ?>
+              <button id="btn-signup" onclick="loadPage('gerer.php', this)" class="py-2 px-6 flex items-center text-white hover:bg-orange-600 !bg-orange-400 !hover:bg-orange-600 rounded-full">
+                Gerer
+              </button>
+            <?php endif; ?>
+
             <button id="btn-compte" onclick="loadPage('compte.php', this)" class="py-2 px-6 !bg-orange-400 !hover:bg-orange-600 flex items-center text-gray-800 hover:bg-gray-100 rounded-full focus:outline-hidden focus:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 hs-scrollspy-active:bg-gray-100">
               Mon compte
             </button>

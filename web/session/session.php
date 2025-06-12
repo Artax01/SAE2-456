@@ -1,5 +1,4 @@
 <?php
-
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -7,6 +6,7 @@ if (session_status() === PHP_SESSION_NONE) {
 function isLoggedIn() {
     return isset($_SESSION['client']);
 }
+
 
 function isLoggedInAdmin($conn) {
     try {
@@ -27,6 +27,7 @@ function isLoggedInAdmin($conn) {
     }
     return false;
 }
+
 
 function getClient() {
     return $_SESSION['client'] ?? null;

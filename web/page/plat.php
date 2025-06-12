@@ -13,7 +13,8 @@
         <a href="?page=accueil.php" class="material-icons text-orange-400 text-[4.5rem] mr-4 flex items-center justify-center">home</a>
         <a href="?page=accueil.php"
            class="w-full text-left text-xl font-bold text-white transition-all duration-300 whitespace-nowrap focus:outline-none hover:bg-orange-100 hover:text-orange-500 active:scale-95 transition-transform rounded-md py-2 px-3">
-          Accueil
+
+            Accueil
         </a>
     </div>
     <!-- Lien 2 -->

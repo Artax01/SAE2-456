@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!--
 <h1 class=" text-center text-6xl font-extrabold text-orange-400 mb-8 tracking-tight uppercase" style="font-family: 'Montserrat', sans-serif;">Votre commande</h1>
 <div class="max-w-2xl mx-auto mt-10 bg-white rounded-xl shadow-lg p-8">

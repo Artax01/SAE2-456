@@ -1,5 +1,6 @@
 <?php
 require_once '../session/session.php';
+require_once '../../php/connexion.php';
 
 if (isLoggedIn()) {
     header('Location: index.php?page=compte.php');
@@ -7,6 +8,11 @@ if (isLoggedIn()) {
 }
 else {
   echo "<script>console.log(" . json_encode("client déconnecter") . ");</script>";
+}
+
+if(isLoggedInAdmin($conn)) {
+  header('Location: index.php?page=gerer.php');
+  exit;
 }
 ?>
 
