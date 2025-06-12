@@ -35,11 +35,7 @@ if (isset($_SESSION['client_id'])) {
 
     if ($conn) {
         $cli_num = $_SESSION['client_id'];
-        $sql = "SELECT SUM(total_points) AS somme FROM rap_client
-                JOIN rap_commande USING(cli_num)
-                JOIN rap_fidelisation USING(cli_num)
-                JOIN rap_restaurant USING(res_num)
-                WHERE cli_num = $cli_num";
+        $sql = "SELECT SUM(TOTAL_POINTS) AS SOMME FROM RAP_FIDELISATION WHERE CLI_NUM = $cli_num";
         $donnees = [];
         $res = LireDonneesPDO1($conn, $sql, $donnees);
 

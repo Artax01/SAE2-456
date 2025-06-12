@@ -72,15 +72,15 @@ if (!isLoggedIn()) {
                     $result = isLoggedInAdmin($conn);
                 ?>
             </div>
-        <div class="text-gray-800 text-2xl font-semibold">
+            <div class="text-gray-800 text-2xl font-semibold">
             points
+            </div>
         </div>
-    </div>
-    <div class="flex justify-center mt-5 items-baseline gap-3 tex-gray-800">
+        <div class="flex justify-center mt-5 items-baseline gap-3 tex-gray-800">
         <button id="btn-commandes" onclick="loadPage('commandes.php', this)" class="py-2 px-6 !bg-orange-400 !hover:bg-orange-600 flex items-center text-gray-800 hover:bg-gray-100 rounded-full focus:outline-hidden focus:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-200 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 hs-scrollspy-active:bg-gray-100">
                 Mes commandes
         </button>
+        </div>
     </div>
-</div>
 </div>
 
