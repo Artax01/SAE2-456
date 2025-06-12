@@ -4,9 +4,9 @@ require_once '../session/session.php';
 
 require_once '../../php/connexion.php';
 
-if (!isLo
+if (!isLoggedIn()) {
     header('Location: ../page/signin.php');
-?>  exit;
+    exit;
 }
 ?>
 
@@ -123,8 +123,4 @@ if (!isLo
                 Mes commandes
         </button>
     </div>
-<<<<<<< HEAD
 </div>
-=======
-</div>
->>>>>>> prod
