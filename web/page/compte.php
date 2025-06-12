@@ -121,8 +121,4 @@ if (!isLoggedIn()) {
                 Mes commandes
         </button>
     </div>
-<<<<<<< HEAD
 </div>
-=======
-</div>
->>>>>>> prod
