@@ -1,3 +1,4 @@
+<div class="bg-gray-800">
 <?php
 require_once '../session/session.php';
 ?>
@@ -9,9 +10,7 @@ require_once '../session/session.php';
 
 <?php require_once '../component/CASBanner.php';?>
 
-<div id="box-container">
-<div class="fixed inset-0 w-full h-full bg-[url('./web/assets/img/rapidc3.png')] bg-cover bg-center bg-no-repeat z-0 ">
-<div class="absolute inset-0 bg-black opacity-55"></div>
+<div id="box-container" class="bg-black">
   <div id="div-signup" class="mt-7 bg-white border border-gray-200 rounded-xl shadow-2xs">
     <div class="p-4 sm:p-7">
       <div class="text-center">
@@ -159,4 +158,6 @@ require_once '../session/session.php';
       </div>
     </div>
   </div>
+</div>
+</div>
 </div>
