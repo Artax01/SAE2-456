@@ -123,4 +123,8 @@ if (!isLo
                 Mes commandes
         </button>
     </div>
+<<<<<<< HEAD
 </div>
+=======
+</div>
+>>>>>>> prod
