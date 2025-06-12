@@ -1,16 +1,16 @@
 <!-- Menu "Nos Menus" avec effets Tailwind CSS, image de fond et animation navbar -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="relative min-h-screen w-full">
-  <!-- Image de fond + filtre opaque -->
+
+  <!-- Image de fond -->
  <div class="fixed inset-0 w-full h-full bg-[url('./web/assets/img/fast-food.jpeg')] bg-cover bg-center bg-no-repeat z-0 ">
     <div class="absolute inset-0 bg-black opacity-55"></div>
   </div>
-  <!-- Contenu principal en relatif -->
+
+  <!-- NAV BAR GAUCHE -->
   <div class="relative z-10 flex h-screen">
     <!-- Sidebar Navigation -->
     <aside class="fixed top-1/2 left-0 transform -translate-y-1/2 flex flex-col items-center py-6 px-4 backdrop-blur dark:bg-neutral-800 h-auto w-64 z-20 rounded-r-3xl shadow-lg">
-    
-
     <!-- Lien 1 -->
     <div class="flex items-center mb-10 w-full justify-start">
         <a href="?page=accueil.php" class="material-icons text-orange-400 text-[4.5rem] mr-4 flex items-center justify-center">home</a>
@@ -19,7 +19,6 @@
             Accueil
         </a>
     </div>
-
     <!-- Lien 2 -->
     <div class="flex items-center mb-10 w-full justify-start">
         <a href="?page=menu.php" class="material-icons text-orange-400 text-[4.5rem] mr-4 flex items-center justify-center">restaurant_menu</a>
@@ -28,7 +27,6 @@
             Nos Menus
         </a>
     </div>
-
     <!-- Lien 3 -->
     <div class="flex items-center mb-10 w-full justify-start">
         <a href="?page=plat.php" class="material-icons text-orange-400 text-[4.5rem] mr-4 flex items-center justify-center">restaurant</a>
@@ -37,7 +35,6 @@
             Nos Plats
         </a>
     </div>
-
     <!-- Lien 4 -->
     <div class="flex items-center mb-10 w-full justify-start">
         <a href="?page=panier.php" class="material-icons text-orange-400 text-[4.5rem] mr-4 flex items-center justify-center">shopping_cart</a>
@@ -46,6 +43,7 @@
             Panier
         </a>
     </div>
+    
 </aside>
 <!-- ...existing code... -->
 
