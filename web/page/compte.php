@@ -1,12 +1,9 @@
 <?php
 require_once '../session/session.php';
 require_once '../../php/connexion.php';
-<<<<<<< HEAD
-=======
 
 
 require_once '../../php/connexion.php';
->>>>>>> web
 
 if (!isLoggedIn()) {
     header('Location: ../page/signin.php');
