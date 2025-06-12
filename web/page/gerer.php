@@ -57,6 +57,61 @@ $sql = "
 $meilleures_periodes = [];
 LireDonneesPDO1($conn, $sql, $meilleures_periodes);
 
+if (isset($_POST['send_mail'])) {
+    $subject = trim($_POST['mail_subject'] ?? '');
+    $message = trim($_POST['mail_message'] ?? '');
+
+    if ($subject === '' || $message === '') {
+        echo "<script>alert('Le sujet et le message sont obligatoires.');</script>";
+    } else {
+        // Récupérer tous les emails valides
+        $sql = "SELECT CLI_COURRIEL FROM RAP_CLIENT WHERE CLI_COURRIEL IS NOT NULL AND CLI_COURRIEL <> ''";
+        $emails = [];
+        LireDonneesPDO1($conn, $sql, $emails);
+
+        $emails = array_map(fn($e) => $e['CLI_COURRIEL'], $emails);
+
+        if (count($emails) === 0) {
+            echo "<script>alert('Aucun email valide trouvé.');</script>";
+        } else {
+            $successCount = 0;
+            $failCount = 0;
+            foreach ($emails as $email) {
+                $result = @mail(
+                    $email,
+                    $subject,
+                    $message,
+                    "From: no-reply@tondomaine.com\r\nReply-To: no-reply@tondomaine.com\r\n"
+                );
+            
+                if ($result) {
+                    $successCount++;
+                } else {
+                    $failCount++;
+                }
+            
+                file_put_contents(
+                    'mail_log.txt',
+                    date('Y-m-d H:i:s') . " - Envoi à $email : " . ($result ? "OK" : "ÉCHEC") . "\n",
+                    FILE_APPEND
+                );
+            }
+        }
+    }
+    echo "<script>alert('Envois terminés : $successCount succès, $failCount échecs.');</script>";
+}
+
+$to = "nathanelie.06@gmail.com"; // Mets ici TON email réel
+$subject = "Test d'envoi de mail";
+$message = "Bonjour,\n\nCeci est un mail de test envoyé depuis mon serveur.";
+$headers = "From: no-reply@users.info.unicaen.fr\r\n";
+
+if (mail($to, $subject, $message, $headers)) {
+    echo "Mail envoyé avec succès !";
+} else {
+    echo "Erreur lors de l'envoi du mail.";
+}
+
 ?>
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -121,17 +176,46 @@ LireDonneesPDO1($conn, $sql, $meilleures_periodes);
 <!-- Bloc Envoi de mail -->
 <div class="bg-neutral-800 bg-opacity-95 rounded-2xl shadow-lg p-10 max-w-7xl w-full mb-8 flex flex-col items-center">
     <h1 class="text-4xl font-extrabold text-orange-400 mb-8 text-center">Envoi d'un mail à tous les clients</h1>
-    <form method="post" action="">
-    <div class="mb-9 w-full flex flex-col items-center">
-        <label class="block mb-2 text-neutral-200 text-lg w-full max-w-5xl" for="mail_subject">Sujet</label>
-        <input class="w-full max-w-5xl p-2 text-lg rounded bg-neutral-900 border border-neutral-700 text-white" type="text" id="mail_subject" name="mail_subject" required>
+    <form method="post" action="" class="w-full flex flex-col items-center">
+    
+    <!-- Sujet -->
+    <div class="mb-9 w-full max-w-5xl">
+      <label for="mail_subject" class="block mb-2 text-neutral-200 text-lg">
+        Sujet
+      </label>
+      <input 
+        type="text" 
+        id="mail_subject" 
+        name="mail_subject" 
+        required
+        class="w-full p-2 text-lg rounded bg-neutral-900 border border-neutral-700 text-white"
+      >
     </div>
-    <div class="mb-6 w-full flex flex-col items-center">
-        <label class="block mb-2 text-neutral-200 text-lg w-full max-w-5xl" for="mail_message">Message</label>
-        <textarea class="w-full max-w-5xl p-2 text-lg rounded bg-neutral-900 border border-neutral-700 text-white" id="mail_message" name="mail_message" rows="5" required></textarea>
+
+    <!-- Message -->
+    <div class="mb-6 w-full max-w-5xl">
+      <label for="mail_message" class="block mb-2 text-neutral-200 text-lg">
+        Message
+      </label>
+      <textarea 
+        id="mail_message" 
+        name="mail_message" 
+        rows="5" 
+        required
+        class="w-full p-2 text-lg rounded bg-neutral-900 border border-neutral-700 text-white"
+      ></textarea>
     </div>
-    <button type="submit" name="send_mail" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded transition text-lg">Envoyer</button>
-</form>
+
+    <!-- Bouton -->
+    <button 
+      type="submit" 
+      name="send_mail"
+      class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded transition text-lg"
+    >
+      Envoyer
+    </button>
+
+  </form>
 </div>
 
             <!-- Bloc Gestion des clients -->
@@ -165,10 +249,10 @@ LireDonneesPDO1($conn, $sql, $meilleures_periodes);
                     <?php $cli_id = $client['CLI_NUM'] ?? ''; ?>
                     <a href="modifier_client.php?id=<?= $cli_id !== '' ? urlencode($cli_id) : '' ?>" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded">Modifier</a>
                     <!-- Bouton Supprimer (formulaire POST) -->
-                    <form method="post" action="./web/component/supp.php" onsubmit="return confirm('Supprimer ce client ?');" style="display:inline;">
-                        <input type="hidden" name="delete_id" value="<?= $cli_id ?>">
-                        <button type="submit" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded">Supprimer</button>
-                    </form>
+                    <form method="post" action="/sae2-456-grp2/web/component/supp.php" onsubmit="return confirm('Supprimer ce client ?');" style="display:inline;">
+    <input type="hidden" name="delete_id" value="<?= htmlspecialchars($cli_id) ?>">
+    <button type="submit" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded">Supprimer</button>
+</form>
                 </td>
             </tr>
             <?php endforeach; ?>
