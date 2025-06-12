@@ -1,4 +1,4 @@
-<div class="bg-gray-800">
+<div class="bg-gray-800 h-full">
 <?php
 require_once '../session/session.php';
 ?>
