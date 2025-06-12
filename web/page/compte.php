@@ -13,49 +13,6 @@ if (!isLoggedIn()) {
         <div class="absolute inset-0 bg-black opacity-55"></div>
     </div>
 
-<!-- Sidebar Navigation -->
-
-<aside class="fixed top-1/2 left-0 transform -translate-y-1/2 flex flex-col items-center py-6 px-4 backdrop-blur dark:bg-neutral-800 h-auto w-64 z-20 rounded-r-3xl shadow-lg">
-    
-
-    <!-- Lien 1 -->
-    <div class="flex items-center mb-10 w-full justify-start">
-        <a href="?page=accueil.php" class="material-icons text-orange-400 text-[4.5rem] mr-4 flex items-center justify-center">home</a>
-        <a href="?page=accueil.php"
-           class="w-full text-left text-xl font-bold text-white transition-all duration-300 whitespace-nowrap focus:outline-none hover:bg-orange-100 hover:text-orange-500 active:scale-95 transition-transform rounded-md py-2 px-3">
-            Accueil
-        </a>
-    </div>
-
-    <!-- Lien 2 -->
-    <div class="flex items-center mb-10 w-full justify-start">
-        <a href="?page=menu.php" class="material-icons text-orange-400 text-[4.5rem] mr-4 flex items-center justify-center">restaurant_menu</a>
-        <a href="?page=menu.php"
-           class="w-full text-left text-xl font-bold text-white transition-all duration-300 whitespace-nowrap focus:outline-none hover:bg-orange-100 hover:text-orange-500 active:scale-95 transition-transform rounded-md py-2 px-3">
-            Nos Menus
-        </a>
-    </div>
-
-    <!-- Lien 3 -->
-    <div class="flex items-center mb-10 w-full justify-start">
-        <a href="?page=plat.php" class="material-icons text-orange-400 text-[4.5rem] mr-4 flex items-center justify-center">restaurant</a>
-        <a href="?page=plat.php"
-           class="w-full text-left text-xl font-bold text-white transition-all duration-300 whitespace-nowrap focus:outline-none hover:bg-orange-100 hover:text-orange-500 active:scale-95 transition-transform rounded-md py-2 px-3">
-            Nos Plats
-        </a>
-    </div>
-
-    <!-- Lien 4 -->
-    <div class="flex items-center mb-10 w-full justify-start">
-        <a href="?page=panier.php" class="material-icons text-orange-400 text-[4.5rem] mr-4 flex items-center justify-center">shopping_cart</a>
-        <a href="?page=panier.php"
-           class="w-full text-left text-xl font-bold text-white transition-all duration-300 whitespace-nowrap focus:outline-none hover:bg-orange-100 hover:text-orange-500 active:scale-95 transition-transform rounded-md py-2 px-3">
-            Panier
-        </a>
-    </div>
-</aside>
-
-
 <div class="fixed inset-0 flex flex-col items-center justify-center gap-10 z-30">
     
     <!-- Boîte 1 : Infos utilisateur -->
@@ -86,15 +43,23 @@ if (!isLoggedIn()) {
         <div class="flex justify-center items-baseline gap-3 tex-gray-800">
             <div class="text-gray-800 text-6xl font-semibold">
                 <?php
-                    $sql = "select nvl(sum(total_points),0) as somme from rap_fidelisation where cli_num = :id";
-                    $stmt = preparerRequetePDO($conn, $sql);
-                    $id = getId();
-                    ajouterParamPDO($stmt, ":id", $id, 'nombre');
-                    $stmt->execute();
-                    $donnees = $stmt->fetch(PDO::FETCH_ASSOC);
+                    $sql = "select sum(total_points) as somme from rap_client
+                            join rap_commande using(cli_num)
+                            join rap_fidelisation using(cli_num)
+                            join rap_restaurant using(res_num)
+                            where cli_num = ".getId();
+                    $res = LireDonneesPDO1($conn,$sql,$donnees);
 
-                    if (isset($donnees["SOMME"])) {
-                        echo $donnees["SOMME"];
+                    if($donnees != null){
+                        //echo "<script>console.log(".$donnees.")</script>";
+                        //echo ($donnees[0]);
+                        // print_r($donnees);
+                        if (isset($donnees[0]["SOMME"])) {
+                            echo $donnees[0]["SOMME"];
+                        }
+                        else {
+                            echo 0;
+                        }
                     }
                     else{
                         echo (0);
@@ -114,3 +79,5 @@ if (!isLoggedIn()) {
         </button>
     </div>
 </div>
+</div>
+
