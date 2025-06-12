@@ -41,6 +41,14 @@
         <a href="?page=panier.php"
            class="w-full text-left text-xl font-bold text-white transition-all duration-300 whitespace-nowrap focus:outline-none hover:bg-orange-100 hover:text-orange-500 active:scale-95 transition-transform rounded-md py-2 px-3">
           Panier
+          <?php 
+            if (isset($_SERVER['commande']['produits']) && isset($_SERVER['commande']['menus'])) {
+                echo count($_SERVER['commande']['produits']) + count($_SERVER['commande']['menus']);
+            } else {
+                echo 0;
+                var_dump($_SERVER['commande']['produits']);
+            }
+        ?>
         </a>
       </div>
     </aside>
@@ -89,11 +97,11 @@
                   <span class="font-normal"><?= $plat["PLA_PRIX_VENTE_UNIT_HT"] ?? '' ?>€</span>
                 </div>
                 <div class="flex gap-4 mb-4">
-                  <form action="ajout_panier.php" method="POST">
+                  <form action="./web/commande/ajout_panier.php" method="POST">
                     <input type="hidden" name="pla_num" value="<?= $plat["PLA_NUM"] ?>">
                     <button type="submit" class="border-2 border-orange-400 text-orange-400 font-semibold px-4 py-2 rounded-full hover:bg-orange-50 transition">Ajouter au panier</button>
                   </form>
-                  <form action="commander.php" method="POST">
+                  <form action="./web/commande/commander.php" method="POST">
                     <input type="hidden" name="pla_num" value="<?= $plat["PLA_NUM"] ?>">
                     <button type="submit" class="bg-orange-400 text-white font-semibold px-6 py-2 rounded-full hover:bg-orange-500 transition h-full">Commander</button>
                   </form>

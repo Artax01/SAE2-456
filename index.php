@@ -1,10 +1,5 @@
 <?php
 require_once './web/session/session.php';
-$isLoggedIn = getClient();
-
-if (!isset($_SESSION["panier"])) {
-    $_SESSION["panier"] = []; // Initialisation du panier s'il n'existe pas
-}
 ?>
 
 <!DOCTYPE html>
