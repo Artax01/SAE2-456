@@ -18,6 +18,7 @@ function getImgInfoPerPlats($conn, $pla_num): array{
     $cur = preparerRequetePDO($conn, $req_sql);
     majDonneesPrepareesTabPDO($cur, [$pla_num]);
     LireDonneesPDOPreparee($cur, $plat);
+    var_dump($plat);
     return $plat[0];
 }
 

@@ -36,3 +36,5 @@ where cli_num = 1240;
 
 select sum(total_points) as somme from rap_fidelisation
 where cli_num = 1240;
+
+select * from rap_plat_image;
