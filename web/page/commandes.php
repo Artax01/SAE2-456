@@ -13,11 +13,14 @@ if (!isLoggedIn()) {
 
 <?php
     try {
-        $sql = "select * from rap_commande where cli_num = ".getId();
-        $res = LireDonneesPDO1($conn, $sql, $donnees);
+        $id = getId();
+        $sql = "SELECT * FROM RAP_COMMANDE WHERE CLI_NUM = 1";
+        $stmt = preparerRequetePDO($conn,$sql);
+        $donnees = array();
+        LireDonneesPDOPreparee($stmt, $donnees);
     }
     catch (Exception $e) {
-        $donnees = [];
+        var_dump($e);
     }
 
 ?>

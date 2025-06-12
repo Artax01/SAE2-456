@@ -88,3 +88,4 @@ require_once './web/session/session.php';
 <!-- ========== END NAVBAR DESKTOP ========== -->
 
 <script src="./web/assets/js/navbar.js"></script>
+<script src="./web/assets/js/commander.js"></script>
