@@ -29,13 +29,18 @@ insert into rap_commande values (1,99993,1243, sysdate, sysdate, 27.84 , 0, 0, 8
 
 --DELETE from rap_commande
 --where cli_num = 1243;
+<<<<<<< HEAD
 --insert into rap_fidelisation values (1240, sysdate ,2515);
+=======
+insert into rap_fidelisation values (1240, sysdate ,2515);
+>>>>>>> origin/commande_test
 
 select * from rap_fidelisation
 where cli_num = 1240;
 
 select sum(total_points) as somme from rap_fidelisation
 where cli_num = 1240;
+<<<<<<< HEAD
 
 
 select nvl(cli_num,null) as n from rap_client
@@ -59,3 +64,5 @@ where cli_nom like 'test998';
 
 
 
+=======
+>>>>>>> origin/commande_test
