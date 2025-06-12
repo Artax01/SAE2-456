@@ -5,6 +5,7 @@ select * from RAP_CLIENT where CLI_COURRIEL like 'test@gmail.com';
 select max(cli_num) as max from rap_client;
 
 select * from rap_commande
+
 where cli_num = 0;
 
 select * from rap_client where cli_nom like 'test%' or cli_prenom like 'test%';
@@ -35,4 +36,3 @@ where cli_num = 1240;
 
 select sum(total_points) as somme from rap_fidelisation
 where cli_num = 1240;
-
