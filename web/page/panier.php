@@ -5,10 +5,10 @@ session_start();
 // Initialisation du panier en session si besoin
 if (!isset($_SESSION['panier'])) {
     $_SESSION['panier'] = [
-        ["nom" => "Pomme", "prix" => 1.20, "quantite" => 2],
-        ["nom" => "Banane", "prix" => 0.80, "quantite" => 1],
-        ["nom" => "Orange", "prix" => 1.50, "quantite" => 4],
-        ["nom" => "Mangue", "prix" => 2.00, "quantite" => 2]
+        ["nom" => "Pizza 4 fromages", "prix" => 25.00, "quantite" => 2],
+        ["nom" => "Pizza 2 fromages", "prix" => 22.00, "quantite" => 1],
+        ["nom" => "Burger Classique", "prix" => 18.00, "quantite" => 1],
+        ["nom" => "Wrap Poulet", "prix" => 12.00, "quantite" => 2]
     ];
 }
 
@@ -159,7 +159,7 @@ $_SESSION['panier_total'] = $total;
           ?>
         </ul>
         <div class="flex justify-between items-center mb-6">
-          <span class="text-xl font-bold text-black">Total </span>
+          <span class="text-xl font-bold text-black">Total :</span>
           <span class="text-xl font-bold text-orange-500"><?php echo number_format($total, 2, ',', ' '); ?> €</span>
         </div>
         <a href="?page=payer.php">
