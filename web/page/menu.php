@@ -1,3 +1,4 @@
+<?php require_once('../session/session.php'); ?>
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="relative min-h-screen w-full">
@@ -40,6 +41,14 @@
         <a href="?page=panier.php"
            class="w-full text-left text-xl font-bold text-white transition-all duration-300 whitespace-nowrap focus:outline-none hover:bg-orange-100 hover:text-orange-500 active:scale-95 transition-transform rounded-md py-2 px-3">
           Panier
+          <?php 
+            if (isset($_SESSION['panier']['produits']) && isset($_SESSION['panier']['menus'])) {
+                echo count($_SESSION['panier']['produits']) + count($_SESSION['panier']['menus']);
+            } else {
+                echo 0;
+                var_dump($_SESSION['panier']['produits']);
+            }
+        ?>
         </a>
     </div>
 </aside>

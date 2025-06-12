@@ -1,4 +1,8 @@
-<?php require_once("../../php/functions.php"); ?>
+<?php 
+require_once('../session/session.php');
+require_once("../../php/functions.php"); 
+
+?>
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="relative min-h-screen w-full">
@@ -42,13 +46,13 @@
            class="w-full text-left text-xl font-bold text-white transition-all duration-300 whitespace-nowrap focus:outline-none hover:bg-orange-100 hover:text-orange-500 active:scale-95 transition-transform rounded-md py-2 px-3">
           Panier
           <?php 
-            if (isset($_SERVER['commande']['produits']) && isset($_SERVER['commande']['menus'])) {
-                echo count($_SERVER['commande']['produits']) + count($_SERVER['commande']['menus']);
+            if (isset($_SESSION['panier']['produits']) && isset($_SESSION['panier']['menus'])) {
+                echo getNbProduits() + count($_SESSION['panier']['menus']);
             } else {
                 echo 0;
-                var_dump($_SERVER['commande']['produits']);
+                var_dump($_SESSION['panier']['produits']);
             }
-        ?>
+          ?>
         </a>
       </div>
     </aside>

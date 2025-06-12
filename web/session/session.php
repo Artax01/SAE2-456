@@ -52,4 +52,12 @@ function getTel() {
 function getEmail() {
     return $_SESSION['client']['email'] ?? null;
 }
+
+function getNbProduits() {
+    $result = 0;
+    foreach ($_SESSION['panier']['produits'] as $items) {
+        $result = $result + $items['quantite'];
+    }
+    return $result;
+}
 ?>
