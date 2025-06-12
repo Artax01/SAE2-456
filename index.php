@@ -46,5 +46,4 @@ if (!isset($_SESSION["panier"])) {
     <?php require_once './web/component/footer.php';?>
 
 </body>
-
 </html>

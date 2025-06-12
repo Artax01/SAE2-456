@@ -59,9 +59,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
 
     } catch (PDOException $e) {
-        echo $e;
-        // header('Location: ../page/signup.php?error=server');
-        // exit;
+        header('Location: ../page/signup.php?error=server');
+        exit;
     }
 } else {
     header('Location: ../page/signup.php');
