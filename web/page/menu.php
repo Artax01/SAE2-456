@@ -79,53 +79,43 @@
                 </div>
               </div>
             </div>
+            <!-- Formulaire unique PAR CARTE -->
             <div class="absolute bottom-0 left-0 w-full flex flex-col items-center">
               <div class="bg-white rounded-full px-8 py-2 font-bold text-lg mb-4 shadow text-black mt-1 text-center">
                 <?= $menuNom ?? '' ?><br>
                 <span class="font-normal"><?= $plat["PLA_PRIX_VENTE_UNIT_HT"] ?? '' ?>€</span>
               </div>
-              <!-- Bloc pour aligner les deux formulaires sur la même ligne -->
-              <div class="flex flex-row items-end justify-center gap-4 w-full mb-4">
-                <!-- Formulaire "Ajouter au panier" avec les selects -->
-                <form action="ajout_panier.php" method="POST" class="flex flex-col items-center w-full">
-                  <input type="hidden" name="pla_num_menu" value="<?= getOnePlaNumPerMenuByName($conn,$menuNom); ?>">
-                  <div class="flex justify-center w-full mb-2">
-                    <div class="grid grid-cols-2 gap-2 w-56">
-                      <?php $pla_num1="";$pla_num2="";$pla_num3="";$pla_num4=""; ?>
-                      <select name="plat" class="rounded-xl border border-orange-300 py-1 px-2 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-400 text-sm" aria-label="Plat" required>
-                        <?php foreach(getAllPlatByMenuName($conn, $menuNom) as $numPlat): ?>
-                          
-                          <option name="pla_num1" value="<?= $numPlat ?>"><?= getPlatByPlaNum($conn, $numPlat)["PLA_NOM"] ?></option>
-                        <?php endforeach; ?>
-                      </select>
-                      <select name="dessert" class="rounded-xl border border-orange-300 py-1 px-2 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-400 text-sm" aria-label="Dessert" required>
-                        <?php foreach(getAllDessertsByMenuName($conn, $menuNom) as $numPlat): ?>
-                          <option name="pla_num2" value="<?= $numPlat ?>"><?=getPlatByPlaNum($conn, $numPlat)["PLA_NOM"] ?></option>
-                        <?php endforeach; ?>
-                      </select>
-                      <select name="legume" class="rounded-xl border border-orange-300 py-1 px-2 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-400 text-sm" aria-label="Légume" required>
-                        <?php foreach(getAllLegumesByMenuName($conn, $menuNom) as $numPlat): ?>
-                          <option name="pla_num3" value="<?= $numPlat ?>"><?=getPlatByPlaNum($conn, $numPlat)["PLA_NOM"] ?></option>
-                        <?php endforeach; ?>
-                      </select>
-                      <select name="boisson" class="rounded-xl border border-orange-300 py-1 px-2 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-400 text-sm" aria-label="Boissons" required>
-                        <?php foreach(getAllBoissonsByMenuName($conn, $menuNom) as $numPlat): ?>
-                          <option name="pla_num4" value="<?= $numPlat ?>"><?=getPlatByPlaNum($conn, $numPlat)["PLA_NOM"] ?></option>
-                        <?php endforeach; ?>
-                      </select>
-                    </div>
+              <form action="./web/page/traitement.php" method="POST" class="flex flex-col items-center w-full">
+                <input type="hidden" name="menu_num" value="<?= getOnePlaNumPerMenuByName($conn, $menuNom); ?>">
+                <div class="flex justify-center w-full mb-2">
+                  <div class="grid grid-cols-2 gap-2 w-56 mx-auto">
+                    <select name="plat" class="rounded-xl border border-orange-300 py-1 px-2 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-400 text-sm" aria-label="Plat" required>
+                      <?php foreach(getAllPlatByMenuName($conn, $menuNom) as $numPlat): ?>
+                        <option value="<?= $numPlat ?>"><?= getPlatByPlaNum($conn, $numPlat)["PLA_NOM"] ?></option>
+                      <?php endforeach; ?>
+                    </select>
+                    <select name="dessert" class="rounded-xl border border-orange-300 py-1 px-2 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-400 text-sm" aria-label="Dessert" required>
+                      <?php foreach(getAllDessertsByMenuName($conn, $menuNom) as $numPlat): ?>
+                        <option value="<?= $numPlat ?>"><?=getPlatByPlaNum($conn, $numPlat)["PLA_NOM"] ?></option>
+                      <?php endforeach; ?>
+                    </select>
+                    <select name="legume" class="rounded-xl border border-orange-300 py-1 px-2 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-400 text-sm" aria-label="Légume" required>
+                      <?php foreach(getAllLegumesByMenuName($conn, $menuNom) as $numPlat): ?>
+                        <option value="<?= $numPlat ?>"><?=getPlatByPlaNum($conn, $numPlat)["PLA_NOM"] ?></option>
+                      <?php endforeach; ?>
+                    </select>
+                    <select name="boisson" class="rounded-xl border border-orange-300 py-1 px-2 bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-400 text-sm" aria-label="Boissons" required>
+                      <?php foreach(getAllBoissonsByMenuName($conn, $menuNom) as $numPlat): ?>
+                        <option value="<?= $numPlat ?>"><?=getPlatByPlaNum($conn, $numPlat)["PLA_NOM"] ?></option>
+                      <?php endforeach; ?>
+                    </select>
                   </div>
-                  <input type="hidden" name="menu_num" value="<?= getOnePlaNumPerMenuByName($conn, $menuNom); ?>">
-                  <div class="flex flex-row w-full gap-4">
-                    <button type="submit" class="border-2 border-orange-400 text-orange-400 font-semibold px-6 py-2 rounded-full hover:bg-orange-50 transition w-full">Ajouter au panier</button>
-                    <!-- Formulaire "Commander" aligné à côté, même baseline que le bouton du form précédent -->
-                    <form action="commander.php" method="POST" class="flex flex-col justify-end items-center w-full">
-                      <input type="hidden" name="menu_num" value="<?= getOnePlaNumPerMenuByName($conn, $menuNom); ?>">
-                      <button type="submit" class="bg-orange-400 text-white font-semibold px-6 py-2 rounded-full hover:bg-orange-500 transition w-full">Commander</button>
-                    </form>
-                  </div>
-                </form>
-              </div>
+                </div>
+                <div class="flex flex-row w-full gap-4">
+                  <button type="submit" name="ajouter" value="1" class="border-2 border-orange-400 text-orange-400 font-semibold px-6 py-2 rounded-full hover:bg-orange-50 transition w-1/2">Ajouter au panier</button>
+                  <button type="submit" name="commander" value="1" class="border-2 border-orange-400 text-orange-400 font-semibold px-6 py-2 rounded-full bg-orange-400 text-white transition w-1/2">Commander</button>
+                </div>
+              </form>
             </div>
           </div>
         <?php endforeach; ?>
@@ -152,4 +142,5 @@
       });
     });
   });
+  
 </script>
