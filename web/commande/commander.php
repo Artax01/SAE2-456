@@ -1,19 +1,14 @@
 <?php
 
-if (!isset($_SESSION['commande'])) {
-    $_SESSION['commande'] = [
-        'produits' => [],
-        'menus' => []
-    ];
-}
+include('./verif_panier.php');
 
 function addProduit() {
     // ...
 }
 
 function addMenu() {
-    if (isset($_SESSION['commande']['menu'])) {
-        $_SESSION['commande']['menu'];
+    if (isset($_SESSION['panier']['menu'])) {
+        $_SESSION['panier']['menu'];
     }
 }
 

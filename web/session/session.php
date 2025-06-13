@@ -1,5 +1,4 @@
 <?php
-
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -7,6 +6,7 @@ if (session_status() === PHP_SESSION_NONE) {
 function isLoggedIn() {
     return isset($_SESSION['client']);
 }
+
 
 function isLoggedInAdmin($conn) {
     try {
@@ -27,6 +27,7 @@ function isLoggedInAdmin($conn) {
     }
     return false;
 }
+
 
 function getClient() {
     return $_SESSION['client'] ?? null;
@@ -50,5 +51,13 @@ function getTel() {
 
 function getEmail() {
     return $_SESSION['client']['email'] ?? null;
+}
+
+function getNbProduits() {
+    $result = 0;
+    foreach ($_SESSION['panier']['produits'] as $items) {
+        $result = $result + $items['quantite'];
+    }
+    return $result;
 }
 ?>

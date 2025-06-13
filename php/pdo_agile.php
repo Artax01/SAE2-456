@@ -126,7 +126,6 @@ function fabriquerChaineConnexPDO()
 	)";
 	return $db;
 }
-
 function afficherObj($obj)
 {
 	echo "<PRE>";
