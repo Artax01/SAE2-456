@@ -103,7 +103,7 @@ require_once("../../php/functions.php");
                     <input type="hidden" name="pla_prix_ht" value="<?= $plat["PLA_PRIX_VENTE_UNIT_HT"] ?>">
                     <button type="submit" class="w-full border-2 border-orange-400 text-orange-400 font-semibold px-4 py-2 rounded-full hover:bg-orange-50 transition">Ajouter au panier</button>
                   </form>
-                  <form action="./web/commande/commander.php" method="POST" class="w-full sm:w-auto">
+                  <form action="./web/commande/commanderPlat.php" method="POST" class="w-full sm:w-auto">
                     <input type="hidden" name="pla_num" value="<?= $plat["PLA_NUM"] ?>">
                     <input type="hidden" name="pla_nom" value="<?= $plat["PLA_NOM"] ?>">
                     <input type="hidden" name="pla_prix_ht" value="<?= $plat["PLA_PRIX_VENTE_UNIT_HT"] ?>">
