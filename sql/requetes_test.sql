@@ -63,6 +63,14 @@ where cli_num = 1241;
 
 select sum(total_points) as somme from rap_fidelisation
 where cli_num = 1240;
+--insert into rap_fidelisation values (1240, sysdate ,2515);
+/*
+
+select * from rap_fidelisation
+where cli_num = 1241;
+
+select sum(total_points) as somme from rap_fidelisation
+where cli_num = 1240;
 
 
 select nvl(cli_num,null) as n from rap_client
