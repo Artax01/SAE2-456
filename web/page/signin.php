@@ -25,7 +25,6 @@ if(isLoggedInAdmin($conn)) {
 
 <div id="box-container" class="bg-black">
   <div id="div-signin" class="mt-7 bg-white border border-gray-200 rounded-xl shadow-2xs">
-
     <div class="p-4 sm:p-7">
       <div class="text-center">
         <h1 class="block text-2xl font-bold text-gray-800">

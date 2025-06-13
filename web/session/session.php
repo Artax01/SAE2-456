@@ -8,7 +8,10 @@ function isLoggedIn() {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> prod
 
 function isLoggedInAdmin($conn) {
     try {
@@ -31,7 +34,10 @@ function isLoggedInAdmin($conn) {
 }
 
 
+<<<<<<< HEAD
 >>>>>>> web
+=======
+>>>>>>> prod
 function getClient() {
     return $_SESSION['client'] ?? null;
 }
@@ -56,8 +62,12 @@ function getEmail() {
     return $_SESSION['client']['email'] ?? null;
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 ?>
 
 =======
 ?>
 >>>>>>> web
+=======
+?>
+>>>>>>> prod

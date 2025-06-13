@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 <div class="bg-gray-800 h-full">
->>>>>>> web
 <?php
 require_once '../session/session.php';
 ?>
@@ -13,11 +10,7 @@ require_once '../session/session.php';
 
 <?php require_once '../component/CASBanner.php';?>
 
-<<<<<<< HEAD
-<div id="box-container">
-=======
 <div id="box-container" class="bg-black">
->>>>>>> web
   <div id="div-signup" class="mt-7 bg-white border border-gray-200 rounded-xl shadow-2xs">
     <div class="p-4 sm:p-7">
       <div class="text-center">
@@ -165,9 +158,6 @@ require_once '../session/session.php';
       </div>
     </div>
   </div>
-<<<<<<< HEAD
-=======
 </div>
 </div>
->>>>>>> web
 </div>

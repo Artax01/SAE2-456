@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 /*
->>>>>>> web
 select * from RAP_CLIENT;
 
 select * from RAP_CLIENT where CLI_COURRIEL like 'test@gmail.com';
@@ -16,10 +13,7 @@ select * from rap_client where cli_nom like 'test%' or cli_prenom like 'test%';
 
 select * from rap_commande
 where cli_num = 1243;
-<<<<<<< HEAD
-=======
 */
->>>>>>> web
 /*
 insert into rap_commande values (2,99999,1243, sysdate, sysdate, 7.18 , 0, 0, 15);
 insert into rap_commande values (2,99998,1243, sysdate, sysdate, 43.88 , 0, 0, 35);
@@ -37,15 +31,6 @@ insert into rap_commande values (1,99993,1243, sysdate, sysdate, 27.84 , 0, 0, 8
 
 --DELETE from rap_commande
 --where cli_num = 1243;
-<<<<<<< HEAD
-insert into rap_fidelisation values (1240, sysdate ,2515);
-
-select * from rap_fidelisation
-where cli_num = 1240;
-
-select sum(total_points) as somme from rap_fidelisation
-where cli_num = 1240;
-=======
 --insert into rap_fidelisation values (1240, sysdate ,2515);
 /*
 
@@ -79,4 +64,3 @@ select * from rap_commande
 order by cli_num;
 
 select * from rap_commande where cli_num = 1241;
->>>>>>> web

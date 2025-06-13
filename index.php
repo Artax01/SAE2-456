@@ -1,5 +1,6 @@
 <?php
 require_once './web/session/session.php';
+<<<<<<< HEAD
 $isLoggedIn = getClient();
 
 if (!isset($_SESSION["panier"])) {
@@ -32,6 +33,12 @@ if (!isset($_SESSION["panier"])) {
 <!DOCTYPE html>
 
 >>>>>>> web
+=======
+?>
+
+<!DOCTYPE html>
+
+>>>>>>> prod
 <?php require_once './web/component/meta.php'; ?>
 <!-- style commun de l'application -->
 <link rel="stylesheet" href="./web/assets/css/root.css">
