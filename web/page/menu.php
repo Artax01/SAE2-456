@@ -43,7 +43,7 @@
           Panier
           <?php 
             if (isset($_SESSION['panier']['produits']) && isset($_SESSION['panier']['menus'])) {
-                echo count($_SESSION['panier']['produits']) + count($_SESSION['panier']['menus']);
+              echo getNbProduits() + count($_SESSION['panier']['menus']);
             } else {
                 echo 0;
                 var_dump($_SESSION['panier']['produits']);
