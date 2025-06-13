@@ -1,12 +1,8 @@
-
 <?php 
 require_once('../session/session.php');
 require_once("../../php/functions.php"); 
 
 ?>
-
-<?php require_once("../../php/functions.php"); ?>
-
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="relative min-h-screen w-full">
@@ -96,28 +92,6 @@ require_once("../../php/functions.php");
                 </div>
               </div>
               <!-- Infos du plat + boutons -->
-              <div class="absolute bottom-0 left-0 w-full flex flex-col items-center">
-                <div class="bg-white rounded-full px-8 py-2 font-bold text-lg mb-6 shadow text-black mt-1 text-center">
-                  <?= $plat["PLA_NOM"] ?? '' ?><br>
-                  <span class="font-normal"><?= $plat["PLA_PRIX_VENTE_UNIT_HT"] ?? '' ?>€</span>
-                </div>
-                <div class="flex gap-4 mb-4">
-                  <form action="./web/commande/ajout_panier.php" method="POST">
-                    <input type="hidden" name="pla_num" value="<?= $plat["PLA_NUM"] ?>">
-                    <button type="submit" class="border-2 border-orange-400 text-orange-400 font-semibold px-4 py-2 rounded-full hover:bg-orange-50 transition">Ajouter au panier</button>
-                  </form>
-                  <form action="./web/commande/commander.php" method="POST">
-                    <input type="hidden" name="pla_num" value="<?= $plat["PLA_NUM"] ?>">
-                    <input type="hidden" name="pla_nom" value="<?= $plat["PLA_NOM"] ?>">
-                    <input type="hidden" name="pla_prix_ht" value="<?= $plat["PLA_PRIX_VENTE_UNIT_HT"] ?>">
-                    <button type="submit" class="border-2 border-orange-400 text-orange-400 font-semibold px-4 py-2 rounded-full hover:bg-orange-50 transition">Ajouter au panier</button>
-                  </form>
-                  <form action="./web/commande/commanderPlat.php" method="POST">
-                    <input type="hidden" name="pla_num" value="<?= $plat["PLA_NUM"] ?>">
-                    <input type="hidden" name="pla_nom" value="<?= $plat["PLA_NOM"] ?>">
-                    <input type="hidden" name="pla_prix_ht" value="<?= $plat["PLA_PRIX_VENTE_UNIT_HT"] ?>">
-                    <button type="submit" class="bg-orange-400 text-white font-semibold px-6 py-2 rounded-full hover:bg-orange-500 transition h-full">Commander</button>
-
               <div class="flex flex-col items-center mt-4">
                 <div class="bg-white rounded-full px-8 py-2 font-bold text-lg mb-4 shadow text-black mt-1 text-center">
                   <?= $plat["PLA_NOM"] ?? '' ?><br>
