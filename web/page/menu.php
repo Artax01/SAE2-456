@@ -48,11 +48,7 @@
         ?>
         </a>
       </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-    </div> -->
+    </div>
 
     <!-- Titre -->
     <h1 class="text-5xl font-extrabold text-orange-400 mb-8 tracking-wide">NOS MENUS</h1>
@@ -130,11 +126,10 @@
     </div>
   </div>
 </div>
-    </aside> -->
-=======
+    </aside>
+    </aside>
     </aside>
 
->>>>>>> web
     <!-- Main Content -->
     <div class="flex-1 flex flex-col ml-72 pr-10 py-6 overflow-y-auto">
       <h1 class="text-5xl font-extrabold text-orange-400 mb-8 tracking-wide">NOS MENUS</h1>

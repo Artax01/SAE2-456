@@ -37,7 +37,7 @@ $prix_total = isset($_SESSION['panier_total']) ? number_format($_SESSION['panier
 </p>
 <?php
 
-$points_fidelite = 0;
+$points_fidelite = 100;
 if (isLoggedIn()) {
     if ($conn) {
         $sql = "SELECT SUM(TOTAL_POINTS) AS POINTS
