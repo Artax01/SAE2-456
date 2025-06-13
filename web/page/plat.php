@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 <?php 
 require_once('../session/session.php');
 require_once("../../php/functions.php"); 
 
 ?>
+=======
+<?php require_once("../../php/functions.php"); ?>
+>>>>>>> web_commandes
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="relative min-h-screen w-full">
