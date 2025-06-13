@@ -14,7 +14,7 @@ if (!isLoggedIn()) {
 <?php
     try {
         $id = getId();
-        $sql = "SELECT * FROM RAP_COMMANDE WHERE CLI_NUM = 1";
+        $sql = "SELECT * FROM RAP_COMMANDE WHERE CLI_NUM = ".getId();
         $stmt = preparerRequetePDO($conn,$sql);
         $donnees = array();
         LireDonneesPDOPreparee($stmt, $donnees);
