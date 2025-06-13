@@ -5324,13 +5324,13 @@ insert into rap_plat_image values ((select pla_num from rap_plat where lower(pla
 insert into rap_plat_image values ((select pla_num from rap_plat where lower(pla_nom) ='dronembourg 33 cl'), 'web/assets/img/dronembourg.jpeg', 'dronembourg 33 cl');
 insert into rap_plat_image values ((select pla_num from rap_plat where lower(pla_nom) ='britel délices 25 cl'), 'web/assets/img/britel.webp', 'britel délice');
 insert into rap_plat_image values ((select pla_num from rap_plat where lower(pla_nom) ='eau plate 33 cl'), 'web/assets/img/verre_eau.jpg', 'eau plate 33 cl');
-insert into rap_plat_image values ((select pla_num from rap_plat where lower(pla_nom) ='eau gazeuse 25 cl'), 'web/assets/img/verre_eau_gazeuse.jpg', 'eau gazeuse 25 cl');
+insert into rap_plat_image values ((select pla_num from rap_plat where lower(pla_nom) ='eau gazeuse 25 cl'), 'web/assets/img/verre.jpg', 'eau gazeuse 25 cl');
 
 insert into rap_plat_image values ((select pla_num from rap_plat where lower(pla_nom) ='pizza margherita (moyenne)'), 'web/assets/img/pizza_margherita.jpg', 'pizza margherita (moyenne)');
 insert into rap_plat_image values ((select pla_num from rap_plat where lower(pla_nom) ='pizza margherita (grande)'), 'web/assets/img/pizza_margherita.jpg', 'pizza margherita (grande)');
 insert into rap_plat_image values ((select pla_num from rap_plat where lower(pla_nom) ='pizza tour de france'), 'web/assets/img/pizza_tour_de_france.jpg', 'pizza tour de france');
 
-insert into rap_plat_image values ((select pla_num from rap_plat where lower(pla_nom) ='salade'), 'web/assets/img/salade.jpg', 'salade');
+insert into rap_plat_image values ((select pla_num from rap_plat where lower(pla_nom) ='salade'), 'web/assets/img/salade.jpeg', 'salade');
 
 insert into rap_plat_image values ((select pla_num from rap_plat where lower(pla_nom) ='kebab sauce blanche'), 'web/assets/img/kebab.jpg', 'kebab sauce blanche');
 insert into rap_plat_image values ((select pla_num from rap_plat where lower(pla_nom) ='kebab sauce algérienne'), 'web/assets/img/kebab.jpg', 'Kebab sauce algérienne');
