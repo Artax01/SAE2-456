@@ -12,6 +12,7 @@ function initPayerJS() {
 
     function updateReduction() {
         messageErreur.classList.remove('active');
+
         let val = input.value;
 
         let reduction = 0;
@@ -22,11 +23,17 @@ function initPayerJS() {
         }
 
         if (parseFloat(parseFloat(val) * 0.01) > parseFloat(maxPoints.value)) {
-            input.value = 0;
+            input.value = "";
             reductionSpan.textContent = "0,00" + " €";
             messageErreur.classList.add('active');
         } else {
             reductionSpan.textContent = reduction + " €";
+        }
+
+        if (input.value > maxPoints.value) {
+            input.value = "";
+            reductionSpan.textContent = "0,00" + " €";
+            messageErreur.classList.add('active');
         }
     }
 

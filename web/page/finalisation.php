@@ -6,29 +6,6 @@
         exit;
     }
 
-    // try {
-    //     $totsql = "
-    //     SELECT SUM(p.PLA_NB_POINTS * a.APP_QUANTITE) AS total_points
-    //     FROM RAP_APPARTENIR a
-    //     JOIN RAP_PLAT p ON a.PLA_NUM = p.PLA_NUM
-    //     WHERE a.RES_NUM = ".$resNum;
-
-    //     $stmt = preparerRequetePDO($conn, $totsql);
-    //     $stmt->execute();
-    //     $total_points = $stmt->fetchColumn();
-
-    //     var_dump("totalpoints", $total_points);
-    //     echo "<br/>";
-    // }
-    // catch (PDOException $e) {
-    //     echo 'erreur pour recupérer le total de points';
-    //     var_dump($e);
-    // }
-
-    // $insertSql = "INSERT INTO rap_fidelisation (cli_num, sui_date_points, total_points) VALUES (:cli_num, sysdate, :total_points)";
-    // $stmt = preparerRequetePDO($conn, $insertSql);
-    // $stmt->execute(['cli_num' => $cliNum, 'total_points' => $total_points]);
-
     try {
         $comNumSql = "SELECT (max(COM_NUM) + 1) as max FROM RAP_COMMANDE";
         $stmt2 = preparerRequetePDO($conn, $comNumSql);
@@ -90,6 +67,29 @@
         }
             catch (PDOException $e) {
             echo "problème lors de l'enregistrement de la commande dans RAP_APPPARTENIR";
+        }
+
+
+        try {
+            $totsql = "
+            SELECT p.PLA_NB_POINTS * a.APP_QUANTITE AS total_points
+            FROM RAP_APPARTENIR a
+            JOIN RAP_PLAT p ON a.PLA_NUM = p.PLA_NUM
+            WHERE a.RES_NUM = ".$resNum;
+    
+            $stmt = preparerRequetePDO($conn, $totsql);
+            $stmt->execute();
+            $totalPoints = $stmt->fetchColumn();
+
+            $suiDatePoints = date('d/m/Y');
+
+            $sql = "INSERT INTO RAP_FIDELISATION VALUES ('".$cliNum."','".$suiDatePoints."','".$totalPoints."')";
+            $stmt = preparerRequetePDO($conn, $sql);
+            $stmt->execute();
+        }
+        catch (PDOException $e) {
+            echo "problème lors de l'enregistrement de la commande dans RAP_FIDELISATION";
+            var_dump($e);
         }
 
         $successfullySaved = true;
