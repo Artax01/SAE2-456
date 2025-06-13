@@ -60,6 +60,7 @@ if (isLoggedIn()) {
 <p class="text-center text-xl mb-6 flex items-center justify-center gap-2">
     Vos points fidélités :
     <span class="text-orange-500" id="points-fidelite"><?= htmlspecialchars($points_fidelite) ?></span>
+    <input id="max_points" type="text" class="hidden" value="<?= $points_fidelite ?>">
     <input
         type="number"
         name="points_utilises"
@@ -67,10 +68,16 @@ if (isLoggedIn()) {
         min="0"
         max="<?= htmlspecialchars($points_fidelite) ?>"
         class="border rounded px-2 py-1 w-35 text-center"
-        placeholder="À utiliser"
+        placeholder="0"
         style="margin-left: 10px;"
     >
 </p>
+<style>
+#info_points.active {
+  display: flex !important;
+}
+</style>
+<p id="info_points" class="hidden flex justify-center text-red-500 align-center">Votre max de points ne peut être dépassés.</p>
 <p class="text-center text-lg mb-6" id="reduction-fidelite">
     Réduction appliquée : <span class="text-green-600" id="reduction-montant">0,00 €</span>
 </p>

@@ -32,9 +32,10 @@ insert into rap_commande values (1,99993,1243, sysdate, sysdate, 27.84 , 0, 0, 8
 --DELETE from rap_commande
 --where cli_num = 1243;
 --insert into rap_fidelisation values (1240, sysdate ,2515);
+/*
 
 select * from rap_fidelisation
-where cli_num = 1240;
+where cli_num = 1241;
 
 select sum(total_points) as somme from rap_fidelisation
 where cli_num = 1240;

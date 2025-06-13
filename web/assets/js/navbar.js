@@ -13,6 +13,7 @@ function loadPage(page, button = null, updateURL = true) {
 
     // roue de chargement
     content.innerHTML = '<div class="centered"><div class="loader"></div></div>';
+
     if (updateURL) history.pushState({}, '', '?page=' + page);
 
     setTimeout(() => {
@@ -38,6 +39,7 @@ function loadPage(page, button = null, updateURL = true) {
             content.style.opacity = 0;
             setTimeout(() => {
                 content.innerHTML = html;
+                if (window.initPayerJS) window.initPayerJS();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 content.style.opacity = 1;
             }, 100);
