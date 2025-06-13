@@ -9,11 +9,15 @@ function isLoggedIn() {
 
 
 function isLoggedInAdmin($conn) {
+    if (!isLoggedIn()) {
+        return false;
+    }
+
     try {
         $sql = "select cli_num from rap_client
                 where cli_num in (
                     select cli_num from rap_administrateur
-                ) and cli_num = 1240";
+                )";
         $res = LireDonneesPDO1($conn,$sql,$donnees);
 
         if (isset($donnees[0]["CLI_NUM"])) {
@@ -59,5 +63,21 @@ function getNbProduits() {
         $result = $result + $items['quantite'];
     }
     return $result;
+}
+
+function getNbMenus() {
+    return count($_SESSION['panier']['menus']) ?? 0;
+}
+
+function getPrixTotal() {
+    $_SESSION['panier']['somme'] = 0.0;
+    
+    foreach ($_SESSION['panier']['produits'] as $items) {
+        $quantite = (float) str_replace(',', '.', $items['quantite']);
+        $prix = (float) str_replace(',', '.', $items['prix']);
+        $_SESSION['panier']['somme'] += $quantite * $prix;
+    }
+    // ajouter les menus apres
+    return $_SESSION['panier']['somme'];
 }
 ?>

@@ -1,5 +1,7 @@
 <?php
 require_once('../session/session.php');
+require_once('../../php/connexion.php');
+require_once('../../php/functions.php');
 ?>
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -43,7 +45,7 @@ require_once('../session/session.php');
           Panier
           <?php 
             if (isset($_SESSION['panier']['produits']) && isset($_SESSION['panier']['menus'])) {
-                echo getNbProduits() + count($_SESSION['panier']['menus']);
+              echo getNbProduits() + count($_SESSION['panier']['menus']);
             } else {
                 echo 0;
                 var_dump($_SESSION['panier']['produits']);
@@ -57,32 +59,53 @@ require_once('../session/session.php');
       <h1 class="text-5xl font-extrabold text-orange-400 mb-8 text-center">VOTRE PANIER</h1>
       <div class="bg-white bg-opacity-90 rounded-2xl shadow-lg p-8 max-w-2xl mx-auto" id="panier-content">
         <ul class="divide-y divide-gray-200 mb-6">
-
-          <?php foreach (['produits', 'menus'] as $type): ?>
-            <?php foreach ($_SESSION['panier'][$type] as $item): ?>
-              <li class="flex items-center justify-between py-4">
-                  <div class="flex items-center gap-4">
-                      <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=80&q=80" alt="<?= $nom ?>" class="w-20 h-20 rounded-xl object-cover border-2 border-orange-200">
-                      <div>
-                          <div class="font-bold text-black text-lg"><?= $item['nom']; ?></div>
-                          <div class="text-gray-500 flex items-center gap-2">
-                              <button type="button" class="btn-moins text-3xl px-4 py-1 bg-orange-100 rounded hover:bg-orange-200" data-nom="<?= $item['nom']; ?>" data-type="<?= $type ?>">-</button>
-                              <span><?= $item['quantite']; ?> x <?= $item['prix'] ?>€</span>
-                              <button type="button" class="btn-plus text-3xl px-4 py-1 bg-orange-100 rounded hover:bg-orange-200" data-nom="<?= $item['nom']; ?>" data-type="<?= $type ?>">+</button>
+          <?php if ((getNbProduits() + getNbMenus()) < 1): ?>
+            <p class="text-black">Votre panier est vide.</p>
+            <br/>
+            <p class="text-black">Remplissez-le pour pouvoir effectuer une commande.</p>
+          <?php else: ?>
+            <?php foreach (['produits', 'menus'] as $type): ?>
+              <?php foreach ($_SESSION['panier'][$type] as $item): ?>
+                <?php if (((int) $item['quantite']) > 0): ?>
+                  <li class="flex items-center justify-between py-4">
+                      <div class="flex items-center gap-4">
+                        <?php
+                          $imgInfos = [];
+                          $imgInfos = getImgInfoPerPlats($conn, $item['id']);
+                        ?>
+                          <img src="<?= $imgInfos["CHEMIN_IMG"] ?>" alt="<?= $item['nom'] ?>" class="w-20 h-20 rounded-xl object-cover border-2 border-orange-200">
+                          <div>
+                              <div class="font-bold text-black text-lg"><?= $item['nom']; ?></div>
+                              <div class="text-gray-500 flex items-center gap-2">
+                                  <form action="./web/commande/moinsPlat.php" method="POST">
+                                    <input type="hidden" name="pla_num" value="<?= $item['id'] ?>">
+                                    <button type="submit" class="btn-moins text-3xl px-4 py-1 bg-orange-100 rounded hover:bg-orange-200">-</button>
+                                  </form>
+                                  <span><?= $item['quantite']; ?> x <?= $item['prix'] ?>€</span>
+                                  <form action="./web/commande/plusPlat.php" method="POST">
+                                    <input type="hidden" name="pla_num" value="<?= $item['id'] ?>">
+                                    <button type="submit" class="btn-plus text-3xl px-4 py-1 bg-orange-100 rounded hover:bg-orange-200">+</button>
+                                  </form>
+                                  <form action="./web/commande/suppPlat.php" method="POST">
+                                    <input type="hidden" name="pla_num" value="<?= $item['id'] ?>">
+                                    <button type="submit" class="btn-plus text-3xl px-4 py-1 bg-red-100 rounded hover:bg-red-200">X</button>
+                                  </form>
+                              </div>
                           </div>
                       </div>
-                  </div>
-              </li>
+                  </li>
+                <?php endif; ?>
+              <?php endforeach; ?>
             <?php endforeach; ?>
-          <?php endforeach; ?>
+            <div class="flex justify-between items-center mb-6">
+              <span class="text-xl font-bold text-black">Total :</span>
+              <span class="text-xl font-bold text-orange-500"><?= getPrixTotal(); ?> €</span>
+            </div>
+            <a href="?page=payer.php">
+              <button class="w-full bg-orange-400 hover:bg-orange-500 text-white font-bold py-3 rounded-full text-xl transition">Payer</button>
+            </a>
+          <?php endif; ?>
         </ul>
-        <div class="flex justify-between items-center mb-6">
-          <span class="text-xl font-bold text-black">Total :</span>
-          <span class="text-xl font-bold text-orange-500"><?php echo 'total'; ?> €</span>
-        </div>
-        <a href="?page=payer.php">
-          <button class="w-full bg-orange-400 hover:bg-orange-500 text-white font-bold py-3 rounded-full text-xl transition">Payer</button>
-        </a>
       </div>
     </div>
   </div>

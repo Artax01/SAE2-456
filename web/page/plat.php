@@ -1,8 +1,18 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> web
 <?php 
 require_once('../session/session.php');
 require_once("../../php/functions.php"); 
 
 ?>
+<<<<<<< HEAD
+=======
+=======
+<?php require_once("../../php/functions.php"); ?>
+>>>>>>> web_commandes
+>>>>>>> web
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="relative min-h-screen w-full">
@@ -103,10 +113,21 @@ require_once("../../php/functions.php");
                 <div class="flex gap-4 mb-4">
                   <form action="./web/commande/ajout_panier.php" method="POST">
                     <input type="hidden" name="pla_num" value="<?= $plat["PLA_NUM"] ?>">
+<<<<<<< HEAD
                     <button type="submit" class="border-2 border-orange-400 text-orange-400 font-semibold px-4 py-2 rounded-full hover:bg-orange-50 transition">Ajouter au panier</button>
                   </form>
                   <form action="./web/commande/commander.php" method="POST">
                     <input type="hidden" name="pla_num" value="<?= $plat["PLA_NUM"] ?>">
+=======
+                    <input type="hidden" name="pla_nom" value="<?= $plat["PLA_NOM"] ?>">
+                    <input type="hidden" name="pla_prix_ht" value="<?= $plat["PLA_PRIX_VENTE_UNIT_HT"] ?>">
+                    <button type="submit" class="border-2 border-orange-400 text-orange-400 font-semibold px-4 py-2 rounded-full hover:bg-orange-50 transition">Ajouter au panier</button>
+                  </form>
+                  <form action="./web/commande/commanderPlat.php" method="POST">
+                    <input type="hidden" name="pla_num" value="<?= $plat["PLA_NUM"] ?>">
+                    <input type="hidden" name="pla_nom" value="<?= $plat["PLA_NOM"] ?>">
+                    <input type="hidden" name="pla_prix_ht" value="<?= $plat["PLA_PRIX_VENTE_UNIT_HT"] ?>">
+>>>>>>> web
                     <button type="submit" class="bg-orange-400 text-white font-semibold px-6 py-2 rounded-full hover:bg-orange-500 transition h-full">Commander</button>
                   </form>
                 </div>

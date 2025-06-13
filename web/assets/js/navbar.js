@@ -16,6 +16,10 @@ function loadPage(page, button = null, updateURL = true) {
 
     if (updateURL) history.pushState({}, '', '?page=' + page);
 
+    setTimeout(() => {
+        console.log('ok');
+    }, 5000);
+
     // verification de la présence de l'etension .php
     if (!page.endsWith('.php')) {
         content.innerHTML = "<p>Une erreur est survenue car vous avez oublié d'ajouter l'extension .php à la chaîne de caractère.</p>";

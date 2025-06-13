@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {
         ajouterParamPDO($stmt, ":id", $id, 'nombre');
         $stmt->execute();
 
-        header("Location: /sae2-456-grp2/web/page/gerer.php");
+        header("Location: ../../index.php?page=gerer.php");
         exit;
         
     } catch (PDOException $e) {
