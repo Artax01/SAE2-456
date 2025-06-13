@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             array_push($_SESSION['panier']['produits'], $item);
         }
 
-        header('Location: ../../index.php?page=plat.php');
+        header('Location: ../../index.php?page=payer.php');
         exit;
     } else {
         echo 'erreur article non ajouté au panier';

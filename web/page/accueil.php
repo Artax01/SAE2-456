@@ -1,3 +1,5 @@
+<?php require_once('../session/session.php'); ?>
+
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="relative min-h-screen w-full">
     <!-- Image de fond + filtre opaque -->
@@ -40,19 +42,28 @@
         <a href="?page=panier.php"
            class="w-full text-left text-xl font-bold text-white transition-all duration-300 whitespace-nowrap focus:outline-none hover:bg-orange-100 hover:text-orange-500 active:scale-95 transition-transform rounded-md py-2 px-3">
             Panier
+            <?php 
+            if (isset($_SESSION['panier']['produits']) && isset($_SESSION['panier']['menus'])) {
+                echo getNbProduits() + count($_SESSION['panier']['menus']);
+            } else {
+                echo 0;
+                var_dump($_SESSION['panier']['produits']);
+            }
+        ?>
         </a>
     </div>
 </aside>
 
 
+
         <div class="absolute inset-0 flex flex-col items-center justify-center z-10">
-            <h1 class="text-9xl font-extrabold tracking-tight mb-4 drop-shadow-lg">
+            <h1 class="md:text-9xl text-6xl font-extrabold tracking-tight mb-4 drop-shadow-lg">
                 <span class="text-white drop-shadow-[0_4px_4px_rgba(0,0,0,1)]">RAPID</span>
                 <span class="text-orange-400 drop-shadow-[0_4px_4px_rgba(0,0,0,1)]">C3</span>
             </h1>
-            <p class="text-3xl font-semibold text-white text-center max-w-2xl drop-shadow-lg">
+            <p class="md:text-3xl text-xl font-semibold text-white text-center max-w-2xl drop-shadow-lg">
                 IUT DE CAEN CAMPUS 3<br> </p>
-            <p class="text-2xl font-semibold text-white text-center max-w-2xl drop-shadow-lg">
+            <p class="md:text-2xl text-lg font-semibold text-white text-center max-w-2xl drop-shadow-lg">
                 <br><i>" Commandez en ligne rapidement et simplement " </i></p>
             </p>
         </div>
