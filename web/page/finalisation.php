@@ -126,7 +126,7 @@
     <div class="text-center bg-white/90 backdrop-blur-md p-8 rounded-xl shadow-xl max-w-md w-full">
         <h1 class="text-3xl font-bold text-green-600 mb-4">Commande terminée ✅</h1>
         <p class="text-gray-800 mb-2">Merci pour votre commande.</p>
-        <p class="text-gray-700">Redirection vers l'accueil dans <span id="timer" class="font-semibold text-black">10</span> secondes...</p>
+        <p class="text-gray-700">Vous pouvez désormais retourner à <span id="timer" class="font-semibold text-black">l'accueil</span></p>
     </div>
 </div>
 
