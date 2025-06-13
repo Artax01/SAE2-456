@@ -46,13 +46,13 @@
 
 
         <div class="absolute inset-0 flex flex-col items-center justify-center z-10">
-            <h1 class="text-9xl font-extrabold tracking-tight mb-4 drop-shadow-lg">
+            <h1 class="md:text-9xl text-6xl font-extrabold tracking-tight mb-4 drop-shadow-lg">
                 <span class="text-white drop-shadow-[0_4px_4px_rgba(0,0,0,1)]">RAPID</span>
                 <span class="text-orange-400 drop-shadow-[0_4px_4px_rgba(0,0,0,1)]">C3</span>
             </h1>
-            <p class="text-3xl font-semibold text-white text-center max-w-2xl drop-shadow-lg">
+            <p class="md:text-3xl text-xl font-semibold text-white text-center max-w-2xl drop-shadow-lg">
                 IUT DE CAEN CAMPUS 3<br> </p>
-            <p class="text-2xl font-semibold text-white text-center max-w-2xl drop-shadow-lg">
+            <p class="md:text-2xl text-lg font-semibold text-white text-center max-w-2xl drop-shadow-lg">
                 <br><i>" Commandez en ligne rapidement et simplement " </i></p>
             </p>
         </div>

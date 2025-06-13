@@ -1,4 +1,5 @@
 
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <?php 
 require_once './web/session/session.php';
 ?>
@@ -8,22 +9,26 @@ require_once './web/session/session.php';
 <!-- ========== NAVBAR MOBILE ========== -->
 <div class="navbar">
   <button id="btn-accueil" onclick="loadPage('accueil.php', this)">
-    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" fill="gray">
-      <path d="M3 9.75L12 3l9 6.75v10.5A1.75 1.75 0 0 1 19.25 22h-3.5A1.75 1.75 0 0 1 14 20.25V15a1 1 0 0 0-2 0v5.25A1.75 1.75 0 0 1 10.25 22h-3.5A1.75 1.75 0 0 1 5 20.25V9.75z" />
-    </svg>
+  <a href="?page=accueil.php" class="material-icons text-orange-400 text-[4.5rem] mr-4 flex items-center justify-center">home</a>
     <small>Accueil</small>
   </button>
-  <button id="btn-commander" onclick="loadPage('commander.php', this)">
-    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" fill="gray">
-      <path d="M5.25 3A2.25 2.25 0 0 0 3 5.25v13.5c0 .621.504 1.125 1.125 1.125.248 0 .49-.082.683-.232L6 18.25l1.192 1.393c.193.15.435.232.683.232.248 0 .49-.082.683-.232L10 18.25l1.192 1.393c.193.15.435.232.683.232s.49-.082.683-.232L14 18.25l1.192 1.393a1.125 1.125 0 0 0 1.683 0L18 18.25l1.192 1.393c.193.15.435.232.683.232.621 0 1.125-.504 1.125-1.125V5.25A2.25 2.25 0 0 0 18.75 3H5.25z" />
-    </svg>
-    <small>Commander</small>
-  </button>
-  <!-- <button id="btn-commander" onclick="showMenu('commander.php')">Commander</button> -->
+  
+  <button id="btn-commander" onclick="loadPage('menu.php', this)">
+  <a href="?page=menu.php" class="material-icons text-orange-400 text-[4.5rem] mr-4 flex items-center justify-center">menu_book</a>
 
-  <button id="btn-compte" onclick="loadPage('compte.php', this)">
-      <svg fill="gray" viewBox="0 0 24 24"><path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"/></svg>
-      <small>Compte</small>
+    <small>Menus</small>
+  </button>
+
+  <button id="btn-commander" onclick="loadPage('plat.php', this)">
+  <a href="?page=plat.php" class="material-icons text-orange-400 text-[4.5rem] mr-4 flex items-center justify-center">restaurant</a>
+
+    <small>Plats</small>
+  </button>
+
+  <button id="btn-compte" onclick="loadPage('panier.php', this)">
+  <a href="?page=panier.php" class="material-icons text-orange-400 text-[4.5rem] mr-4 flex items-center justify-center">shopping_cart</a>
+
+      <small>Panier</small>
   </button>
 </div>
 <!-- ========== END NAVBAR MOBILE ========== -->
