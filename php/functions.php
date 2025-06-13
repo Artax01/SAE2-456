@@ -12,6 +12,16 @@ function getAllPlats($conn): array{
     return $tab;
 }
 
+function getPlatByPlaNum($conn, $pla_num){
+    $tab = [];
+    
+    $req_sql = "SELECT * FROM RAP_PLAT WHERE PLA_NUM = ?";
+    $cur = preparerRequetePDO($conn, $req_sql);
+    majDonneesPrepareesTabPDO($cur, [$pla_num]);
+    LireDonneesPDOPreparee($cur, $tab);
+    return $tab[0];
+}
+
 function getPlatByType($conn, $type){
     $tab = [];
     
@@ -31,6 +41,25 @@ function getImgInfoPerPlats($conn, $pla_num): array{
     $req_sql = "SELECT * FROM RAP_PLAT_IMAGE WHERE PLA_NUM=?";
     $cur = preparerRequetePDO($conn, $req_sql);
     majDonneesPrepareesTabPDO($cur, [$pla_num]);
+    LireDonneesPDOPreparee($cur, $plat);
+    
+    return $plat[0] ?? [];
+}
+
+function getOnePlaNumPerMenuByName($conn, $pla_nom){
+    $plat = [];
+    $req_sql = "SELECT PLA_NUM FROM RAP_PLAT WHERE PLA_MENU=1 AND PLA_NOM=? AND ROWNUM<=1";
+    $cur = preparerRequetePDO($conn, $req_sql);
+    majDonneesPrepareesTabPDO($cur, [$pla_nom]);
+    LireDonneesPDOPreparee($cur, $plat);
+    
+    return $plat[0]["PLA_NUM"] ?? [];
+}
+function getOneInfoPerMenuByName($conn, $pla_nom){
+    $plat = [];
+    $req_sql = "SELECT * FROM RAP_PLAT WHERE PLA_MENU=1 AND PLA_NOM=? AND ROWNUM<=1";
+    $cur = preparerRequetePDO($conn, $req_sql);
+    majDonneesPrepareesTabPDO($cur, [$pla_nom]);
     LireDonneesPDOPreparee($cur, $plat);
     
     return $plat[0] ?? [];
@@ -63,50 +92,71 @@ function getAllMenus($conn){
     return $tab;
 }
 
-function getPlatesByMenu($conn, $pla_num){
+
+
+
+function getAllMenusName($conn){
     $tab = [];
-    
-    $req_sql = "SELECT * FROM RAP_PLAT WHERE PLA_MENU=1 AND PLA_NUM=?";
+    $noms = [];
+    $req_sql = "SELECT PLA_NOM FROM RAP_PLAT WHERE PLA_MENU=1";
     $cur = preparerRequetePDO($conn, $req_sql);
-    majDonneesPrepareesTabPDO($cur, [$pla_num]);
     LireDonneesPDOPreparee($cur, $tab);
-    if(empty($tab)) return [];
-
-    $newTab = [];
+    foreach($tab as $nom){
+        array_push($noms, $nom["PLA_NOM"]);
+    }
+    
+    return array_unique($noms);
+}
+function getAllPlatByMenuName($conn, $pla_nom){
+    $tab = [];
     $plats = [];
+    $req_sql = "SELECT SUBSTR(PLA_NUM, 1,1) || '000' AS PLAT FROM RAP_PLAT WHERE TRIM(UPPER(PLA_NOM)) LIKE TRIM(UPPER(?))";
+    $cur = preparerRequetePDO($conn, $req_sql);
+    majDonneesPrepareesTabPDO($cur, [$pla_nom]);
+    LireDonneesPDOPreparee($cur, $tab);
+    foreach($tab as $plat){
+        array_push($plats, $plat["PLAT"]);
+    }
+    return array_unique($plats);
+}
 
-    //Premier plat
+function getAllLegumesByMenuName($conn, $pla_nom){
+    $tab = [];
+    $legumes = [];
+    $req_sql = "SELECT SUBSTR(PLA_NUM, 2,1) || '00' AS PLAT FROM RAP_PLAT WHERE TRIM(UPPER(PLA_NOM)) LIKE TRIM(UPPER(?))";
+    $cur = preparerRequetePDO($conn, $req_sql);
+    majDonneesPrepareesTabPDO($cur, [$pla_nom]);
+    LireDonneesPDOPreparee($cur, $tab);
+    foreach($tab as $plat){
+        array_push($legumes, $plat["PLAT"]);
+    }
+    return array_unique($legumes);
+}
 
-    $reqSqlPremierPlat = "SELECT * FROM RAP_PLAT WHERE PLA_NUM=SUBSTR(?, 1,1) || '000'";
-    $cur = preparerRequetePDO($conn, $reqSqlPremierPlat);
-    majDonneesPrepareesTabPDO($cur, [$tab[0]["PLA_NUM"]]);
-    LireDonneesPDOPreparee($cur, $newTab);
-    array_push($plats, $newTab[0]);
+function getAllBoissonsByMenuName($conn, $pla_nom){
+    $tab = [];
+    $boissons = [];
+    $req_sql = "SELECT SUBSTR(PLA_NUM, 3,1) || '0' AS PLAT FROM RAP_PLAT WHERE TRIM(UPPER(PLA_NOM)) LIKE TRIM(UPPER(?))";
+    $cur = preparerRequetePDO($conn, $req_sql);
+    majDonneesPrepareesTabPDO($cur, [$pla_nom]);
+    LireDonneesPDOPreparee($cur, $tab);
+    foreach($tab as $plat){
+        array_push($boissons, $plat["PLAT"]);
+    }
+    return array_unique($boissons);
+}
 
-    $reqSqlPremierPlat = "SELECT * FROM RAP_PLAT WHERE PLA_NUM=SUBSTR(?, 2,1) || '00'";
-    $cur = preparerRequetePDO($conn, $reqSqlPremierPlat);
-    majDonneesPrepareesTabPDO($cur, [$tab[0]["PLA_NUM"]]);
-    LireDonneesPDOPreparee($cur, $newTab);
-    array_push($plats, $newTab[0]);
-
-    $reqSqlPremierPlat = "SELECT * FROM RAP_PLAT WHERE PLA_NUM=SUBSTR(?, 3,1) || '0'";
-    $cur = preparerRequetePDO($conn, $reqSqlPremierPlat);
-    majDonneesPrepareesTabPDO($cur, [$tab[0]["PLA_NUM"]]);
-    LireDonneesPDOPreparee($cur, $newTab);
-    array_push($plats, $newTab[0]);
-
-    $reqSqlPremierPlat = "SELECT * FROM RAP_PLAT WHERE PLA_NUM=SUBSTR(?, 4,1)";
-    $cur = preparerRequetePDO($conn, $reqSqlPremierPlat);
-    majDonneesPrepareesTabPDO($cur, [$tab[0]["PLA_NUM"]]);
-    LireDonneesPDOPreparee($cur, $newTab);
-    
-
-    array_push($plats, $newTab[0]);
-    
-    
-    
-
-    return $plats;
+function getAllDessertsByMenuName($conn, $pla_nom){
+    $tab = [];
+    $desserts = [];
+    $req_sql = "SELECT SUBSTR(PLA_NUM, 4,1) AS PLAT FROM RAP_PLAT WHERE TRIM(UPPER(PLA_NOM)) LIKE TRIM(UPPER(?))";
+    $cur = preparerRequetePDO($conn, $req_sql);
+    majDonneesPrepareesTabPDO($cur, [$pla_nom]);
+    LireDonneesPDOPreparee($cur, $tab);
+    foreach($tab as $plat){
+        array_push($desserts, $plat["PLAT"]);
+    }
+    return array_unique($desserts);
 }
 
 /*
