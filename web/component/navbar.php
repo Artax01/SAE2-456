@@ -5,7 +5,6 @@ require_once './web/session/session.php';
 <link rel="stylesheet" href="./web/assets/css/navbar.css">
 
 <?php 
-require_once './web/session/session.php';
 require_once './php/connexion.php';
 ?>
 
@@ -131,4 +130,8 @@ require_once './php/connexion.php';
 <!-- ========== END NAVBAR DESKTOP ========== -->
 
 <script src="./web/assets/js/navbar.js"></script>
+<<<<<<< HEAD
 <script src="./web/assets/js/commander.js"></script>
+=======
+<script src="./web/assets/js/commander.js"></script>
+>>>>>>> web

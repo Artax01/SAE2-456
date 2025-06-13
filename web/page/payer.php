@@ -1,10 +1,16 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> web
 <?php
 require_once __DIR__ . '/../session/session.php';
 require_once __DIR__ . '/../../php/connexion.php';
 ?>
 
+<<<<<<< HEAD
+>>>>>>> web
+=======
 >>>>>>> web
 <head>
   <meta charset="UTF-8">

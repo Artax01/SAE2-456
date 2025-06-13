@@ -12,8 +12,8 @@ require_once("../../php/functions.php");
 
   <!-- NAV BAR GAUCHE -->
   <div class="relative z-10 flex">
-    <!-- Sidebar Navigation (masquée sur mobile) -->
-    <aside class="fixed top-1/2 left-0 transform -translate-y-1/2 flex flex-col items-center py-6 px-4 backdrop-blur dark:bg-neutral-800 h-auto w-64 z-20 rounded-r-3xl shadow-lg hidden md:flex">
+    <!-- Sidebar Navigation -->
+    <aside class="fixed top-1/2 left-0 transform -translate-y-1/2 flex flex-col items-center py-6 px-4 backdrop-blur dark:bg-neutral-800 h-auto w-64 z-20 rounded-r-3xl shadow-lg">
       <!-- Lien 1 -->
       <div class="flex items-center mb-10 w-full justify-start">
         <a href="?page=accueil.php" class="material-icons text-orange-400 text-[4.5rem] mr-4 flex items-center justify-center">home</a>
@@ -60,9 +60,10 @@ require_once("../../php/functions.php");
     <!-- Pour mobile : ml-0, pour desktop : ml-72 -->
     <div class="flex-1 flex flex-col md:ml-72 pr-2 md:pr-10 py-6">
       <!-- Titre -->
-      <h1 class="text-5xl font-extrabold text-orange-400 mb-8 tracking-wide">NOS PLATS</h1>
+      <h1 class="text-5xl font-extrabold text-orange-400 mb-8 tracking-wide md:pt-2 pt-20">NOS PLATS</h1>
 
       <?php 
+      // On récupère la liste des types de plats (ex: KEBAB, BOISSON, etc.)
       $typesPlats = getNamePlat($conn); 
       ?>
       <?php foreach($typesPlats as $nomPlat): ?>

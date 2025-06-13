@@ -77,14 +77,18 @@ require_once('../../php/functions.php');
                           <div>
                               <div class="font-bold text-black text-lg"><?= $item['nom']; ?></div>
                               <div class="text-gray-500 flex items-center gap-2">
-                                  <form action="./web/commande/moinsProduit.php" method="POST">
+                                  <form action="./web/commande/moinsPlat.php" method="POST">
                                     <input type="hidden" name="pla_num" value="<?= $item['id'] ?>">
                                     <button type="submit" class="btn-moins text-3xl px-4 py-1 bg-orange-100 rounded hover:bg-orange-200">-</button>
                                   </form>
                                   <span><?= $item['quantite']; ?> x <?= $item['prix'] ?>€</span>
-                                  <form action="./web/commande/plusProduit.php" method="POST">
+                                  <form action="./web/commande/plusPlat.php" method="POST">
                                     <input type="hidden" name="pla_num" value="<?= $item['id'] ?>">
                                     <button type="submit" class="btn-plus text-3xl px-4 py-1 bg-orange-100 rounded hover:bg-orange-200">+</button>
+                                  </form>
+                                  <form action="./web/commande/suppPlat.php" method="POST">
+                                    <input type="hidden" name="pla_num" value="<?= $item['id'] ?>">
+                                    <button type="submit" class="btn-plus text-3xl px-4 py-1 bg-red-100 rounded hover:bg-red-200">X</button>
                                   </form>
                               </div>
                           </div>
