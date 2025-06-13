@@ -1,51 +1,27 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
-require __DIR__ . '/../../vendor/autoload.php'; // Vérifie que le chemin vers autoload.php est correct
-
-header('Content-Type: text/plain');
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Validation des données
-    $to = filter_var(trim($_POST['email']), FILTER_VALIDATE_EMAIL);
-    $subject = trim($_POST['subject'] ?? '');
-    $message = trim($_POST['message'] ?? '');
-
-    if (!$to || empty($subject) || empty($message)) {
-        echo 'invalid_input';
-        exit;
-    }
-
-    $mail = new PHPMailer(true);
-
-    try {
-        // Configuration SMTP
-        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
-        $mail->SMTPAuth = true;
-        $mail->Username = 'nathan.elie@etu.unicaen.fr'; // <-- Remplacez par votre email
-        $mail->Password = 'H!u83rr?7'; // <-- Remplacez par votre mot de passe ou mot de passe d'application
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-        $mail->Port = 587;
-
-        // Informations sur l'expéditeur et le destinataire
-        $mail->setFrom('nathanelie.06@gmail.com', 'Nathan ELIE'); // <-- Remplacez par votre email et nom
-        $mail->addAddress($to);
-
-        // Contenu du message
-        $mail->isHTML(false); // Change à true si tu veux envoyer en HTML
-        $mail->Subject = $subject;
-        $mail->Body = $message;
-
-        // Envoi
-        $mail->send();
-        echo 'success';
-    } catch (Exception $e) {
-        echo 'error: ' . $mail->ErrorInfo;
-    }
+if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+    http_response_code(405);
+    echo "Méthode non autorisée.";
     exit;
+}
+
+$email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+$subject = trim($_POST['subject'] ?? '');
+$message = trim($_POST['message'] ?? '');
+
+if (!$email || empty($subject) || empty($message)) {
+    echo "Tous les champs sont obligatoires.";
+    exit;
+}
+
+$headers = "From: no-reply@dev-agile2.users.info.unicaen.fr\r\n";
+$headers .= "Reply-To: no-reply@dev-agile2.users.info.unicaen.fr\r\n";
+$headers .= "Content-Type: text/plain; charset=utf-8\r\n";
+
+if (mail($email, $subject, $message, $headers)) {
+    echo "E-mail envoyé avec succès à $email.";
 } else {
-    echo 'invalid_request';
+    echo "Échec de l'envoi de l'e-mail.";
 }
 ?>
+<h1>Mail envoyé avec succés à nathanelie.06@gmail.com</h1>
