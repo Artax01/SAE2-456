@@ -71,6 +71,8 @@
             $sql = "INSERT INTO RAP_COMMANDE VALUES ('".$resNum."','".$comNum."','".$cliNum."','".$comDate."',to_date('".$comHeureRecup."','hh24:mi:ss'),'".$comPrixTotal."','".$comReducPoints."','".$comReducPromo."','".$comDureeTotalePrepa."','0')";
             $stmt = preparerRequetePDO($conn, $sql);
             $stmt->execute();
+
+
             $successfullySaved = true;
         }
         catch (PDOException $e) {
@@ -79,7 +81,9 @@
         }
 
         if ($successfullySaved) {
-            $_SESSION['panier'] = [];
+            $_SESSION['panier']['produits'] = [];
+            $_SESSION['panier']['menus'] = [];
+            $_SESSION['panier']['somme'] = 0;
 
             // echo "<script>
             //     let secondes = 10;
