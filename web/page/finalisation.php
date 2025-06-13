@@ -52,10 +52,10 @@
     $total_points = $stmt->fetchColumn();
 
 
-    $insertSql = "INSERT INTO rap_fidelisation (cli_num, sui_date_points, total_points) VALUES (:cli_num, sysdate, 50)";
+    $insertSql = "INSERT INTO rap_fidelisation (cli_num, sui_date_points, total_points) VALUES (:cli_num, sysdate, :total_points)";
     $stmt = preparerRequetePDO($conn, $insertSql);
-    $stmt->execute(['cli_num' => $cliNum]);
-    //}, 'total_points' => $total_points :total_points
+    $stmt->execute(['cli_num' => $cliNum, 'total_points' => $total_points]);
+    //}
 ?>
 
 <!DOCTYPE html>

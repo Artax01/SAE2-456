@@ -3,8 +3,6 @@ require_once '../session/session.php';
 require_once '../../php/connexion.php';
 
 
-require_once '../../php/connexion.php';
-
 if (!isLoggedIn()) {
     header('Location: ../page/signin.php');
     exit;
@@ -21,19 +19,28 @@ if (!isLoggedIn()) {
     <!-- Boîte 1 : Infos utilisateur -->
     <div class="bg-white rounded-2xl shadow-xl p-8 w-[650px] max-w-full text-center">
         <div class="text-orange-400 text-4xl font-bold mb-6">
-            <?php echo 'Bienvenue ' . getNom() . ' ' . getPrenom(); ?>
+            <?php echo 'Bienvenue ' . getPrenom(); ?>
         </div>
         
-        <div class="text-gray-800 text-2xl font-semibold mb-4">
+        <div class="text-gray-800 text-2xl font-semibold mb-4 flex gap-5 justify-center">
             <?php echo 'Votre adresse mail : ' . getEmail(); ?>
+            <form action="">
+                <button><small class="text-orange-400">modifier</small></button>
+            </form>
         </div>
         
-        <div class="text-gray-800 text-2xl font-semibold mb-4">
+        <div class="text-gray-800 text-2xl font-semibold mb-4 flex gap-5 justify-center">
             <?php echo 'Votre mot de passe : *********'; ?>
+            <form action="">
+                <button><small class="text-orange-400">modifier</small></button>
+            </form>
         </div>
         
-        <div class="text-gray-800 text-2xl font-semibold">
+        <div class="text-gray-800 text-2xl font-semibold flex gap-4 justify-center">
             <?php echo 'Votre numéro de téléphone : ' . getTel(); ?>
+            <form action="">
+                <button><small class="text-orange-400">modifier</small></button>
+            </form>
         </div>
     </div>
 
@@ -46,7 +53,7 @@ if (!isLoggedIn()) {
         <div class="flex justify-center items-baseline gap-3 tex-gray-800">
             <div class="text-gray-800 text-6xl font-semibold">
                 <?php
-                    $sql = "select NVL(SUM(total_points), 0) as somme from rap_client
+                    $sql = "select sum(total_points) as somme from rap_client
                             join rap_commande using(cli_num)
                             join rap_fidelisation using(cli_num)
                             join rap_restaurant using(res_num)
@@ -54,12 +61,24 @@ if (!isLoggedIn()) {
                     $res = LireDonneesPDO1($conn,$sql,$donnees);
 
                     if($donnees != null){
-                        echo $donnees[0]["SOMME"];
+                        //echo "<script>console.log(".$donnees.")</script>";
+                        //echo ($donnees[0]);
+                        // print_r($donnees);
+                        if (isset($donnees[0]["SOMME"])) {
+                            echo $donnees[0]["SOMME"];
+                        }
+                        else {
+                            echo 0;
+                        }
                     }
-                    
+                    else{
+                        echo (0);
+                    }
                     
                     // echo $donnees[0];
                     // echo 'Vous avez ' . $points . ' point' . ($points > 1 ? 's' : '') . ' de fidélité.'; 
+
+                    $result = isLoggedInAdmin($conn);
                 ?>
             </div>
         <div class="text-gray-800 text-2xl font-semibold">
@@ -73,4 +92,3 @@ if (!isLoggedIn()) {
     </div>
 </div>
 </div>
-
