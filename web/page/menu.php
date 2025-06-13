@@ -9,7 +9,7 @@
   </div>
   
   <!-- NAV BAR GAUCHE -->
-  <div class="relative z-10 flex h-screen">
+  <div class="relative z-10 flex">
     <aside class="fixed top-1/2 left-0 transform -translate-y-1/2 flex flex-col items-center py-6 px-4 backdrop-blur dark:bg-neutral-800 h-auto w-64 z-20 rounded-r-3xl shadow-lg">
       <!-- Liens inchangés -->
       <div class="flex items-center mb-10 w-full justify-start">
