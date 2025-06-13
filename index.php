@@ -34,5 +34,7 @@ if (!isset($_SESSION['panier']['menus'])) {
     <?php require_once './web/component/dialog.php';?>
     <?php require_once './web/component/footer.php';?>
 
+    <script src="./web/assets/js/payer.js"></script>
+
 </body>
 </html>
