@@ -118,41 +118,41 @@ document.addEventListener('DOMContentLoaded', function() {
     updateReduction();
 });
 </script>
-        <form action="?page=payer.php" method="POST" class="space-y-6">
-          <div>
-            <label class="block font-semibold mb-2 text-gray-700 text-2xl p-8">Méthode de paiement</label>
-            <div class="flex flex-col gap-4  ">
-              <label class="flex items-center gap-3 cursor-pointer">
-                <input type="radio" name="payment_method" value="cb" class="accent-orange-400" checked>
-                <span class="material-icons text-orange-400">credit_card</span>
-                <span>Carte bancaire</span>
-            </div>
-          </div>
-          <!-- Zone CB -->
-          <div id="cb-fields" class="text-black space-y-4">
-            <div>
-              <label class="block text-sm mb-1">Numéro de carte</label>
-              <input type="text" name="cb_num" maxlength="19" class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-orange-400" placeholder="1234 5678 9012 3456" required>
-            </div>
-            <div class="flex gap-4">
-              <div class="flex-1">
-                <label class="block text-sm mb-1">Expiration</label>
-                <input type="text" name="cb_exp" maxlength="5" class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-orange-400" placeholder="MM/AA" required>
+        <form action="./web/commande/verif_payer.php" method="POST" class="space-y-6">
+              <div>
+                <label class="block font-semibold mb-2 text-gray-700 text-2xl p-8">Méthode de paiement</label>
+                <div class="flex flex-col gap-4  ">
+                  <label class="flex items-center gap-3 cursor-pointer">
+                    <input type="radio" name="payment_method" value="cb" class="accent-orange-400" checked>
+                    <span class="material-icons text-orange-400">credit_card</span>
+                    <span>Carte bancaire</span>
+                </div>
               </div>
-              <div class="flex-1">
-                <label class="block text-sm mb-1">CVC</label>
-                <input type="text" name="cb_cvc" maxlength="4" class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-orange-400" placeholder="123" required>
+              <!-- Zone CB -->
+              <div id="cb-fields" class="text-black space-y-4">
+                <div>
+                  <label class="block text-sm mb-1">Numéro de carte</label>
+                  <input type="text" name="cb_num" maxlength="19" class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-orange-400" placeholder="1234 5678 9012 3456" required>
+                </div>
+                <div class="flex gap-4">
+                  <div class="flex-1">
+                    <label class="block text-sm mb-1">Expiration</label>
+                    <input type="text" name="cb_exp" maxlength="5" class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-orange-400" placeholder="MM/AA" required>
+                  </div>
+                  <div class="flex-1">
+                    <label class="block text-sm mb-1">CVC</label>
+                    <input type="text" name="cb_cvc" maxlength="4" class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-orange-400" placeholder="123" required>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        
-          <!-- Bouton payer -->
-          <button type="submit" id="btn-payer" onclick="loadPage('finalisation.php', this)" class="w-full bg-orange-400 hover:bg-orange-500 text-white font-bold py-3 rounded-full text-xl transition">Payer</button>
-          <!-- Bouton retour au panier -->
-        <a href="?page=panier.php"
-                    class="w-full inline-block text-center bg-white border-2 border-orange-400 text-orange-500 font-bold py-3 rounded-full text-xl transition hover:bg-orange-100 hover:text-orange-600">
-             Retour au panier
-        </a>
+            
+              <!-- Bouton payer -->
+              <button type="submit" id="btn-payer" class="w-full bg-orange-400 hover:bg-orange-500 text-white font-bold py-3 rounded-full text-xl transition">Payer</button>
+              <!-- Bouton retour au panier -->
+            <a href="?page=panier.php"
+                        class="w-full inline-block text-center bg-white border-2 border-orange-400 text-orange-500 font-bold py-3 rounded-full text-xl transition hover:bg-orange-100 hover:text-orange-600">
+                Retour au panier
+            </a>
         </form>
       </div>
     </div>
