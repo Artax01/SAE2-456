@@ -4,18 +4,44 @@ require_once './web/session/session.php';
 
 <link rel="stylesheet" href="./web/assets/css/navbar.css">
 
+<?php 
+require_once './web/session/session.php';
+require_once './php/connexion.php';
+?>
+
+<link rel="stylesheet" href="./web/assets/css/navbar.css">
+
 <!-- ========== NAVBAR MOBILE ========== -->
-<!-- ========== NAVBAR MOBILE ========== -->
-<!-- Barre du haut pour Connexion / Inscription sur mobile -->
+<!-- Barre du haut pour les boutons sur mobile -->
 <div class="w-full flex md:hidden justify-end p-4 z-30 fixed top-0 left-0" style="gap:10px; background: var(--glasmorphism-bg); border-bottom: 1px solid var(--glasmorphism-border-color); backdrop-filter: var(--glasmorphism-backdrop-filter); -webkit-backdrop-filter: var(--glasmorphism-backdrop-filter);">
-<button id="btn-signup" onclick="loadPage('signup.php', this)"
-style="background:var(--primary-text-color);color:var(--rapidc3-main-color);border:1px solid var(--glasmorphism-border-color);border-radius:8px;padding:8px 16px;font-weight:bold;text-decoration:none;">
+  <?php if (!isLoggedIn()): ?>
+    <button id="btn-signup" onclick="loadPage('signup.php', this)"
+      style="background:var(--primary-text-color);color:var(--rapidc3-main-color);border:1px solid var(--glasmorphism-border-color);border-radius:8px;padding:8px 16px;font-weight:bold;text-decoration:none;">
       Inscription
-  </button>
-  <button id="btn-signin" onclick="loadPage('signin.php', this)"
-       style="background:var(--glasmorphism-bg);border:1px solid var(--glasmorphism-border-color);border-radius:8px;color:var(--primary-text-color);padding:8px 16px;font-weight:bold;text-decoration:none;">
+    </button>
+    <button id="btn-signin" onclick="loadPage('signin.php', this)"
+      style="background:var(--glasmorphism-bg);border:1px solid var(--glasmorphism-border-color);border-radius:8px;color:var(--primary-text-color);padding:8px 16px;font-weight:bold;text-decoration:none;">
       Connexion
-  </button>
+    </button>
+  <?php else: ?>
+    <span style="color:var(--primary-text-color);font-weight:bold;align-self:center;margin-right:10px;">
+      <?php echo htmlspecialchars(getPrenom()); ?>
+    </span>
+    <?php if (isLoggedInAdmin($conn)): ?>
+      <button id="btn-gerer" onclick="loadPage('gerer.php', this)"
+        style="background:var(--glasmorphism-bg);border:1px solid var(--glasmorphism-border-color);border-radius:8px;color:var(--primary-text-color);padding:8px 16px;font-weight:bold;text-decoration:none;">
+        Gérer
+      </button>
+    <?php endif; ?>
+    <button id="btn-compte" onclick="loadPage('compte.php', this)"
+      style="background:var(--primary-text-color);color:var(--rapidc3-main-color);border:1px solid var(--glasmorphism-border-color);border-radius:8px;padding:8px 16px;font-weight:bold;text-decoration:none;">
+      Mon compte
+    </button>
+    <button id="btn-deconnecter" onclick="loadPage('logout.php', this)"
+      style="background:var(--glasmorphism-bg);border:1px solid var(--glasmorphism-border-color);border-radius:8px;color:var(--primary-text-color);padding:8px 16px;font-weight:bold;text-decoration:none;">
+      Se déconnecter
+    </button>
+  <?php endif; ?>
 </div>
 
 <!-- Barre du bas pour la navigation principale sur mobile -->
@@ -45,9 +71,7 @@ style="background:var(--primary-text-color);color:var(--rapidc3-main-color);bord
     <small>Panier</small>
   </button>
 </div>
-<!-- ========== END NAVBAR MOBILE ========== --><!-- ========== END NAVBAR MOBILE ========== -->
-
-
+<!-- ========== END NAVBAR MOBILE ========== -->
 
 <!-- ========== NAVBAR DESKTOP ========== -->
 <!-- bg-neutral-800/80 -->
