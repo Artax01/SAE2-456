@@ -73,15 +73,26 @@
             $sql = "INSERT INTO RAP_COMMANDE VALUES ('".$resNum."','".$comNum."','".$cliNum."','".$comDate."',to_date('".$comHeureRecup."','hh24:mi:ss'),'".$comPrixTotal."','".$comReducPoints."','".$comReducPromo."','".$comDureeTotalePrepa."','0')";
             $stmt = preparerRequetePDO($conn, $sql);
             $stmt->execute();
-
-
-            $successfullySaved = true;
         }
         catch (PDOException $e) {
             echo "problème lors de l'enregistrement de la commande dans RAP_COMMANDE";
         }
 
+        try {
+            foreach ($_SESSION['panier']['produits'] as $plat) {
+                $plaNum = $plat['id'];
+                $appQuantite = $plat['quantite'];
 
+                $sql = "INSERT INTO RAP_APPARTENIR VALUES ('".$resNum."','".$comNum."','".$plaNum."','".$appQuantite."')";
+                $stmt = preparerRequetePDO($conn, $sql);
+                $stmt->execute();
+            }
+        }
+            catch (PDOException $e) {
+            echo "problème lors de l'enregistrement de la commande dans RAP_APPPARTENIR";
+        }
+
+        $successfullySaved = true;
 
         if ($successfullySaved) {
             $_SESSION['panier']['produits'] = [];
