@@ -18,7 +18,6 @@ if (!isset($_SESSION['panier']['menus'])) {
 ?>
 
 <!DOCTYPE html>
-
 <?php require_once './web/component/meta.php'; ?>
 <!-- style commun de l'application -->
 <link rel="stylesheet" href="./web/assets/css/root.css">
