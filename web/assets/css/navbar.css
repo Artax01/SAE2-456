@@ -109,3 +109,7 @@ aside {
         display: flex;
     }
 }
+@media (max-width: 767px) {
+    #top-navbar { display: none; }
+  }
+  

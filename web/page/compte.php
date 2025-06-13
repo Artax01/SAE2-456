@@ -2,7 +2,6 @@
 require_once '../session/session.php';
 require_once '../../php/connexion.php';
 
-
 if (!isLoggedIn()) {
     header('Location: ../page/signin.php');
     exit;
