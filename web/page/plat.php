@@ -85,8 +85,7 @@ require_once("../../php/functions.php");
                 <!-- Overlay Description vers le haut -->
                 <div class="absolute left-0 top-0 w-full transition-all duration-500 ease-out -translate-y-full group-hover:translate-y-0 opacity-0 group-hover:opacity-100 bg-gradient-to-b from-black/90 to-transparent text-white rounded-t-2xl p-4 text-center flex flex-col items-center justify-start pointer-events-auto overflow-y-auto max-h-36 scrollbar-thin scrollbar-thumb-orange-400 scrollbar-track-black/40 desc-overlay-scroll"
                      style="will-change: transform, opacity;">
-                  <div class="font-bold text-lg mb-1 break-words">Description</div>
-                  <div class="text-sm break-words">
+                  <div class="font-bold text-lg mb-1 break-words">
                     <?= $plat["PLA_DESCRIPTION"] ?? '' ?>
                   </div>
                 </div>
@@ -104,7 +103,7 @@ require_once("../../php/functions.php");
                     <input type="hidden" name="pla_prix_ht" value="<?= $plat["PLA_PRIX_VENTE_UNIT_HT"] ?>">
                     <button type="submit" class="w-full border-2 border-orange-400 text-orange-400 font-semibold px-4 py-2 rounded-full hover:bg-orange-50 transition">Ajouter au panier</button>
                   </form>
-                  <form action="./web/commande/commander.php" method="POST" class="w-full sm:w-auto">
+                  <form action="./web/commande/commanderPlat.php" method="POST" class="w-full sm:w-auto">
                     <input type="hidden" name="pla_num" value="<?= $plat["PLA_NUM"] ?>">
                     <input type="hidden" name="pla_nom" value="<?= $plat["PLA_NOM"] ?>">
                     <input type="hidden" name="pla_prix_ht" value="<?= $plat["PLA_PRIX_VENTE_UNIT_HT"] ?>">
