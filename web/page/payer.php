@@ -33,7 +33,7 @@ $prix_total = isset($_SESSION['panier_total']) ? number_format($_SESSION['panier
 ?>
 <h1 class="text-4xl font-extrabold text-orange-400 mb-6 text-center">Paiement</h1>
 <p class="text-center text-2xl font-bold mb-6">
-    Total à payer : <span class="text-orange-500"><?= $prix_total ?> €</span>
+    Total à payer : <span class="text-orange-500"><?= getPrixTotal(); ?> €</span>
 </p>
 <?php
 
@@ -125,16 +125,16 @@ document.addEventListener('DOMContentLoaded', function() {
           <div id="cb-fields" class="text-black space-y-4">
             <div>
               <label class="block text-sm mb-1">Numéro de carte</label>
-              <input type="text" name="cb_num" maxlength="19" class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-orange-400" placeholder="1234 5678 9012 3456">
+              <input type="text" name="cb_num" maxlength="19" class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-orange-400" placeholder="1234 5678 9012 3456" required>
             </div>
             <div class="flex gap-4">
               <div class="flex-1">
                 <label class="block text-sm mb-1">Expiration</label>
-                <input type="text" name="cb_exp" maxlength="5" class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-orange-400" placeholder="MM/AA">
+                <input type="text" name="cb_exp" maxlength="5" class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-orange-400" placeholder="MM/AA" required>
               </div>
               <div class="flex-1">
                 <label class="block text-sm mb-1">CVC</label>
-                <input type="text" name="cb_cvc" maxlength="4" class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-orange-400" placeholder="123">
+                <input type="text" name="cb_cvc" maxlength="4" class="w-full border rounded-lg px-4 py-2 focus:ring-2 focus:ring-orange-400" placeholder="123" required>
               </div>
             </div>
           </div>

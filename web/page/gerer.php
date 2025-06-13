@@ -238,9 +238,9 @@ if (isset($_POST['send_mail'])) {
                     <a href="modifier_client.php?id=<?= $cli_id !== '' ? urlencode($cli_id) : '' ?>" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded">Modifier</a>
                     <!-- Bouton Supprimer (formulaire POST) -->
                     <form method="post" action="/sae2-456-grp2/web/component/supp.php" onsubmit="return confirm('Supprimer ce client ?');" style="display:inline;">
-    <input type="hidden" name="delete_id" value="<?= htmlspecialchars($cli_id) ?>">
-    <button type="submit" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded">Supprimer</button>
-</form>
+                        <input type="hidden" name="delete_id" value="<?= htmlspecialchars($cli_id) ?>">
+                        <button type="submit" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded">Supprimer</button>
+                    </form>
                 </td>
             </tr>
             <?php endforeach; ?>
