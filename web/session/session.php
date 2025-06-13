@@ -7,11 +7,6 @@ function isLoggedIn() {
     return isset($_SESSION['client']);
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> prod
 
 function isLoggedInAdmin($conn) {
     try {
@@ -34,10 +29,6 @@ function isLoggedInAdmin($conn) {
 }
 
 
-<<<<<<< HEAD
->>>>>>> web
-=======
->>>>>>> prod
 function getClient() {
     return $_SESSION['client'] ?? null;
 }
@@ -61,13 +52,4 @@ function getTel() {
 function getEmail() {
     return $_SESSION['client']['email'] ?? null;
 }
-<<<<<<< HEAD
-<<<<<<< HEAD
 ?>
-
-=======
-?>
->>>>>>> web
-=======
-?>
->>>>>>> prod
