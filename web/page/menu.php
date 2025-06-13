@@ -1,4 +1,7 @@
-<?php require_once("../../php/functions.php"); ?>
+<?php 
+require_once('../session/session.php');
+require_once("../../php/functions.php"); 
+?>
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="relative min-h-screen w-full">
@@ -40,12 +43,12 @@
           Panier
           <?php 
             if (isset($_SESSION['panier']['produits']) && isset($_SESSION['panier']['menus'])) {
-                echo count($_SESSION['panier']['produits']) + count($_SESSION['panier']['menus']);
+              echo getNbProduits() + count($_SESSION['panier']['menus']);
             } else {
                 echo 0;
                 var_dump($_SESSION['panier']['produits']);
             }
-        ?>
+          ?>
         </a>
       </div>
     </aside>
@@ -128,7 +131,6 @@
   </div>
 </div>
     </aside> -->
->>>>>>> origin/fidelisation
     <!-- Main Content -->
     <div class="flex-1 flex flex-col ml-72 pr-10 py-6 overflow-y-auto">
       <h1 class="text-5xl font-extrabold text-orange-400 mb-8 tracking-wide">NOS MENUS</h1>
