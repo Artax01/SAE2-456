@@ -49,7 +49,9 @@
     }
 
     try {
-        $comHeureRecup = "15:00:00";
+        $date = new DateTime();
+        $date->modify('+1 hour');
+        $comHeureRecup = $date->format('H:i:s');
     }
     catch (Exception $e) {
         echo 'problème pour recuperer l heure de recuperation de la commande';
@@ -76,9 +78,10 @@
             $successfullySaved = true;
         }
         catch (PDOException $e) {
-            echo "problème lors de l'enregistrement de la commande";
-            var_dump($e);
+            echo "problème lors de l'enregistrement de la commande dans RAP_COMMANDE";
         }
+
+
 
         if ($successfullySaved) {
             $_SESSION['panier']['produits'] = [];

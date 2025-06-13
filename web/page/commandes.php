@@ -14,7 +14,7 @@ if (!isLoggedIn()) {
 <?php
     try {
         $id = getId();
-        $sql = "SELECT * FROM RAP_COMMANDE WHERE CLI_NUM = ".getId();
+        $sql = "SELECT RES_NUM, COM_NUM, CLI_NUM, COM_DATE, to_char(COM_HEURE_RECUP, 'hh24:mi:ss') as COM_HEURE_RECUP, COM_PRIX_TOTAL, COM_REDUC_POINTS, COM_REDUC_PROMO, COM_DUREE_TOTALE_PREPA FROM RAP_COMMANDE WHERE CLI_NUM = ".getId();
         $stmt = preparerRequetePDO($conn,$sql);
         $donnees = array();
         LireDonneesPDOPreparee($stmt, $donnees);
