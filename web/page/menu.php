@@ -1,4 +1,7 @@
-<?php require_once("../../php/functions.php"); ?>
+<?php 
+require_once('../session/session.php');
+require_once("../../php/functions.php"); 
+?>
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="relative min-h-screen w-full">
@@ -9,7 +12,7 @@
   </div>
   
   <!-- NAV BAR GAUCHE -->
-  <div class="relative z-10 flex h-screen">
+  <div class="relative z-10 flex">
     <aside class="fixed top-1/2 left-0 transform -translate-y-1/2 flex flex-col items-center py-6 px-4 backdrop-blur dark:bg-neutral-800 h-auto w-64 z-20 rounded-r-3xl shadow-lg">
       <!-- Liens inchangés -->
       <div class="flex items-center mb-10 w-full justify-start">
@@ -38,6 +41,14 @@
         <a href="?page=panier.php"
            class="w-full text-left text-xl font-bold text-white transition-all duration-300 whitespace-nowrap focus:outline-none hover:bg-orange-100 hover:text-orange-500 active:scale-95 transition-transform rounded-md py-2 px-3">
           Panier
+          <?php 
+            if (isset($_SESSION['panier']['produits']) && isset($_SESSION['panier']['menus'])) {
+                echo getNbProduits() + count($_SESSION['panier']['menus']);
+            } else {
+                echo 0;
+                var_dump($_SESSION['panier']['produits']);
+            }
+          ?>
         </a>
       </div>
     </aside>
@@ -72,8 +83,7 @@
                   class="h-full w-full object-cover transition-all duration-500 group-hover:scale-105">
                 <div class="absolute left-0 top-0 w-full transition-all duration-500 ease-out -translate-y-full group-hover:translate-y-0 opacity-0 group-hover:opacity-100 bg-gradient-to-b from-black/90 to-transparent text-white rounded-t-2xl p-4 text-center flex flex-col items-center justify-start pointer-events-auto overflow-y-auto max-h-36 scrollbar-thin scrollbar-thumb-orange-400 scrollbar-track-black/40 desc-overlay-scroll"
                      style="will-change: transform, opacity;">
-                  <div class="font-bold text-lg mb-1 break-words">Description</div>
-                  <div class="text-sm break-words">
+                  <div class="font-bold text-lg mb-1 break-words">
                     <?= $plat["PLA_DESCRIPTION"] ?? '' ?>
                   </div>
                 </div>
@@ -85,7 +95,9 @@
                 <?= $menuNom ?? '' ?><br>
                 <span class="font-normal"><?= $plat["PLA_PRIX_VENTE_UNIT_HT"] ?? '' ?>€</span>
               </div>
-              <form action="./web/page/traitement.php" method="POST" class="flex flex-col items-center w-full">
+              <form action="./web/commande/ajout_panier_menus.php" method="POST" class="flex flex-col items-center w-full">
+                <input type="hidden" name="menu_prix" value="<?= $plat["PLA_PRIX_VENTE_UNIT_HT"] ?>">
+                <input type="hidden" name="menu_nom" value="<?= $menuNom ?>">
                 <input type="hidden" name="menu_num" value="<?= getOnePlaNumPerMenuByName($conn, $menuNom); ?>">
                 <div class="flex justify-center w-full mb-2">
                   <div class="grid grid-cols-2 gap-2 w-56 mx-auto">

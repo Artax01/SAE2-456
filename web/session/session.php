@@ -66,7 +66,13 @@ function getNbProduits() {
 }
 
 function getNbMenus() {
-    return count($_SESSION['panier']['menus']) ?? 0;
+    $result = 0;
+    
+    foreach ($_SESSION['panier']['menus'] as $items) {
+        $result = $result + $items['quantite'];
+    }
+
+    return $result;
 }
 
 function getPrixTotal() {
@@ -77,7 +83,13 @@ function getPrixTotal() {
         $prix = (float) str_replace(',', '.', $items['prix']);
         $_SESSION['panier']['somme'] += $quantite * $prix;
     }
-    // ajouter les menus apres
+
+    foreach ($_SESSION['panier']['menus'] as $items) {
+        $quantite = (float) str_replace(',', '.', $items['quantite']);
+        $prix = (float) str_replace(',', '.', $items['prix']);
+        $_SESSION['panier']['somme'] += $quantite * $prix;
+    }
+
     return $_SESSION['panier']['somme'];
 }
 ?>
