@@ -1,5 +1,4 @@
 
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <?php 
 require_once './web/session/session.php';
 ?>
@@ -7,31 +6,47 @@ require_once './web/session/session.php';
 <link rel="stylesheet" href="./web/assets/css/navbar.css">
 
 <!-- ========== NAVBAR MOBILE ========== -->
-<div class="navbar">
-  <button id="btn-accueil" onclick="loadPage('accueil.php', this)">
-  <a href="?page=accueil.php" class="material-icons text-orange-400 text-[4.5rem] mr-4 flex items-center justify-center">home</a>
-    <small>Accueil</small>
+<!-- ========== NAVBAR MOBILE ========== -->
+<!-- Barre du haut pour Connexion / Inscription sur mobile -->
+<div class="w-full flex md:hidden justify-end p-4 z-30 fixed top-0 left-0" style="gap:10px; background: var(--glasmorphism-bg); border-bottom: 1px solid var(--glasmorphism-border-color); backdrop-filter: var(--glasmorphism-backdrop-filter); -webkit-backdrop-filter: var(--glasmorphism-backdrop-filter);">
+<button id="btn-signup" onclick="loadPage('signup.php', this)"
+style="background:var(--primary-text-color);color:var(--rapidc3-main-color);border:1px solid var(--glasmorphism-border-color);border-radius:8px;padding:8px 16px;font-weight:bold;text-decoration:none;">
+      Inscription
   </button>
-  
-  <button id="btn-commander" onclick="loadPage('menu.php', this)">
-  <a href="?page=menu.php" class="material-icons text-orange-400 text-[4.5rem] mr-4 flex items-center justify-center">menu_book</a>
-
-    <small>Menus</small>
-  </button>
-
-  <button id="btn-commander" onclick="loadPage('plat.php', this)">
-  <a href="?page=plat.php" class="material-icons text-orange-400 text-[4.5rem] mr-4 flex items-center justify-center">restaurant</a>
-
-    <small>Plats</small>
-  </button>
-
-  <button id="btn-compte" onclick="loadPage('panier.php', this)">
-  <a href="?page=panier.php" class="material-icons text-orange-400 text-[4.5rem] mr-4 flex items-center justify-center">shopping_cart</a>
-
-      <small>Panier</small>
+  <button id="btn-signin" onclick="loadPage('signin.php', this)"
+       style="background:var(--glasmorphism-bg);border:1px solid var(--glasmorphism-border-color);border-radius:8px;color:var(--primary-text-color);padding:8px 16px;font-weight:bold;text-decoration:none;">
+      Connexion
   </button>
 </div>
-<!-- ========== END NAVBAR MOBILE ========== -->
+
+<!-- Barre du bas pour la navigation principale sur mobile -->
+<div class="navbar">
+  <button id="btn-accueil" onclick="loadPage('accueil.php', this)">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" fill="gray">
+      <path d="M3 9.75L12 3l9 6.75v10.5A1.75 1.75 0 0 1 19.25 22h-3.5A1.75 1.75 0 0 1 14 20.25V15a1 1 0 0 0-2 0v5.25A1.75 1.75 0 0 1 10.25 22h-3.5A1.75 1.75 0 0 1 5 20.25V9.75z" />
+    </svg>
+    <small>Accueil</small>
+  </button>
+  <button id="btn-commander" onclick="loadPage('menu.php', this)">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" fill="gray">
+      <path d="M5.25 3A2.25 2.25 0 0 0 3 5.25v13.5c0 .621.504 1.125 1.125 1.125.248 0 .49-.082.683-.232L6 18.25l1.192 1.393c.193.15.435.232.683.232.248 0 .49-.082.683-.232L10 18.25l1.192 1.393c.193.15.435.232.683.232s.49-.082.683-.232L14 18.25l1.192 1.393a1.125 1.125 0 0 0 1.683 0L18 18.25l1.192 1.393c.193.15.435.232.683.232.621 0 1.125-.504 1.125-1.125V5.25A2.25 2.25 0 0 0 18.75 3H5.25z" />
+    </svg>
+    <small>Menus</small>
+  </button>
+  <button id="btn-plats" onclick="loadPage('plat.php', this)">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" fill="gray">
+      <path d="M12 2C6.477 2 2 6.477 2 12c0 5.523 4.477 10 10 10s10-4.477 10-10C22 6.477 17.523 2 12 2zm0 2c4.411 0 8 3.589 8 8s-3.589 8-8 8-8-3.589-8-8 3.589-8 8-8zm0 2a6 6 0 1 0 0 12A6 6 0 0 0 12 6z"/>
+    </svg>
+    <small>Plats</small>
+  </button>
+  <button id="btn-panier" onclick="loadPage('panier.php', this)">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" fill="gray">
+      <path d="M7 18c-1.104 0-1.99.896-1.99 2S5.896 22 7 22s2-.896 2-2-.896-2-2-2zm10 0c-1.104 0-1.99.896-1.99 2s.886 2 1.99 2 2-.896 2-2-.896-2-2-2zM7.16 16l.94-2h8.43c.75 0 1.41-.41 1.74-1.03l3.24-6.11A1 1 0 0 0 20.5 5H5.21l-.94-2H1V5h2l3.6 7.59-1.35 2.44C4.52 15.37 5.48 17 7 17h12v-2H7.42c-.14 0-.25-.11-.27-.25z"/>
+    </svg>
+    <small>Panier</small>
+  </button>
+</div>
+<!-- ========== END NAVBAR MOBILE ========== --><!-- ========== END NAVBAR MOBILE ========== -->
 
 
 

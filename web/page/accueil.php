@@ -45,6 +45,7 @@
 </aside>
 
 
+
         <div class="absolute inset-0 flex flex-col items-center justify-center z-10">
             <h1 class="md:text-9xl text-6xl font-extrabold tracking-tight mb-4 drop-shadow-lg">
                 <span class="text-white drop-shadow-[0_4px_4px_rgba(0,0,0,1)]">RAPID</span>
