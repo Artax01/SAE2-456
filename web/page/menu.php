@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-=======
 <?php require_once('../session/session.php'); ?>
-
->>>>>>> web
+<?php require_once('../session/session.php'); ?>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="relative min-h-screen w-full">
   <!-- Image de fond -->
@@ -44,8 +41,6 @@
         <a href="?page=panier.php"
            class="w-full text-left text-xl font-bold text-white transition-all duration-300 whitespace-nowrap focus:outline-none hover:bg-orange-100 hover:text-orange-500 active:scale-95 transition-transform rounded-md py-2 px-3">
           Panier
-<<<<<<< HEAD
-=======
           <?php 
             if (isset($_SESSION['panier']['produits']) && isset($_SESSION['panier']['menus'])) {
                 echo count($_SESSION['panier']['produits']) + count($_SESSION['panier']['menus']);
@@ -54,7 +49,6 @@
                 var_dump($_SESSION['panier']['produits']);
             }
         ?>
->>>>>>> web
         </a>
     </div>
 </aside>
@@ -69,18 +63,12 @@
         <input type="text" placeholder="Rechercher..." class="w-full rounded-full py-2 pl-12 pr-4 bg-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-400 text-lg shadow"/>
         <svg class="absolute left-3 top-2.5 w-6 h-6 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
       </div>
-<<<<<<< HEAD
     </aside> -->
     <!-- Main Content -->
     <div class="flex-1 flex flex-col pl-72 pr-10 py-6 overflow-y-auto">
       <!-- Titre -->
       <h1 class="text-5xl font-extrabold text-orange-400 mb-8 tracking-wide">NOS MENUS</h1>
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-    </div> -->
->>>>>>> web
+
 
       <!-- Grille des menus -->
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 justify-items-center">
@@ -273,8 +261,6 @@
     </div>
   </div>
 </div>
-<<<<<<< HEAD
-=======
     </aside> -->
     <!-- Main Content -->
     <div class="flex-1 flex flex-col pl-72 pr-10 py-6 overflow-y-auto">
@@ -472,7 +458,6 @@
     </div>
   </div>
 </div>
->>>>>>> web
 
 <script>
   // Cette fonction empêche la propagation du scroll à la page quand la souris est sur la description

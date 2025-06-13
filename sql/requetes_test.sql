@@ -14,6 +14,10 @@ select * from rap_client where cli_nom like 'test%' or cli_prenom like 'test%';
 select * from rap_commande
 where cli_num = 1243;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+*/
+>>>>>>> web
 =======
 */
 >>>>>>> web
@@ -35,6 +39,7 @@ insert into rap_commande values (1,99993,1243, sysdate, sysdate, 27.84 , 0, 0, 8
 --DELETE from rap_commande
 --where cli_num = 1243;
 <<<<<<< HEAD
+<<<<<<< HEAD
 insert into rap_fidelisation values (1240, sysdate ,2515);
 
 select * from rap_fidelisation
@@ -43,6 +48,8 @@ where cli_num = 1240;
 select sum(total_points) as somme from rap_fidelisation
 where cli_num = 1240;
 =======
+=======
+>>>>>>> web
 --insert into rap_fidelisation values (1240, sysdate ,2515);
 /*
 
@@ -76,4 +83,7 @@ select * from rap_commande
 order by cli_num;
 
 select * from rap_commande where cli_num = 1241;
+<<<<<<< HEAD
+>>>>>>> web
+=======
 >>>>>>> web
