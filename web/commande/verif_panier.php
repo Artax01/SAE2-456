@@ -3,7 +3,8 @@
 if (!isset($_SESSION['panier'])) {
     $_SESSION['panier'] = [
         'produits' => [],
-        'menus' => []
+        'menus' => [],
+        'somme' => 0,
     ];
 }
 
