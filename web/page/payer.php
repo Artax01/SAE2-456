@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../session/session.php';
+require_once __DIR__ . '/../CAS/session.php';
 require_once __DIR__ . '/../../php/connexion.php';
 ?>
 

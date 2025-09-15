@@ -1,6 +1,6 @@
 <div class="bg-gray-800 h-full">
 <?php
-require_once '../session/session.php';
+require_once '../CAS/session.php';
 ?>
 
 
@@ -40,7 +40,7 @@ require_once '../session/session.php';
 
 
         <!-- Form -->
-        <form action="../session/createAccount.php" method="POST">
+        <form action="../CAS/createAccount.php" method="POST">
           <div class="grid gap-y-4">
             <!-- Form Group -->
             <div>

@@ -1,6 +1,6 @@
 <div class="bg-gray-800 h-full">
 <?php
-require_once '../session/session.php';
+require_once '../CAS/session.php';
 require_once '../../php/connexion.php';
 
 if (isLoggedIn()) {
@@ -55,7 +55,7 @@ if(isLoggedInAdmin($conn)) {
       </div>  -->
 
         <!-- Form -->
-        <form action="../session/connectAccount.php" method="POST">
+        <form action="../CAS/connectAccount.php" method="POST">
           <div class="grid gap-y-4">
             <!-- Form Group -->
             <div>

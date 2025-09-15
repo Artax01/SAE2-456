@@ -1,5 +1,5 @@
 <?php 
-require_once('../session/session.php');
+require_once('../CAS/session.php');
 require_once("../../php/functions.php"); 
 ?>
 
@@ -46,7 +46,7 @@ require_once("../../php/functions.php");
               echo getNbProduits() + count($_SESSION['panier']['menus']);
             } else {
                 echo 0;
-                var_dump($_SESSION['panier']['produits']);
+                // var_dump($_SESSION['panier']['produits']);
             }
           ?>
         </a>

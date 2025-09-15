@@ -1,5 +1,5 @@
 <?php
-require_once '../session/session.php';
+require_once '../CAS/session.php';
 require_once '../../php/connexion.php';
 
 if (!isLoggedIn()) {

@@ -1,5 +1,5 @@
 <?php
-require_once '../session/session.php';
+require_once '../CAS/session.php';
 require_once './verif_panier.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

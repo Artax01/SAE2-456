@@ -1,5 +1,5 @@
 <?php 
-require_once('../session/session.php');
+require_once('../CAS/session.php');
 require_once("../../php/functions.php"); 
 
 ?>
@@ -50,7 +50,7 @@ require_once("../../php/functions.php");
                 echo getNbProduits() + count($_SESSION['panier']['menus']);
             } else {
                 echo 0;
-                var_dump($_SESSION['panier']['produits']);
+                // var_dump($_SESSION['panier']['produits']);
             }
           ?>
         </a>
@@ -72,7 +72,7 @@ require_once("../../php/functions.php");
         <h2 class="text-4xl font-extrabold text-white mb-6"><?= strtoupper(htmlspecialchars($nomPlat)) ?></h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
           <?php 
-          $plats = getPlatByType($conn, $nomPlat); 
+          $plats = getPlatByType($conn, $nomPlat);
           ?>
           <?php foreach($plats as $plat): ?>
             <?php $platInfo = getImgInfoPerPlats($conn, $plat["PLA_NUM"]); ?>

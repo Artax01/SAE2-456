@@ -25,7 +25,8 @@ function getPlatByPlaNum($conn, $pla_num){
 function getPlatByType($conn, $type){
     $tab = [];
     
-    $req_sql = "SELECT * FROM RAP_$type JOIN RAP_PLAT using(PLA_NUM) WHERE ROWNUM <=3";
+    // $req_sql = "SELECT * FROM RAP_$type JOIN RAP_PLAT using(PLA_NUM) WHERE ROWNUM <=3";
+    $req_sql = "SELECT * FROM RAP_$type JOIN RAP_PLAT using(PLA_NUM) LIMIT 3";
     $cur = preparerRequetePDO($conn, $req_sql);
     LireDonneesPDOPreparee($cur, $tab);
     return $tab ?? [];

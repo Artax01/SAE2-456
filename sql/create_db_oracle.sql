@@ -1,12 +1,12 @@
 -- -----------------------------------------------------------------------------
---             Gï¿½nï¿½ration d'une base de donnï¿½es pour
+--             Génération d'une base de données pour
 --                      Oracle Version 10g
 --                     (3/3/2025 13:42:20)
 -- -----------------------------------------------------------------------------
 --      Nom de la base : MLR V4
---      Projet : pizza
---      Auteur : PORCQ Erc
---      Date de derniï¿½re modification : 3/3/2025 13:41:18
+--      Projet : pizza (RAPIDC3)
+--      Auteurs : PORCQ Eric & SAE Groupe 2
+--      Date de dernière modification : 3/3/2025 13:41:18
 -- -----------------------------------------------------------------------------
 
 DROP TABLE RAP_BOISSON CASCADE CONSTRAINTS;
@@ -5349,7 +5349,7 @@ insert into rap_plat_image values ((select pla_num from rap_plat where lower(pla
 
 
 
-insert into rap_commande values ('2',(select max(com_num) from rap_commande) + 1,'1240','25/12/2022',to_date('00:00:21','hh24:mi:ss'),'7,18','0','0','15',1);
+insert into rap_commande values ('2',(select nvl(max(com_num),0) from rap_commande) + 1,'1240','25/12/2022',to_date('00:00:21','hh24:mi:ss'),'7,18','0','0','15',1);
 
 insert into rap_client values ('3202','GILLOT_LETANG','Achille','GILLOT_LETANGACHILLE', '06 07 08 09 10','achille@gmail.com');
 insert into rap_fidelisation values ('3202', sysdate, '645');

@@ -1,5 +1,5 @@
 <?php
-    require_once '../session/session.php';
+    require_once '../CAS/session.php';
     require_once '../../php/connexion.php';
     if (!isLoggedIn()) {
         header("Location: ../page/signin.php");
@@ -14,15 +14,16 @@
     }
     catch (PDOException $e) {
         echo 'erreur pour récupérer le numéro de commande';
-        var_dump($e);
+        // var_dump($e);
     }
 
     try {
-        $comDate = date("d/m/Y");
+        // $comDate = date("d/m/Y");
+        $comDate = date("Y-m-d");
     }
     catch (Exception $e) {
         echo 'problème pour recuperer la date actuelle';
-        var_dump($e);
+        // var_dump($e);
     }
 
     try {
@@ -32,7 +33,7 @@
     }
     catch (Exception $e) {
         echo 'problème pour recuperer l heure de recuperation de la commande';
-        var_dump($e);
+        // var_dump($e);
     }
 
     $resNum = "1";
@@ -44,57 +45,70 @@
 
 
     $successfullySaved = false;
-
+    $failedToSave = false;
     if (isset($resNum) && isset($comNum) && isset($cliNum) && isset($comDate) && isset($comHeureRecup) && isset($comPrixTotal) && isset($comReducPoints) && isset($comReducPromo) && isset($comDureeTotalePrepa)) {
         try {
-            $sql = "INSERT INTO RAP_COMMANDE VALUES ('".$resNum."','".$comNum."','".$cliNum."','".$comDate."',to_date('".$comHeureRecup."','hh24:mi:ss'),'".$comPrixTotal."','".$comReducPoints."','".$comReducPromo."','".$comDureeTotalePrepa."','0')";
+            $sql = "INSERT INTO RAP_COMMANDE VALUES ('".$resNum."','".$comNum."','".$cliNum."','".$comDate."',DATE_FORMAT('".$comHeureRecup."','%H:%i:%s'),'".$comPrixTotal."','".$comReducPoints."','".$comReducPromo."','".$comDureeTotalePrepa."','0')";
             $stmt = preparerRequetePDO($conn, $sql);
             $stmt->execute();
         }
         catch (PDOException $e) {
-            echo "problème lors de l'enregistrement de la commande dans RAP_COMMANDE";
+            $failedToSave = true;
+            echo "Problème lors de l'enregistrement de la commande. <br/>";
+            // Prbl dans la table RAP_COMMANDE
+            // var_dump($e);
         }
 
-        try {
-            foreach ($_SESSION['panier']['produits'] as $plat) {
-                $plaNum = $plat['id'];
-                $appQuantite = $plat['quantite'];
+        if ($failedToSave == false) {
+            try {
+                foreach ($_SESSION['panier']['produits'] as $plat) {
+                    $plaNum = $plat['id'];
+                    $appQuantite = $plat['quantite'];
 
-                $sql = "INSERT INTO RAP_APPARTENIR VALUES ('".$resNum."','".$comNum."','".$plaNum."','".$appQuantite."')";
+                    $sql = "INSERT INTO RAP_APPARTENIR VALUES ('".$resNum."','".$comNum."','".$plaNum."','".$appQuantite."')";
+                    $stmt = preparerRequetePDO($conn, $sql);
+                    $stmt->execute();
+                }
+            }
+            catch (PDOException $e) {
+                $failedToSave = true;
+                echo "Problème lors de l'enregistrement de l'appartenance de la commande. <br/>";
+                // Prbl dans la table RAP_APPARTENIR
+                // var_dump($e);
+            }
+        }
+
+
+        if ($failedToSave == false) {
+            try {
+                $totsql = "
+                SELECT p.PLA_NB_POINTS * a.APP_QUANTITE AS total_points
+                FROM RAP_APPARTENIR a
+                JOIN RAP_PLAT p ON a.PLA_NUM = p.PLA_NUM
+                WHERE a.RES_NUM = ".$resNum;
+        
+                $stmt = preparerRequetePDO($conn, $totsql);
+                $stmt->execute();
+                $totalPoints = $stmt->fetchColumn();
+
+                // $suiDatePoints = date('d/m/Y');
+                $suiDatePoints = date('Y-m-d');
+
+                $sql = "INSERT INTO RAP_FIDELISATION VALUES ('".$cliNum."','".$suiDatePoints."','".$totalPoints."')";
                 $stmt = preparerRequetePDO($conn, $sql);
                 $stmt->execute();
             }
-        }
             catch (PDOException $e) {
-            echo "problème lors de l'enregistrement de la commande dans RAP_APPPARTENIR";
-        }
-
-
-        try {
-            $totsql = "
-            SELECT p.PLA_NB_POINTS * a.APP_QUANTITE AS total_points
-            FROM RAP_APPARTENIR a
-            JOIN RAP_PLAT p ON a.PLA_NUM = p.PLA_NUM
-            WHERE a.RES_NUM = ".$resNum;
-    
-            $stmt = preparerRequetePDO($conn, $totsql);
-            $stmt->execute();
-            $totalPoints = $stmt->fetchColumn();
-
-            $suiDatePoints = date('d/m/Y');
-
-            $sql = "INSERT INTO RAP_FIDELISATION VALUES ('".$cliNum."','".$suiDatePoints."','".$totalPoints."')";
-            $stmt = preparerRequetePDO($conn, $sql);
-            $stmt->execute();
-        }
-        catch (PDOException $e) {
-            echo "problème lors de l'enregistrement de la commande dans RAP_FIDELISATION";
-            var_dump($e);
+                $failedToSave = true;
+                echo "Problème lors de l'enregistrement de la fidelisation de la commande. <br/>";
+                // Prbl dans la table RAP_FIDELISATION
+                var_dump($e);
+            }
         }
 
         $successfullySaved = true;
 
-        if ($successfullySaved) {
+        if ($successfullySaved && !$failedToSave) {
             $_SESSION['panier']['produits'] = [];
             $_SESSION['panier']['menus'] = [];
             $_SESSION['panier']['somme'] = 0;

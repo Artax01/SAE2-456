@@ -26,7 +26,7 @@ function isLoggedInAdmin($conn) {
         return false;
     }
     catch (PDOException $e) {
-        var_dump($e);
+        // var_dump($e);
         return false;
     }
     return false;

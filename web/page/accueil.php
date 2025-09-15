@@ -1,4 +1,4 @@
-<?php require_once('../session/session.php'); ?>
+<?php require_once('../CAS/session.php'); ?>
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="relative min-h-screen w-full">
@@ -47,7 +47,7 @@
                 echo getNbProduits() + count($_SESSION['panier']['menus']);
             } else {
                 echo 0;
-                var_dump($_SESSION['panier']['produits']);
+                // var_dump($_SESSION['panier']['produits']);
             }
         ?>
         </a>

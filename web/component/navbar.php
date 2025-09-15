@@ -1,5 +1,5 @@
 <?php 
-require_once './web/session/session.php';
+require_once './web/CAS/session.php';
 ?>
 
 <link rel="stylesheet" href="./web/assets/css/navbar.css">
