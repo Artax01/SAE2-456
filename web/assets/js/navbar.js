@@ -17,7 +17,7 @@ function loadPage(page, button = null, updateURL = true) {
     if (updateURL) history.pushState({}, '', '?page=' + page);
 
     setTimeout(() => {
-        console.log('ok');
+        // console.log('ok');
     }, 5000);
 
     // verification de la présence de l'etension .php

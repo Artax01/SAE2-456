@@ -48,7 +48,6 @@ require_once('../../php/functions.php');
               echo getNbProduits() + count($_SESSION['panier']['menus']);
             } else {
                 echo 0;
-                // var_dump($_SESSION['panier']['produits']);
             }
           ?>
         </a>
@@ -77,16 +76,16 @@ require_once('../../php/functions.php');
                           <div>
                               <div class="font-bold text-black text-lg"><?= $item['nom']; ?></div>
                               <div class="text-gray-500 flex items-center gap-2">
-                                  <form action="./web/commande/moinsPlat.php" method="POST">
+                                  <form action="./web/CART/moinsPlat.php" method="POST">
                                     <input type="hidden" name="pla_num" value="<?= $item['id'] ?>">
                                     <button type="submit" class="btn-moins text-3xl px-4 py-1 bg-orange-100 rounded hover:bg-orange-200">-</button>
                                   </form>
                                   <span><?= $item['quantite']; ?> x <?= $item['prix'] ?>€</span>
-                                  <form action="./web/commande/plusPlat.php" method="POST">
+                                  <form action="./web/CART/plusPlat.php" method="POST">
                                     <input type="hidden" name="pla_num" value="<?= $item['id'] ?>">
                                     <button type="submit" class="btn-plus text-3xl px-4 py-1 bg-orange-100 rounded hover:bg-orange-200">+</button>
                                   </form>
-                                  <form action="./web/commande/suppPlat.php" method="POST">
+                                  <form action="./web/CART/suppPlat.php" method="POST">
                                     <input type="hidden" name="pla_num" value="<?= $item['id'] ?>">
                                     <button type="submit" class="btn-plus text-3xl px-4 py-1 bg-red-100 rounded hover:bg-red-200">X</button>
                                   </form>

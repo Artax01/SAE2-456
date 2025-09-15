@@ -121,13 +121,13 @@ CREATE TABLE RAP_CLIENT
 CREATE TABLE RAP_FIDELISATION
 (
      CLI_NUM INT(4),
-     SUI_DATETIME_POINTS DATETIME,
+     SUI_DATE_POINTS DATETIME,
      TOTAL_POINTS INT(5)  NULL,
-	CONSTRAINT PK_RAP_FIDELISATION PRIMARY KEY (CLI_NUM, SUI_DATETIME_POINTS)
+	CONSTRAINT PK_RAP_FIDELISATION PRIMARY KEY (CLI_NUM, SUI_DATE_POINTS)
 );
 
 CREATE INDEX I_FK_RAP_FIDELISATION_RAP_SUIV
-     ON RAP_FIDELISATION (SUI_DATETIME_POINTS ASC);
+     ON RAP_FIDELISATION (SUI_DATE_POINTS ASC);
 
 CREATE INDEX I_FK_RAP_FIDELISATION_RAP_CLIE
      ON RAP_FIDELISATION (CLI_NUM ASC);
@@ -5345,7 +5345,6 @@ insert into rap_plat_image values ((select pla_num from rap_plat where lower(pla
 -- insert into rap_plat_image values ((select pla_num from rap_plat where lower(pla_nom) ='kebab royal sauce barbecue'), 'web/assets/img/kebab.jpg', 'kebab royal sauce barbecue');
 -- insert into rap_plat_image values ((select pla_num from rap_plat where lower(pla_nom) ='kebab royal sauce barbecue'), 'web/assets/img/kebab.jpg', 'kebab royal sauce barbecue');
 -- insert into rap_plat_image values ((select pla_num from rap_plat where lower(pla_nom) ='kebab royal sauce barbecue'), 'web/assets/img/kebab.jpg', 'kebab royal sauce barbecue');
-
 
 
 set @next_com_num := (select ifnull(max(com_num), 0) + 1 from rap_commande);

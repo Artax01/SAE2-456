@@ -1,12 +1,12 @@
 function initPayerJS() {
-    console.log('initPayerJS appelé');
+    // console.log('initPayerJS appelé');
     const input = document.getElementById('points_utilises');
     const maxPoints = document.getElementById('max_points');
     const messageErreur = document.getElementById('info_points');
 
     const reductionSpan = document.getElementById('reduction-montant');
     if (!input || !reductionSpan) {
-        console.log('payer.js : éléments non trouvés');
+        // console.log('payer.js : éléments non trouvés');
         return;
     }
 

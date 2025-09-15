@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     try {
-        $sql = "select * from RAP_CLIENT where CLI_COURRIEL like '".$email."' and CLI_MDP like '".$password."'";
+        $sql = "SELECT * FROM RAP_CLIENT WHERE CLI_COURRIEL LIKE '".$email."' AND CLI_MDP LIKE '".$password."'";
         $res = LireDonneesPDO1($conn, $sql, $user);
 
         afficherObj($user);

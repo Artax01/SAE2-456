@@ -6,10 +6,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {
     $id = $_POST['delete_id'];
     try {
         // 1. Supprimer dans RAP_APPARTENIR
-        $sql = "
-            DELETE FROM RAP_APPARTENIR 
-            WHERE COM_NUM IN (SELECT COM_NUM FROM RAP_COMMANDE WHERE CLI_NUM = :id)
-        ";
+        $sql = "DELETE FROM RAP_APPARTENIR 
+                WHERE COM_NUM IN (
+                    SELECT COM_NUM FROM RAP_COMMANDE 
+                    WHERE CLI_NUM = :id
+                )";
         $stmt = preparerRequetePDO($conn, $sql);
         ajouterParamPDO($stmt, ":id", $id, 'nombre');
         $stmt->execute();

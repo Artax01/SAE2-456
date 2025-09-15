@@ -14,10 +14,10 @@ function isLoggedInAdmin($conn) {
     }
 
     try {
-        $sql = "select cli_num from rap_client
-                where cli_num in (
-                    select cli_num from rap_administrateur
-                )";
+        $sql = "SELECT CLI_NUM FROM RAP_CLIENT
+                WHERE CLI_NUM IN (
+                    SELECT CLI_NUM FROM RAP_ADMINISTRATEUR
+                ) AND CLI_NUM =".getId();
         $res = LireDonneesPDO1($conn,$sql,$donnees);
 
         if (isset($donnees[0]["CLI_NUM"])) {
@@ -26,7 +26,6 @@ function isLoggedInAdmin($conn) {
         return false;
     }
     catch (PDOException $e) {
-        // var_dump($e);
         return false;
     }
     return false;

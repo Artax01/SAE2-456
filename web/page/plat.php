@@ -50,7 +50,6 @@ require_once("../../php/functions.php");
                 echo getNbProduits() + count($_SESSION['panier']['menus']);
             } else {
                 echo 0;
-                // var_dump($_SESSION['panier']['produits']);
             }
           ?>
         </a>
@@ -97,13 +96,13 @@ require_once("../../php/functions.php");
                   <span class="font-normal"><?= $plat["PLA_PRIX_VENTE_UNIT_HT"] ?? '' ?>€</span>
                 </div>
                 <div class="flex flex-col sm:flex-row gap-4 mb-4 w-full justify-center">
-                  <form action="./web/commande/ajout_panier.php" method="POST" class="w-full sm:w-auto">
+                  <form action="./web/CART/ajout_panier.php" method="POST" class="w-full sm:w-auto">
                     <input type="hidden" name="pla_num" value="<?= $plat["PLA_NUM"] ?>">
                     <input type="hidden" name="pla_nom" value="<?= $plat["PLA_NOM"] ?>">
                     <input type="hidden" name="pla_prix_ht" value="<?= $plat["PLA_PRIX_VENTE_UNIT_HT"] ?>">
                     <button type="submit" class="w-full border-2 border-orange-400 text-orange-400 font-semibold px-4 py-2 rounded-full hover:bg-orange-50 transition">Ajouter au panier</button>
                   </form>
-                  <form action="./web/commande/commanderPlat.php" method="POST" class="w-full sm:w-auto">
+                  <form action="./web/CART/commanderPlat.php" method="POST" class="w-full sm:w-auto">
                     <input type="hidden" name="pla_num" value="<?= $plat["PLA_NUM"] ?>">
                     <input type="hidden" name="pla_nom" value="<?= $plat["PLA_NOM"] ?>">
                     <input type="hidden" name="pla_prix_ht" value="<?= $plat["PLA_PRIX_VENTE_UNIT_HT"] ?>">

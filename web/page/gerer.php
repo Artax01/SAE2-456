@@ -74,25 +74,27 @@ foreach ($clients as &$client) {
 unset($client);
 
 // Meilleurs clients
-$sql = "
-    SELECT C.CLI_NOM, C.CLI_PRENOM, SUM(COM.COM_PRIX_TOTAL) AS TOTAL
-    FROM RAP_CLIENT C
-    JOIN RAP_COMMANDE COM ON C.CLI_NUM = COM.CLI_NUM
-    WHERE C.CLI_NOM NOT LIKE 'NON CLIENT'
-    GROUP BY C.CLI_NOM, C.CLI_PRENOM
-    ORDER BY TOTAL DESC
-    FETCH FIRST 3 ROWS ONLY
+$sql = "SELECT C.CLI_NOM, C.CLI_PRENOM, SUM(COM.COM_PRIX_TOTAL) AS TOTAL
+        FROM RAP_CLIENT C
+        JOIN RAP_COMMANDE COM ON C.CLI_NUM = COM.CLI_NUM
+        WHERE C.CLI_NOM NOT LIKE 'NON CLIENT'
+        GROUP BY C.CLI_NOM, C.CLI_PRENOM
+        ORDER BY TOTAL DESC
+        -- FETCH FIRST 3 ROWS ONLY (Oracle syntax)
+        LIMIT 3
 ";
 $meilleurs_clients = [];
 LireDonneesPDO1($conn, $sql, $meilleurs_clients);
 
 // Meilleures périodes
-$sql = "
-    SELECT TO_CHAR(COM_DATE, 'YYYY-MM') AS PERIODE, COUNT(*) AS NB
-    FROM RAP_COMMANDE
-    GROUP BY TO_CHAR(COM_DATE, 'YYYY-MM')
-    ORDER BY NB DESC
-    FETCH FIRST 3 ROWS ONLY
+// TO_CHAR(COM_DATE, 'YYYY-MM') for Oracle
+// DATE_FORMAT(COM_DATE, '%Y-%m') for MySQL
+$sql = "SELECT DATE_FORMAT(COM_DATE, '%Y-%m') AS PERIODE, COUNT(*) AS NB
+        FROM RAP_COMMANDE
+        GROUP BY DATE_FORMAT(COM_DATE, '%Y-%m')
+        ORDER BY NB DESC
+        -- FETCH FIRST 3 ROWS ONLY (Oracle syntax)
+        LIMIT 3
 ";
 $meilleures_periodes = [];
 LireDonneesPDO1($conn, $sql, $meilleures_periodes);

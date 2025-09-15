@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
     updateReduction();
 });
 </script>
-        <form action="./web/commande/verif_payer.php" method="POST" class="space-y-6">
+        <form action="./web/CART/verif_payer.php" method="POST" class="space-y-6">
               <div>
                 <label class="block font-semibold mb-2 text-gray-700 text-2xl p-8">Méthode de paiement</label>
                 <div class="flex flex-col gap-4  ">
